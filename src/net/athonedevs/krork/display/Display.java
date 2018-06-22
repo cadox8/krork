@@ -1,6 +1,7 @@
 package net.athonedevs.krork.display;
 
 import lombok.Getter;
+import net.athonedevs.krork.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +36,7 @@ public class Display {
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
 
-        //frame.setIconImage(null); //Icon
+        frame.setIconImage(Utils.loadImage("")); //Icon
 
         frame.add(canvas);
         frame.pack();

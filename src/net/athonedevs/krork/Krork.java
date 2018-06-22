@@ -6,17 +6,23 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
 import net.athonedevs.krork.state.MenuState;
 import net.athonedevs.krork.state.State;
+import net.athonedevs.krork.utils.GameCamera;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Krork implements Runnable {
 
+    // Info
     @Getter private static final String version = "0.0.1";
+
+    //
+
 
     @Getter private Display display;
     @Getter private int width, height;
     private String title;
+
 
     @Getter @Setter private boolean running = false;
     private Thread thread;
@@ -24,12 +30,17 @@ public class Krork implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    //States
+    // States (Don't Use)
     public State menuState;
 
 
-    //API
+    // Camera
+    @Getter public GameCamera gameCamera;
+
+
+    // API
     @Getter private KrorkAPI API;
+
 
     public Krork(String title, int width, int height) {
         this.width = width;
@@ -42,6 +53,8 @@ public class Krork implements Runnable {
         display = new Display(title, width, height);
 
         API = new KrorkAPI(this);
+        gameCamera = new GameCamera(API, 0, 0);
+
         menuState = new MenuState(API);
 
         State.setState(menuState);
@@ -65,6 +78,7 @@ public class Krork implements Runnable {
         bs.show();
         g.dispose();
     }
+
 
     public void run() {
         init();

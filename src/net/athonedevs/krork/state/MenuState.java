@@ -6,6 +6,7 @@ import net.athonedevs.krork.ui.UIManager;
 
 import java.awt.*;
 
+@Deprecated
 public class MenuState extends State {
 
     private UIManager uiManager;
@@ -15,8 +16,6 @@ public class MenuState extends State {
 
         uiManager = new UIManager(API);
     }
-
-
 
     @Override
     public void tick() {
