@@ -7,6 +7,8 @@ import net.athonedevs.krork.display.Display;
 import net.athonedevs.krork.state.MenuState;
 import net.athonedevs.krork.state.State;
 import net.athonedevs.krork.utils.GameCamera;
+import net.athonedevs.krork.utils.Log;
+import net.athonedevs.krork.utils.Updater;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -14,7 +16,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "0.0.1";
+    @Getter private static final String version = "0.3.1 Alpha";
 
     //
 
@@ -46,7 +48,6 @@ public class Krork implements Runnable {
         this.width = width;
         this.height = height;
         this.title = title;
-
     }
 
     private void init() {
@@ -58,6 +59,14 @@ public class Krork implements Runnable {
         menuState = new MenuState(API);
 
         State.setState(menuState);
+
+        // Version info
+        KrorkAPI.setDebugEnabled(true);
+
+        Log.log(Log.LogType.SUCCESS, "Krork Engine is now working");
+        Log.log(Log.LogType.NORMAL, "Version: \u001B[31m" + getVersion() + "\n");
+        Log.log(Log.LogType.NORMAL, "Checking for updates...");
+        Updater.checkForUpdate();
     }
 
     private void tick() {

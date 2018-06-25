@@ -32,7 +32,7 @@ public class Log {
         String log;
 
         if (System.getProperty("os.name").contains("10")) {
-            log = time + type.getColor() + type.getPrefix() + " \u001B[0m" + text;
+            log = time + type.getColor() + type.getPrefix() + " \u001B[0m" + text + "\u001B[0m";
         } else {
             log = time + type.getPrefix() + " " + text;
         }

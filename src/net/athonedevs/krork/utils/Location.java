@@ -2,12 +2,14 @@ package net.athonedevs.krork.utils;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@ToString
 public class Location {
 
     @Setter private KrorkAPI API;
@@ -33,6 +35,9 @@ public class Location {
         this.y += y;
     }
 
+    public void teleport(float x, float y, int direction) {
+        teleport(API.getWorld(), x, y, direction);
+    }
     public void teleport(World world, float x, float y, int direction) {
         setWorld(world);
         setX(x);
@@ -40,14 +45,9 @@ public class Location {
         setDirection(direction);
     }
 
-    public void teleport(float x, float y, int direction) {
-        teleport(API.getWorld(), x, y, direction);
-    }
-
     public int getXDistance(Location location) {
         return (int) (getX() - location.getX());
     }
-
     public int getYDistance(Location location) {
         return (int) (getY() - location.getY());
     }
@@ -61,9 +61,5 @@ public class Location {
         location.put("direction", getDirection());
 
         return location;
-    }
-
-    public String toString() {
-        return "Location:{World:" + world.worldName() + ",X:" + getX() + ",Y:" + getY() + ",Direction:" + getDirection() + "}";
     }
 }
