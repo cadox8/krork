@@ -2,6 +2,8 @@ package net.athonedevs.krork.world;
 
 import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.entities.EntityManager;
+import net.athonedevs.krork.entities.creatures.player.Player;
 import net.athonedevs.krork.utils.Utils;
 
 import java.awt.*;
@@ -14,15 +16,21 @@ public class World {
     private int spawnX, spawnY;
     private int[][] tiles;
 
+    //Entities
+    @Getter private EntityManager entityManager;
 
     private String path;
 
     public World(KrorkAPI API, String path) {
         this.API = API;
         this.path = path;
+        this.entityManager = new EntityManager(API, new Player(API, 100, 100));
 
         addEntities();
         loadWorld();
+
+        this.entityManager.getPlayer().setX(spawnX);
+        this.entityManager.getPlayer().setY(spawnY);
     }
 
 
@@ -31,11 +39,12 @@ public class World {
     }
 
     public void tick(){
-
+        entityManager.tick();
     }
 
     public void render(Graphics g){
-
+        // Render Entities
+        entityManager.render(g);
     }
 
     // Loaded from Text File (Should we change it to get Entities from same site?)
@@ -55,7 +64,7 @@ public class World {
         }
     }
 
-    private String worldName() {
+    public String worldName() {
         return path.split("/")[2].split("\\.")[0];
     }
     @Override

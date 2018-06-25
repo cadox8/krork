@@ -24,7 +24,6 @@ public class KrorkAPI {
         return game.getGameCamera();
     }
 
-
     public int getWidth() {
         return game.getWidth();
     }
