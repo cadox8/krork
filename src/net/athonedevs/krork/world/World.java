@@ -2,11 +2,14 @@ package net.athonedevs.krork.world;
 
 import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
 import net.athonedevs.krork.entities.creatures.player.Player;
+import net.athonedevs.krork.tiles.Tile;
 import net.athonedevs.krork.utils.Utils;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class World {
 
@@ -34,8 +37,8 @@ public class World {
     }
 
 
-    public void addEntities(){
-
+    public void addEntities(Entity... entities){
+        Arrays.asList(entities).forEach(e -> entityManager.addEntity(e));
     }
 
     public void tick(){
@@ -43,8 +46,26 @@ public class World {
     }
 
     public void render(Graphics g){
-        // Render Entities
+        int xStart = (int) Math.max(0, API.getGameCamera().getXOffset() / Tile.TILEWIDTH);
+        int xEnd = (int) Math.min(width, (API.getGameCamera().getXOffset() + API.getWidth()) / Tile.TILEWIDTH + 1);
+        int yStart = (int) Math.max(0, API.getGameCamera().getYOffset() / Tile.TILEHEIGHT);
+        int yEnd = (int) Math.min(height, (API.getGameCamera().getYOffset() + API.getHeight()) / Tile.TILEHEIGHT + 1);
+
+        for (int y = yStart; y < yEnd; y++) {
+            for (int x = xStart; x < xEnd; x++) {
+                getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
+            }
+        }
+        //Entities
         entityManager.render(g);
+    }
+
+    public Tile getTile(int x, int y) {
+        if (x < 0 || y < 0 || x >= width || y >= height) return Tile.bug;
+        Tile t = Tile.tiles[tiles[x][y]];
+
+        if (t == null) return Tile.bug;
+        return t;
     }
 
     // Loaded from Text File (Should we change it to get Entities from same site?)

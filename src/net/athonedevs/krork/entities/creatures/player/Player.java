@@ -7,6 +7,11 @@ import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 
+/**
+ *
+ * Default Player class (Must be created in game)
+ */
+@Deprecated
 public class Player extends Creature {
 
     public Player(KrorkAPI API, float x, float y) {

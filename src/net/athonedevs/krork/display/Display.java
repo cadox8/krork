@@ -36,9 +36,11 @@ public class Display {
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
 
-        frame.setIconImage(Utils.loadImage("")); //Icon
-
         frame.add(canvas);
         frame.pack();
+    }
+
+    public void setIconImage(String path) {
+        frame.setIconImage(Utils.loadImage(path));
     }
 }

@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class EntityManager {
 
     @Getter @Setter private KrorkAPI API;
-    @Getter @Setter private Player player;
+    @Getter @Setter private Creature player;
 
     @Getter @Setter private ArrayList<Entity> entities;
 
@@ -23,7 +23,7 @@ public class EntityManager {
         return 1;
     };
 
-    public EntityManager(KrorkAPI API, Player player) {
+    public EntityManager(KrorkAPI API, Creature player) {
         this.API = API;
         this.player = player;
         entities = new ArrayList<>();
