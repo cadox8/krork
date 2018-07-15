@@ -2,15 +2,21 @@ package net.athonedevs.krork.tiles;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.athonedevs.krork.gfx.Sprites;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Tile {
 
+    @Setter public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+
+
     @Setter public static Tile[] tiles = new Tile[256];
 
-    @Setter public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+    public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
+
+
 
     @Getter protected BufferedImage texture;
     @Getter protected final int id;

@@ -14,11 +14,11 @@ public class Sprites {
         return sprites.getSubimage(x, y, width, height);
     }
 
-    public BufferedImage randomImage(int width, int height) {
+    public static BufferedImage randomImage(int width, int height) {
         return coloredSprite(width, height, new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256)));
     }
 
-    public BufferedImage coloredSprite(int width, int height, Color color) {
+    public static BufferedImage coloredSprite(int width, int height, Color color) {
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         for (int y = 0; y < height; y++) {

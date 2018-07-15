@@ -12,7 +12,7 @@ public class Updater {
     public static void checkForUpdate(){
         if (!getEngineVersion().equalsIgnoreCase(Krork.getVersion())) {
             Log.log(Log.LogType.WARNING, "\u001B[35mNew version found, Version: \u001B[31m" + getEngineVersion());
-            Log.log(Log.LogType.WARNING, "You can download it from here: \u001B[32mhttps://cadox8.github.io/Krork");
+            Log.log(Log.LogType.WARNING, "You can download it from here: \u001B[32mhttps://cadox8.github.io/krork/");
         } else {
             Log.log(Log.LogType.SUCCESS, "No updates found");
         }
