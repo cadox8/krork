@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) AthoneDevs, Inc - All Rights Reserved (Krork Engine)
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited
+  ~ You are not allowed to edit or use fragments of this code for any uses
+  ~ You are allowed to use the Engine as a dependency for your code/game
+  ~
+  ~ For any question/bug/suggestion, please, mail me at cadox8@gmail.com
+  ~ Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+  -->
+
 <metadata>
   <groupId>net.athonedevs</groupId>
   <artifactId>Krork</artifactId>
   <versioning>
-    <release>0.4.7</release>
+    <release>0.5-Alpha</release>
     <versions>
-      <version>0.4.7</version>
+      <version>0.4.7-Alpha</version>
+      <version>0.5-Alpha</version>
     </versions>
-    <lastUpdated>20180715114803</lastUpdated>
+    <lastUpdated>20181024165822</lastUpdated>
   </versioning>
 </metadata>

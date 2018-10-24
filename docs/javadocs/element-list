@@ -1,0 +1,15 @@
+net.athonedevs.krork
+net.athonedevs.krork.ai
+net.athonedevs.krork.api
+net.athonedevs.krork.attributes
+net.athonedevs.krork.display
+net.athonedevs.krork.entities
+net.athonedevs.krork.entities.creatures
+net.athonedevs.krork.entities.creatures.player
+net.athonedevs.krork.gfx
+net.athonedevs.krork.input
+net.athonedevs.krork.state
+net.athonedevs.krork.tiles
+net.athonedevs.krork.ui
+net.athonedevs.krork.utils
+net.athonedevs.krork.world

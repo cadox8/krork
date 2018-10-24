@@ -1,10 +1,21 @@
+/*
+ * Copyright (C) AthoneDevs, Inc - All Rights Reserved (Krork Engine)
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * You are not allowed to edit or use fragments of this code for any uses
+ * You are allowed to use the Engine as a dependency for your code/game
+ *
+ * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
+ * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ */
+
 package net.athonedevs.krork;
 
 import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
-import net.athonedevs.krork.state.MenuState;
+import net.athonedevs.krork.display.Resize;
+import net.athonedevs.krork.state.DefaultState;
 import net.athonedevs.krork.state.State;
 import net.athonedevs.krork.utils.GameCamera;
 import net.athonedevs.krork.utils.Log;
@@ -16,13 +27,13 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "0.4.7 Alpha";
-
+    @Getter private static final String version = "v0.5 Alpha";
+    @Getter @Setter private static String game;
     //
 
 
     @Getter private Display display;
-    @Getter private int width, height;
+    @Getter @Setter private int width, height;
     private String title;
 
 
@@ -32,33 +43,33 @@ public class Krork implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    // States (Don't Use)
-    public State menuState;
-
-
     // Camera
     @Getter public GameCamera gameCamera;
-
 
     // API
     @Getter private KrorkAPI API;
 
+    // Just to extends the class
+    public Krork() {}
 
-    public Krork(String title, int width, int height) {
+    // Valid constructor
+    public Krork(String game, String title, int width, int height) {
+        setGame(game);
         this.width = width;
         this.height = height;
         this.title = title;
+
+        init();
     }
 
     private void init() {
-        display = new Display(title, width, height);
-
         API = new KrorkAPI(this);
+        new Resize(API, getWidth(), getHeight()).adjustScreenSize();
+        display = new Display(title, getWidth(), getHeight());
+
         gameCamera = new GameCamera(API, 0, 0);
 
-        menuState = new MenuState(API);
-
-        State.setState(menuState);
+        State.setState(new DefaultState(API));
 
         // Version info
         KrorkAPI.setDebugEnabled(true);
@@ -88,12 +99,11 @@ public class Krork implements Runnable {
         g.dispose();
     }
 
+    protected void updater() {}
 
     public void run() {
-        init();
-
         int fps = 60;
-        double timePerTick = 1000000000 / fps;
+        double timePerTick = (double)(1000000000 / fps);
         double delta = 0;
         long now;
         long lastTime = System.nanoTime();
@@ -109,6 +119,7 @@ public class Krork implements Runnable {
             if (delta >= 1) {
                 tick();
                 render();
+                updater();
                 ticks++;
                 delta--;
             }

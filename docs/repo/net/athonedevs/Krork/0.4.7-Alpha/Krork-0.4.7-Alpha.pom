@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.athonedevs</groupId>
     <artifactId>Krork</artifactId>
-    <version>0.4.7</version>
+    <version>0.4.7-Alpha</version>
     <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
