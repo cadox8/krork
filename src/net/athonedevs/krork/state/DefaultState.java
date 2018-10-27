@@ -26,6 +26,7 @@ public class DefaultState extends State {
         super(api);
 
         uiManager = new UIManager(API);
+        API.getMouseManager().setUIManager(uiManager);
 
         uiManager.addObject(new UIText((float)(API.getWidth() / 3), (float)(API.getHeight() / 2), Color.BLACK, "Krork Engine " + Krork.getVersion() + " by AthoneDevs", () -> Log.log("Works!")));
     }

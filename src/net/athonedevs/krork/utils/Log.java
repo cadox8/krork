@@ -43,9 +43,9 @@ public class Log {
         String log;
 
         if (System.getProperty("os.name").contains("10")) {
-            log = time + type.getColor() + type.getPrefix() + Krork.getGame() + ">> \u001B[0m" + text + "\u001B[0m";
+            log = time + type.getColor() + type.getPrefix() + Krork.getGame() + " >> \u001B[0m" + text + "\u001B[0m";
         } else {
-            log = time + type.getPrefix() + Krork.getGame() + ">> " + text;
+            log = time + type.getPrefix() + Krork.getGame() + " >> " + text;
         }
         System.out.println(log);
     }

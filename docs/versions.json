@@ -1,4 +1,8 @@
 {
+  "0.5.1-Alpha": [
+    "Added MouseManager",
+    "Reformat Code"
+  ],
   "0.5-Alpha": [
     "Resize images and screen",
     "Added new UI",
