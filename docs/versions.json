@@ -1,4 +1,9 @@
 {
+  "0.5.2-Alpha": [
+    "Added UIField",
+    "Enable/Disable UI",
+    "Small changes"
+  ],
   "0.5.1-Alpha": [
     "Added MouseManager",
     "Reformat Code"
