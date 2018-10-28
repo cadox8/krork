@@ -10,8 +10,10 @@
 
 package net.athonedevs.krork.state;
 
+import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.ui.UIField;
 import net.athonedevs.krork.ui.UIManager;
 import net.athonedevs.krork.ui.UIText;
 import net.athonedevs.krork.utils.Log;
@@ -20,15 +22,17 @@ import java.awt.*;
 
 public class DefaultState extends State {
 
-    private UIManager uiManager;
+    @Getter private UIManager uiManager;
 
     public DefaultState(KrorkAPI api) {
         super(api);
 
         uiManager = new UIManager(API);
-        API.getMouseManager().setUIManager(uiManager);
+        API.getMouseManager().setUiManager(uiManager);
 
         uiManager.addObject(new UIText((float)(API.getWidth() / 3), (float)(API.getHeight() / 2), Color.BLACK, "Krork Engine " + Krork.getVersion() + " by AthoneDevs", () -> Log.log("Works!")));
+
+        uiManager.addObject(new UIField(400, 400, 80, 15));
     }
 
     @Override

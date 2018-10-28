@@ -29,11 +29,11 @@ public class UIManager {
     }
 
     public void tick() {
-        objects.forEach(UIObject::tick);
+        objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
     }
 
     public void render(Graphics g) {
-        objects.forEach(o -> o.render(g));
+        objects.stream().filter(UIObject::isEnabled).forEach(o -> o.render(g));
     }
 
     public void onMouseMove(MouseEvent e) {

@@ -10,20 +10,49 @@
 
 package net.athonedevs.krork.input;
 
+import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.ex.KeyRegisteredException;
+import net.athonedevs.krork.ui.UIField;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
-public abstract class KeyManager implements KeyListener {
+public class KeyManager implements KeyListener {
+
+    private KrorkAPI API;
 
     private boolean[] keys, justPressed, cantPress;
 
-    public KeyManager() {
+    private int[] allKeys;
+
+    public KeyManager(KrorkAPI API) {
         keys = new boolean[256];
+        allKeys = new int[keys.length];
         justPressed = new boolean[keys.length];
         cantPress = new boolean[keys.length];
+
+        this.API = API;
     }
 
-    public abstract void tick();
+    public void tick() {
+        for (int i = 0; i < keys.length; i++) {
+            if (cantPress[i] && !keys[i]) {
+                cantPress[i] = false;
+            } else {
+                if (justPressed[i]) {
+                    cantPress[i] = true;
+                    justPressed[i] = false;
+                }
+            }
+            if (!cantPress[i] && keys[i]) justPressed[i] = true;
+        }
+    }
+
+    public void registerKeys(int key) throws KeyRegisteredException {
+        if (Arrays.asList(allKeys).contains(key)) throw new KeyRegisteredException(key);
+        allKeys[key] = key;
+    }
 
     public boolean keyJustPressed(int keyCode) {
         if (keyCode < 0 || keyCode >= keys.length) return false;
@@ -43,5 +72,7 @@ public abstract class KeyManager implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+        if (API.getMouseManager().getUiManager() != null) API.getMouseManager().getUiManager().getObjects().stream().filter(o -> o instanceof UIField).forEach(o -> ((UIField) o).setText(((UIField) o).getText() + e.getKeyChar()));
+    }
 }

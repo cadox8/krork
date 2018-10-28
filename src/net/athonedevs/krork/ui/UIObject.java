@@ -21,7 +21,9 @@ public abstract class UIObject {
     @Getter @Setter protected float x, y;
     @Getter @Setter protected int width, height;
     @Getter @Setter protected Rectangle bounds;
+
     @Getter @Setter protected boolean hovering = false;
+    @Getter @Setter protected boolean enabled = true;
 
     public UIObject(float x, float y, int width, int height) {
         this.x = x;
