@@ -6,6 +6,7 @@ net.athonedevs.krork.display
 net.athonedevs.krork.entities
 net.athonedevs.krork.entities.creatures
 net.athonedevs.krork.entities.creatures.player
+net.athonedevs.krork.ex
 net.athonedevs.krork.gfx
 net.athonedevs.krork.input
 net.athonedevs.krork.state

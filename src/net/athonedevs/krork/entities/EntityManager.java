@@ -30,7 +30,7 @@ public class EntityManager {
 
     private Comparator<Entity> renderSorter = (Entity a, Entity b)-> {
         if (a.getY() + a.getHeight() < b.getY() + b.getHeight()) return -1;
-        return 1;
+        return 0;
     };
 
     public EntityManager(KrorkAPI API, Creature player) {

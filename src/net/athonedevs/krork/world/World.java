@@ -15,7 +15,7 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
-import net.athonedevs.krork.entities.creatures.player.Player;
+import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.tiles.Tile;
 import net.athonedevs.krork.utils.SizeUtils;
 import net.athonedevs.krork.utils.Utils;
@@ -36,12 +36,11 @@ public class World {
 
     private String path;
 
-    public World(KrorkAPI API, String path) {
+    public World(KrorkAPI API, String path, Creature creature) {
         this.API = API;
         this.path = path;
-        this.entityManager = new EntityManager(API, new Player(API, 100, 100));
+        this.entityManager = new EntityManager(API, creature);
 
-        addEntities();
         loadWorld();
 
         this.entityManager.getPlayer().setX(spawnX);

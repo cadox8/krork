@@ -50,4 +50,7 @@ public class UIManager {
     public void removeObject(UIObject o) {
         objects.remove(o);
     }
+    public void removeAllObjects() {
+        objects.clear();
+    }
 }
