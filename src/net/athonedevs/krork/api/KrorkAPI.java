@@ -14,6 +14,7 @@ package net.athonedevs.krork.api;
 import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.Krork;
+import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
 import net.athonedevs.krork.utils.GameCamera;
 import net.athonedevs.krork.world.World;
@@ -30,6 +31,9 @@ public class KrorkAPI {
         this.game = game;
     }
 
+    public KeyManager getKeyManager() {
+        return getGame().getKeyManager();
+    }
     public MouseManager getMouseManager() {
         return getGame().getMouseManager();
     }

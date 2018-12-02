@@ -10,6 +10,7 @@
 
 package net.athonedevs.krork.ui;
 
+import lombok.Getter;
 import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
@@ -18,7 +19,7 @@ import java.awt.image.BufferedImage;
 
 public class UIImage extends UIObject {
 
-    private BufferedImage[] images;
+    @Getter private BufferedImage[] images;
 
     public UIImage(float x, float y, int width, int height, BufferedImage[] images) {
         super(x, y, width, height);
@@ -50,4 +51,11 @@ public class UIImage extends UIObject {
 
     @Override
     public void onClick() {}
+
+    public void changeImages(BufferedImage... imgs) {
+        images = imgs;
+    }
+    public void changeImage(BufferedImage img) {
+        images[0] = img;
+    }
 }

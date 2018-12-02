@@ -12,6 +12,7 @@ package net.athonedevs.krork.ui;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
@@ -19,34 +20,44 @@ import java.awt.*;
 
 public class UIField extends UIObject {
 
-    @Getter @Setter private String text = "";
-    @Getter @Setter private String drawText = "";
+    private ClickListener clicker;
 
-    public UIField(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    @Getter @Setter private String text = "";
+
+    @Getter @Setter private Color baseColor = new Color(217, 217, 217);
+
+    public UIField(float x, float y, int width, int height, KrorkAPI api) {
+        super(x, y - height, width, height);
+
+        this.clicker = () -> api.getKeyManager().setWritingTo(this);
     }
 
     @Override
     public void tick() {
-
     }
 
     @Override
     public void render(Graphics g) {
+        String drawText = "";
         final SizeUtils resized = Resize.resize((int)x, (int)y, width, height);
+        final Font oldFont = g.getFont();
+        g.setFont(oldFont.deriveFont(Font.PLAIN, (oldFont.getSize() * height) / 20f));
 
         if (!canWrite(g, text, resized)) drawText = text;
 
         g.setColor(Color.BLACK);
         g.drawRect(resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight());
-        g.setColor(Color.LIGHT_GRAY);
+
+        g.setColor(baseColor);
         g.fillRect(resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight());
-        new UIText(x + 2, y + height - 3, Color.BLACK, drawText).render(g);
+        new UIText(x + 2, y + height - (height / 5f), Color.BLACK, drawText).render(g);
+
+        g.setFont(oldFont);
     }
 
     @Override
     public void onClick() {
-
+        clicker.onClick();
     }
 
     private boolean canWrite(Graphics g, String text, SizeUtils resized) {

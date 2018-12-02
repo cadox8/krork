@@ -1,4 +1,8 @@
 {
+  "0.5.6-Alpha": [
+    "Edited UIFiled to allow the write",
+    "Small changes"
+  ],
   "0.5.2-Alpha": [
     "Added UIField",
     "Enable/Disable UI",

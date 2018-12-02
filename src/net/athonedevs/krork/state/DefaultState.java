@@ -32,7 +32,7 @@ public class DefaultState extends State {
 
         uiManager.addObject(new UIText((float)(API.getWidth() / 3), (float)(API.getHeight() / 2), Color.BLACK, "Krork Engine " + Krork.getVersion() + " by AthoneDevs", () -> Log.log("Works!")));
 
-        uiManager.addObject(new UIField(400, 400, 80, 15));
+        uiManager.addObject(new UIField(0, 400, API.getWidth(), 60, API));
     }
 
     @Override

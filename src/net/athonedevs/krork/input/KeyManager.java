@@ -10,8 +10,9 @@
 
 package net.athonedevs.krork.input;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.ex.KeyRegisteredException;
 import net.athonedevs.krork.ui.UIField;
 
 import java.awt.event.KeyEvent;
@@ -24,15 +25,16 @@ public class KeyManager implements KeyListener {
 
     private boolean[] keys, justPressed, cantPress;
 
-    private int[] allKeys;
+    @Getter @Setter private UIField writingTo;
 
     public KeyManager(KrorkAPI API) {
         keys = new boolean[256];
-        allKeys = new int[keys.length];
         justPressed = new boolean[keys.length];
         cantPress = new boolean[keys.length];
 
         this.API = API;
+
+        writingTo = null;
     }
 
     public void tick() {
@@ -47,11 +49,6 @@ public class KeyManager implements KeyListener {
             }
             if (!cantPress[i] && keys[i]) justPressed[i] = true;
         }
-    }
-
-    public void registerKeys(int key) throws KeyRegisteredException {
-        if (Arrays.asList(allKeys).contains(key)) throw new KeyRegisteredException(key);
-        allKeys[key] = key;
     }
 
     public boolean keyJustPressed(int keyCode) {
@@ -73,6 +70,13 @@ public class KeyManager implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (API.getMouseManager().getUiManager() != null) API.getMouseManager().getUiManager().getObjects().stream().filter(o -> o instanceof UIField).forEach(o -> ((UIField) o).setText(((UIField) o).getText() + e.getKeyChar()));
+        if (writingTo != null) {
+            if (e.getKeyChar() == 8) {
+                if (writingTo.getText().toCharArray().length <= 0) return;
+                writingTo.setText(String.valueOf(Arrays.copyOfRange(writingTo.getText().toCharArray(), 0, writingTo.getText().toCharArray().length - 1)));
+                return;
+            }
+            writingTo.setText(writingTo.getText() + e.getKeyChar());
+        }
     }
 }
