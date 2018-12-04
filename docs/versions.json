@@ -1,4 +1,8 @@
 {
+  "0.5.7-Alpha": [
+    "Added editable font to text",
+    "Removed unused code"
+  ],
   "0.5.6-Alpha": [
     "Edited UIFiled to allow the write",
     "Small changes"

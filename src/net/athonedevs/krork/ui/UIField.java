@@ -40,8 +40,6 @@ public class UIField extends UIObject {
     public void render(Graphics g) {
         String drawText = "";
         final SizeUtils resized = Resize.resize((int)x, (int)y, width, height);
-        final Font oldFont = g.getFont();
-        g.setFont(oldFont.deriveFont(Font.PLAIN, (oldFont.getSize() * height) / 20f));
 
         if (!canWrite(g, text, resized)) drawText = text;
 
@@ -51,8 +49,6 @@ public class UIField extends UIObject {
         g.setColor(baseColor);
         g.fillRect(resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight());
         new UIText(x + 2, y + height - (height / 5f), Color.BLACK, drawText).render(g);
-
-        g.setFont(oldFont);
     }
 
     @Override

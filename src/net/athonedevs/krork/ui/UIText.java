@@ -10,6 +10,8 @@
 
 package net.athonedevs.krork.ui;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
@@ -17,8 +19,8 @@ import java.awt.*;
 
 public class UIText extends UIObject {
 
-    private String text;
-    private Color color;
+    @Getter @Setter private String text;
+    @Getter @Setter private Color color;
     private ClickListener clicker;
 
     private int fixedX, fixedY;
@@ -42,13 +44,23 @@ public class UIText extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        SizeUtils resized = Resize.resize(fixedX, fixedY);
+        final SizeUtils resized = Resize.resize(fixedX, fixedY);
+        int lines = 0;
         g.setColor(color);
-        g.drawString(text, resized.getX(), resized.getY());
+        g.setFont(getFont());
+
+        for (String line : text.split("\n")) {
+            g.drawString(line, resized.getX(), resized.getY() + (g.getFontMetrics().getHeight() * lines) + 10);
+            lines++;
+        }
     }
 
     @Override
     public void onClick() {
         clicker.onClick();
+    }
+
+    public void addText(String text) {
+        setText(getText() + text);
     }
 }

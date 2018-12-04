@@ -29,7 +29,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "v0.5.6 Alpha";
+    @Getter private static final String version = "v0.5.7 Alpha";
     @Getter @Setter private static String game;
     //
 
@@ -55,7 +55,7 @@ public class Krork implements Runnable {
     @Getter private KrorkAPI API;
 
     /**
-     * Constructor made to extend the class 123123
+     * Constructor made to extend the class
      */
     public Krork() {}
 

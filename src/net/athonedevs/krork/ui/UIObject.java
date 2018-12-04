@@ -25,6 +25,8 @@ public abstract class UIObject {
     @Getter @Setter protected boolean hovering = false;
     @Getter @Setter protected boolean enabled = true;
 
+    @Getter @Setter protected Font font = new Font("Arial", Font.PLAIN, 11);
+
     public UIObject(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -43,5 +45,19 @@ public abstract class UIObject {
 
     public void onMouseRelease(MouseEvent e) {
         if (hovering) onClick();
+    }
+
+    public void setSize(int size) {
+        setStyleAndSize(getFont().getStyle(), size);
+    }
+    public void setStyle(int style) {
+        setStyleAndSize(style, getFont().getSize());
+    }
+    public void setStyleAndSize(int style, int size) {
+        setFont(getFont().deriveFont(style, size));
+    }
+
+    public void newFont(String font, int style, int size) {
+        setFont(new Font(font, style, size));
     }
 }
