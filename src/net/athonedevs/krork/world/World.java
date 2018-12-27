@@ -34,7 +34,7 @@ public class World {
     //Entities
     @Getter private EntityManager entityManager;
 
-    private String path;
+    private final String path;
 
     public World(KrorkAPI API, String path, Creature creature) {
         this.API = API;
@@ -49,7 +49,7 @@ public class World {
 
 
     public void addEntities(Entity... entities){
-        Arrays.asList(entities).forEach(e -> entityManager.addEntity(e));
+        Arrays.asList(entities).forEach(entityManager::addEntity);
     }
 
     public void tick(){
@@ -64,7 +64,7 @@ public class World {
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
-                SizeUtils resized = Resize.resize((int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
+                final SizeUtils resized = Resize.resize((int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
                 getTile(x, y).render(g, resized.getX(), resized.getY());
             }
         }
@@ -82,8 +82,8 @@ public class World {
 
     // Loaded from Text File (Should we change it to get Entities from same site?)
     private void loadWorld() {
-        String file = Utils.loadFileAsString(path);
-        String[] tokens = file.split("\\s+");
+        final String file = Utils.loadFileAsString(path);
+        final String[] tokens = file.split("\\s+");
         width = Utils.parseInt(tokens[0]);
         height = Utils.parseInt(tokens[1]);
         spawnX = Utils.parseInt(tokens[2]);

@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
-import net.athonedevs.krork.entities.creatures.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class EntityManager {
     public void tick() {
         Iterator<Entity> it = entities.iterator();
         while (it.hasNext()) {
-            Entity e = it.next();
+            final Entity e = it.next();
             e.tick();
             e.fixAnimations();
             if (!e.isActive()) it.remove();
@@ -60,8 +59,8 @@ public class EntityManager {
         entities.add(e);
     }
 
-    public void freezeCreatures() {
-        entities.stream().filter(e -> e instanceof Creature).filter(e -> !(e instanceof Player)).forEach(e -> ((Creature)e).setFreeze(true));
+    public void freezeCreatures(Creature except) {
+        entities.stream().filter(e -> e instanceof Creature).filter(e -> !e.equals(except)).forEach(e -> ((Creature)e).setFreeze(true));
     }
 
     public void killAll() {
