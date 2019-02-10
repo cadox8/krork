@@ -12,7 +12,6 @@ package net.athonedevs.krork.world;
 
 import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
 import net.athonedevs.krork.entities.creatures.Creature;
@@ -36,10 +35,10 @@ public class World {
 
     private final String path;
 
-    public World(KrorkAPI API, String path, Creature creature) {
+    public World(KrorkAPI API, String path, Creature player) {
         this.API = API;
         this.path = path;
-        this.entityManager = new EntityManager(API, creature);
+        this.entityManager = new EntityManager(API, player);
 
         loadWorld();
 
@@ -64,8 +63,7 @@ public class World {
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
-                final SizeUtils resized = Resize.resize((int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
-                getTile(x, y).render(g, resized.getX(), resized.getY());
+                getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
             }
         }
         //Entities
@@ -80,7 +78,7 @@ public class World {
         return t;
     }
 
-    // Loaded from Text File (Should we change it to get Entities from same site?)
+    // Loaded from Text File (Should we change it to get Entities from same site?) -> v0.7.0 Alpha
     private void loadWorld() {
         final String file = Utils.loadFileAsString(path);
         final String[] tokens = file.split("\\s+");

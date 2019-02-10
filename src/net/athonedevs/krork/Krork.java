@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
 import net.athonedevs.krork.state.DefaultState;
@@ -29,7 +28,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "v0.5.7 Alpha";
+    @Getter private static final String version = "v0.6.0 Alpha";
     @Getter @Setter private static String game;
     //
 
@@ -92,7 +91,6 @@ public class Krork implements Runnable {
     }
 
     private void init() {
-        new Resize(API, getWidth(), getHeight()).adjustScreenSize();
         display = new Display(title, getWidth(), getHeight());
 
         display.getFrame().addKeyListener(keyManager);

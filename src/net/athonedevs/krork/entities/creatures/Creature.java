@@ -44,8 +44,6 @@ public abstract class Creature extends Entity {
     public void move() {
         if (!checkEntityCollisions(xMove, 0f)) moveX();
         if (!checkEntityCollisions(0f, yMove)) moveY();
-
-        if (!(this instanceof Player)) return;
     }
 
     public void moveX() {
@@ -96,6 +94,7 @@ public abstract class Creature extends Entity {
         return API.getWorld().getTile(x, y).isSolid();
     }
 
+    @Deprecated
     public void fixAnimations() {
         if (animations[0] != null) Arrays.asList(animations).forEach(a -> a.setSpeed((int)(speed * 166.66)));
     }

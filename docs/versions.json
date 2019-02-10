@@ -1,4 +1,10 @@
 {
+  "0.6.0-Alpha": [
+    "Removed resize class (due bugs)",
+    "Removed trash code",
+    "Added Item class",
+    "Adequate code"
+  ],
   "0.5.7-Alpha": [
     "Added editable font to text",
     "Removed unused code"
@@ -22,6 +28,6 @@
     "Added Copyright advise"
   ],
   "0.4.7-Alpha": [
-    "First Release"
+    "First public Release"
   ]
 }

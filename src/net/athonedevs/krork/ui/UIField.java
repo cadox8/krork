@@ -13,7 +13,6 @@ package net.athonedevs.krork.ui;
 import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
@@ -39,16 +38,15 @@ public class UIField extends UIObject {
     @Override
     public void render(Graphics g) {
         String drawText = "";
-        final SizeUtils resized = Resize.resize((int)x, (int)y, width, height);
 
-        if (!canWrite(g, text, resized)) drawText = text;
+        if (!canWrite(g, text)) drawText = text;
 
         g.setColor(Color.BLACK);
-        g.drawRect(resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight());
+        g.drawRect((int)getX(), (int)getY(), getWidth(), getHeight());
 
         g.setColor(baseColor);
-        g.fillRect(resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight());
-        new UIText(x + 2, y + height - (height / 5f), Color.BLACK, drawText).render(g);
+        g.fillRect((int)getX(), (int)getY(), getWidth(), getHeight());
+        new UIText(x + 2, y + height - (height / 5f) - 10, Color.BLACK, drawText).render(g);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class UIField extends UIObject {
         clicker.onClick();
     }
 
-    private boolean canWrite(Graphics g, String text, SizeUtils resized) {
-        return g.getFontMetrics(g.getFont()).stringWidth(text) > resized.getWidth();
+    private boolean canWrite(Graphics g, String text) {
+        return g.getFontMetrics(g.getFont()).stringWidth(text) > width;
     }
 }

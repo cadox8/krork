@@ -13,7 +13,6 @@ package net.athonedevs.krork.ai;
 import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
-import net.athonedevs.krork.entities.creatures.player.Player;
 
 import java.awt.*;
 
@@ -21,7 +20,7 @@ public abstract class AI {
 
     protected KrorkAPI API;
     private Entity entity;
-    protected Player player;
+    protected Entity player;
 
     private float speed;
     private int delay;
@@ -46,12 +45,15 @@ public abstract class AI {
 
     public abstract void getMove();
     protected abstract boolean isTracking();
+    public abstract void attack(float xMove, float yMove);
+
 
     private boolean isOnDelay() {
         return tempDelay != 0;
     }
 
-    private void attack(float xMove, float yMove) {
+    // Example Method
+/*    private void attack(float xMove, float yMove) {
         boolean isAttacking;
 
         entity.setAttackTimer(entity.getAttackTimer() + System.currentTimeMillis() - entity.getLastAttackTimer());
@@ -68,7 +70,7 @@ public abstract class AI {
                 }
             }
         }
-    }
+    }*/
 
     //TODO: Change
     protected Rectangle getTrackingArea() {

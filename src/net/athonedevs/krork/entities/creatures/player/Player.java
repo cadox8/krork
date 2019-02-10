@@ -18,7 +18,6 @@ import net.athonedevs.krork.utils.Log;
 import java.awt.*;
 
 /**
- *
  * Default Player class (Must be created in game)
  */
 @Deprecated

@@ -10,7 +10,6 @@
 
 package net.athonedevs.krork.ui;
 
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.utils.SizeUtils;
 
@@ -34,8 +33,7 @@ public class UIImageAnim extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        SizeUtils resized = Resize.resize((int)x, (int)y, width, height);
-        g.drawImage(anim.getCurrentFrame(), resized.getX(), resized.getY(), resized.getWidth(), resized.getHeight(), null);
+        g.drawImage(anim.getCurrentFrame(), (int)getX(), (int)getY(), getWidth(), getHeight(), null);
     }
 
     @Override

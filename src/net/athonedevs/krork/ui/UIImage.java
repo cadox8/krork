@@ -11,7 +11,6 @@
 package net.athonedevs.krork.ui;
 
 import lombok.Getter;
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
@@ -32,11 +31,10 @@ public class UIImage extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        SizeUtils resized = Resize.resize((int)x, (int)y, width, height);
-        x = resized.getX();
-        y = resized.getY();
-        width = resized.getWidth();
-        height = resized.getHeight();
+        x = getX();
+        y = getY();
+        width = getWidth();
+        height = getHeight();
 
         if (hovering) {
             if (images.length > 1) {

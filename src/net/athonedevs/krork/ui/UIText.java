@@ -12,7 +12,6 @@ package net.athonedevs.krork.ui;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.athonedevs.krork.display.Resize;
 import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
@@ -44,13 +43,12 @@ public class UIText extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        final SizeUtils resized = Resize.resize(fixedX, fixedY);
         int lines = 0;
         g.setColor(color);
         g.setFont(getFont());
 
         for (String line : text.split("\n")) {
-            g.drawString(line, resized.getX(), resized.getY() + (g.getFontMetrics().getHeight() * lines) + 10);
+            g.drawString(line, (int)getX(), (int)getY() + (g.getFontMetrics().getHeight() * lines) + 10);
             lines++;
         }
     }
