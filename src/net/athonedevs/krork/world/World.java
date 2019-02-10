@@ -16,7 +16,6 @@ import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
 import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.tiles.Tile;
-import net.athonedevs.krork.utils.SizeUtils;
 import net.athonedevs.krork.utils.Utils;
 
 import java.awt.*;

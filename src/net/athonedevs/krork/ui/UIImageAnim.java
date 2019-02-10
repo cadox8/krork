@@ -11,7 +11,6 @@
 package net.athonedevs.krork.ui;
 
 import net.athonedevs.krork.gfx.Animation;
-import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
 

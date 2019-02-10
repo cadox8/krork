@@ -1,4 +1,7 @@
 {
+  "0.6.1-Alpha": [
+    "Removed class SizeUtils"
+  ],
   "0.6.0-Alpha": [
     "Removed resize class (due bugs)",
     "Removed trash code",

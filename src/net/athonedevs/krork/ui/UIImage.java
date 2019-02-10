@@ -11,7 +11,6 @@
 package net.athonedevs.krork.ui;
 
 import lombok.Getter;
-import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -13,7 +13,6 @@ package net.athonedevs.krork.ui;
 import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.utils.SizeUtils;
 
 import java.awt.*;
 
