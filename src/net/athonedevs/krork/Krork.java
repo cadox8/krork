@@ -28,7 +28,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "v0.6.1 Alpha";
+    @Getter private static final String version = "v0.6.2 Alpha";
     @Getter @Setter private static String game;
     //
 
@@ -108,7 +108,7 @@ public class Krork implements Runnable {
         KrorkAPI.setDebugEnabled(true);
 
         Log.log(Log.LogType.SUCCESS, "Krork Engine is now working");
-        Log.log(Log.LogType.NORMAL, "Version: \u001B[31m" + getVersion() + "\n");
+        Log.log(Log.LogType.NORMAL, "Krork Version: \u001B[31m" + getVersion() + "\n");
         Log.log(Log.LogType.NORMAL, "Checking for updates...");
         Updater.checkForUpdate();
     }

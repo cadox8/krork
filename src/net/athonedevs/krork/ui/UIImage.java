@@ -19,6 +19,9 @@ public class UIImage extends UIObject {
 
     @Getter private BufferedImage[] images;
 
+    public UIImage(float x, float y, int width, int height, BufferedImage image) {
+        this(x, y, width, height, new BufferedImage[]{image});
+    }
     public UIImage(float x, float y, int width, int height, BufferedImage[] images) {
         super(x, y, width, height);
         this.images = images;
@@ -52,7 +55,7 @@ public class UIImage extends UIObject {
     public void changeImages(BufferedImage... imgs) {
         images = imgs;
     }
-    public void changeImage(BufferedImage img) {
-        images[0] = img;
+    public void changeImage(int id, BufferedImage img) {
+        images[id] = img;
     }
 }

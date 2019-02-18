@@ -22,6 +22,8 @@ public class UIField extends UIObject {
 
     @Getter @Setter private String text = "";
 
+    @Getter private UIText uiText;
+
     @Getter @Setter private Color baseColor = new Color(217, 217, 217);
 
     public UIField(float x, float y, int width, int height, KrorkAPI api) {
@@ -45,7 +47,8 @@ public class UIField extends UIObject {
 
         g.setColor(baseColor);
         g.fillRect((int)getX(), (int)getY(), getWidth(), getHeight());
-        new UIText(x + 2, y + height - (height / 5f) - 10, Color.BLACK, drawText).render(g);
+        uiText = new UIText(x + 2, y + height - (height / 5f), Color.BLACK, drawText);
+        uiText.render(g);
     }
 
     @Override

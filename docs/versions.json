@@ -1,4 +1,7 @@
 {
+  "0.6.2-Alpha": [
+    "Small changes"
+  ],
   "0.6.1-Alpha": [
     "Removed class SizeUtils"
   ],
