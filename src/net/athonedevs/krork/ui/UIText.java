@@ -21,7 +21,7 @@ public class UIText extends UIObject {
     @Getter @Setter private Color color;
     private ClickListener clicker;
 
-    private int fixedX, fixedY;
+    @Getter @Setter private Font font;
 
     public UIText(float x, float y, Color color, String text) {
         this(x, y, color, text, () -> {});
@@ -32,8 +32,7 @@ public class UIText extends UIObject {
         this.color = color;
         this.clicker = clicker;
 
-        fixedX = (int)x;
-        fixedY = (int)y;
+        font = new Font("Agency FB", Font.PLAIN, 14);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class UIText extends UIObject {
     public void render(Graphics g) {
         int lines = 0;
         g.setColor(color);
-        g.setFont(getFont());
+        g.setFont(font);
 
         for (String line : text.split("\n")) {
             g.drawString(line, (int)getX(), (int)getY() + (g.getFontMetrics().getHeight() * lines) + 10);

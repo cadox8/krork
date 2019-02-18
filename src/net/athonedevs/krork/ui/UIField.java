@@ -29,7 +29,10 @@ public class UIField extends UIObject {
     public UIField(float x, float y, int width, int height, KrorkAPI api) {
         super(x, y - height, width, height);
 
-        this.clicker = () -> api.getKeyManager().setWritingTo(this);
+        this.clicker = () -> {
+            api.getKeyManager().setWritingTo(this);
+            baseColor = new Color(185, 185, 185);
+        };
     }
 
     @Override
