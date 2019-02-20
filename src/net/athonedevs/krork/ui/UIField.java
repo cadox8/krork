@@ -42,6 +42,7 @@ public class UIField extends UIObject {
     @Override
     public void render(Graphics g) {
         String drawText = "";
+        g.setFont(KrorkAPI.getGameFont());
 
         if (!canWrite(g, text)) drawText = text;
 

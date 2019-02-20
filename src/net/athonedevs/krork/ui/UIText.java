@@ -12,6 +12,7 @@ package net.athonedevs.krork.ui;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
 
@@ -43,7 +44,7 @@ public class UIText extends UIObject {
     public void render(Graphics g) {
         int lines = 0;
         g.setColor(color);
-        g.setFont(font);
+        g.setFont(KrorkAPI.getGameFont());
 
         for (String line : text.split("\n")) {
             g.drawString(line, (int)getX(), (int)getY() + (g.getFontMetrics().getHeight() * lines) + 10);

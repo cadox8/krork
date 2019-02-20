@@ -14,10 +14,13 @@ package net.athonedevs.krork.api;
 import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.Krork;
+import net.athonedevs.krork.gfx.Fonts;
 import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
 import net.athonedevs.krork.utils.GameCamera;
 import net.athonedevs.krork.world.World;
+
+import java.awt.*;
 
 public class KrorkAPI {
 
@@ -26,6 +29,7 @@ public class KrorkAPI {
     @Getter @Setter private Krork game;
     @Getter @Setter private World world;
 
+    @Getter @Setter private static Font gameFont = new Fonts("Open Sans").getFont();
 
     public KrorkAPI(Krork game) {
         this.game = game;
