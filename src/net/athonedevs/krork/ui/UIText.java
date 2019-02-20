@@ -24,9 +24,11 @@ public class UIText extends UIObject {
 
     @Getter @Setter private Font font;
 
+
     public UIText(float x, float y, Color color, String text) {
         this(x, y, color, text, () -> {});
     }
+
     public UIText(float x, float y, Color color, String text, ClickListener clicker) {
         super(x, y - 12, 250, 15);
         this.text = text;
@@ -36,6 +38,7 @@ public class UIText extends UIObject {
         font = new Font("Agency FB", Font.PLAIN, 14);
     }
 
+
     @Override
     public void tick() {
     }
@@ -44,7 +47,7 @@ public class UIText extends UIObject {
     public void render(Graphics g) {
         int lines = 0;
         g.setColor(color);
-        g.setFont(KrorkAPI.getGameFont());
+        g.setFont(font);
 
         for (String line : text.split("\n")) {
             g.drawString(line, (int)getX(), (int)getY() + (g.getFontMetrics().getHeight() * lines) + 10);
@@ -59,5 +62,10 @@ public class UIText extends UIObject {
 
     public void addText(String text) {
         setText(getText() + text);
+    }
+
+    public UIText setFontSize(int size){
+        font = new Font(font.getName(), 0, size);
+        return this;
     }
 }
