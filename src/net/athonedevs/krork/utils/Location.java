@@ -63,7 +63,7 @@ public class Location {
     }
 
     public Map<String, Object> serializeLocation() {
-        Map<String, Object> location = new HashMap<>();
+        final Map<String, Object> location = new HashMap<>();
 
         location.put("world", getWorld().worldName());
         location.put("x", getX());

@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
-import net.athonedevs.krork.entities.creatures.player.Player;
 import net.athonedevs.krork.tiles.Tile;
 
 import java.awt.*;
@@ -33,8 +32,8 @@ public abstract class Creature extends Entity {
     @Getter @Setter protected boolean freeze = false;
 
 
-    public Creature(KrorkAPI API, float x, float y, int width, int height) {
-        super(API, x, y, width, height);
+    public Creature(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
+        super(API, entityID, entityName, x, y, width, height);
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;

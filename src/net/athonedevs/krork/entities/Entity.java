@@ -22,6 +22,8 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity {
 
+    @Getter private final int entityID;
+    @Getter private final String entityName;
 
     protected final int DEFAULT_HEALTH = 10;
     protected final int DEFAULT_DAMAGE = 3;
@@ -56,8 +58,10 @@ public abstract class Entity {
     @Getter @Setter protected Animation animDown, animUp, animLeft, animRight;
     @Getter @Setter protected Animation[] animations = new Animation[4];
 
-    public Entity(KrorkAPI API, float x, float y, int width, int height) {
+    public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
+        this.entityID = entityID;
+        this.entityName = entityName;
         this.x = x;
         this.y = y;
         this.width = width;

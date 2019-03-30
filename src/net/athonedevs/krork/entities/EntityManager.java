@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
+import net.athonedevs.krork.ex.EntityRegisteredException;
+import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -56,7 +58,18 @@ public class EntityManager {
     }
 
     public void addEntity(Entity e) {
+        try {
+            if (exists(e.getEntityID(), e.getEntityName())) throw new EntityRegisteredException(e);
+        } catch (EntityRegisteredException ex) {
+            Log.log(Log.LogType.DANGER, ex.getMessage());
+            ex.printStackTrace();
+            return;
+        }
         entities.add(e);
+    }
+
+    private boolean exists(int entityID, String entityName) {
+        return getEntities().stream().anyMatch(e -> e.getEntityID() == entityID) || getEntities().stream().anyMatch(e -> e.getEntityName().equalsIgnoreCase(entityName));
     }
 
     public void freezeCreatures(Creature except) {

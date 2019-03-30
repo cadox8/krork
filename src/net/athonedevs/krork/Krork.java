@@ -16,6 +16,7 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
 import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
+import net.athonedevs.krork.runnable.KrorkRunnable;
 import net.athonedevs.krork.state.DefaultState;
 import net.athonedevs.krork.state.State;
 import net.athonedevs.krork.utils.GameCamera;
@@ -24,6 +25,7 @@ import net.athonedevs.krork.utils.Updater;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Krork implements Runnable {
 
@@ -41,9 +43,6 @@ public class Krork implements Runnable {
     @Getter @Setter private boolean running = false;
     private Thread thread;
 
-    private BufferStrategy bs;
-    private Graphics g;
-
     @Getter private MouseManager mouseManager;
     @Getter private KeyManager keyManager;
 
@@ -53,10 +52,8 @@ public class Krork implements Runnable {
     // API
     @Getter private KrorkAPI API;
 
-    /**
-     * Constructor made to extend the class
-     */
-    public Krork() {}
+    // Runnable
+    @Getter private static ArrayList<KrorkRunnable> runnables;
 
     /**
      * The default constructor.
@@ -84,6 +81,8 @@ public class Krork implements Runnable {
         this.title = title;
 
         API = new KrorkAPI(this);
+
+        runnables = new ArrayList<>();
 
         mouseManager = new MouseManager();
         keyManager = new KeyManager(API);
@@ -118,12 +117,12 @@ public class Krork implements Runnable {
     }
 
     private void render() {
-        bs = display.getCanvas().getBufferStrategy();
+        final BufferStrategy bs = display.getCanvas().getBufferStrategy();
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
-        g = bs.getDrawGraphics();
+        final Graphics g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
 
         if (State.getState() != null) State.getState().render(g);
@@ -131,8 +130,6 @@ public class Krork implements Runnable {
         bs.show();
         g.dispose();
     }
-
-    protected void updater() {}
 
     public void run() {
         int fps = 60;
@@ -152,7 +149,7 @@ public class Krork implements Runnable {
             if (delta >= 1) {
                 tick();
                 render();
-                updater();
+                runnables.forEach(KrorkRunnable::run);
                 ticks++;
                 delta--;
             }

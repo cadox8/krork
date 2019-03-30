@@ -45,7 +45,6 @@ public class World {
         this.entityManager.getPlayer().setY(spawnY);
     }
 
-
     public void addEntities(Entity... entities){
         Arrays.asList(entities).forEach(entityManager::addEntity);
     }
