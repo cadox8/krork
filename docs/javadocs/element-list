@@ -5,11 +5,12 @@ net.athonedevs.krork.attributes
 net.athonedevs.krork.display
 net.athonedevs.krork.entities
 net.athonedevs.krork.entities.creatures
-net.athonedevs.krork.entities.creatures.player
 net.athonedevs.krork.ex
 net.athonedevs.krork.gfx
 net.athonedevs.krork.input
 net.athonedevs.krork.items
+net.athonedevs.krork.runnable
+net.athonedevs.krork.saves
 net.athonedevs.krork.state
 net.athonedevs.krork.tiles
 net.athonedevs.krork.ui

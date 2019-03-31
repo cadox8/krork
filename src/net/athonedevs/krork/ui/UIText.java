@@ -6,13 +6,13 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.ui;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
 

@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.display;

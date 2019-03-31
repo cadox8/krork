@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "v0.6.4 Alpha";
+    @Getter private static final String version = "v0.7 Alpha";
     @Getter @Setter private static String game;
     //
 

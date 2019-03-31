@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.api;
@@ -26,31 +27,31 @@ public class KrorkAPI {
 
     @Getter @Setter private static boolean debugEnabled = false;
 
-    @Getter @Setter private Krork game;
+    @Getter @Setter private Krork krork;
     @Getter @Setter private World world;
 
     @Getter @Setter private static Font gameFont = new Fonts("Open Sans").getFont();
 
-    public KrorkAPI(Krork game) {
-        this.game = game;
+    public KrorkAPI(Krork krork) {
+        this.krork = krork;
     }
 
     public KeyManager getKeyManager() {
-        return getGame().getKeyManager();
+        return getKrork().getKeyManager();
     }
     public MouseManager getMouseManager() {
-        return getGame().getMouseManager();
+        return getKrork().getMouseManager();
     }
 
     public GameCamera getGameCamera() {
-        return game.getGameCamera();
+        return krork.getGameCamera();
     }
 
     public int getWidth() {
-        return game.getWidth();
+        return krork.getWidth();
     }
 
     public int getHeight() {
-        return game.getHeight();
+        return krork.getHeight();
     }
 }

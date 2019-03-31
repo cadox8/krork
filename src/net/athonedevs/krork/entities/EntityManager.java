@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.entities;
@@ -25,7 +26,6 @@ import java.util.Iterator;
 public class EntityManager {
 
     @Getter @Setter private KrorkAPI API;
-    @Getter @Setter private Creature player;
 
     @Getter @Setter private ArrayList<Entity> entities;
 
@@ -34,11 +34,9 @@ public class EntityManager {
         return 0;
     };
 
-    public EntityManager(KrorkAPI API, Creature player) {
+    public EntityManager(KrorkAPI API) {
         this.API = API;
-        this.player = player;
         entities = new ArrayList<>();
-        addEntity(player);
     }
 
     public void tick() {
@@ -53,8 +51,8 @@ public class EntityManager {
     }
 
     public void render(Graphics g) {
-        for (Entity e : entities) e.specialRender(g);
-        for (Entity e : entities) e.render(g);
+        entities.forEach(e -> e.specialRender(g));
+        entities.forEach(e -> e.render(g));
     }
 
     public void addEntity(Entity e) {

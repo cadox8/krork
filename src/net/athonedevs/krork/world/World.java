@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.world;
@@ -14,7 +15,6 @@ import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
-import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.tiles.Tile;
 import net.athonedevs.krork.utils.Utils;
 
@@ -26,7 +26,7 @@ public class World {
     private KrorkAPI API;
 
     @Getter private int width, height;
-    private int spawnX, spawnY;
+    @Getter private int playerX, playerY;
     private int[][] tiles;
 
     //Entities
@@ -34,17 +34,26 @@ public class World {
 
     private final String path;
 
-    public World(KrorkAPI API, String path, Creature player) {
+    /**
+     * Default world constructor
+     *
+     * @param API The KrorkAPI Class
+     * @param path The path to the world
+     */
+    public World(KrorkAPI API, String path) {
         this.API = API;
         this.path = path;
-        this.entityManager = new EntityManager(API, player);
+        this.entityManager = new EntityManager(API);
 
         loadWorld();
-
-        this.entityManager.getPlayer().setX(spawnX);
-        this.entityManager.getPlayer().setY(spawnY);
     }
 
+    /**
+     * Method to load entities in world.
+     * You can save the entities and then add them, or add new entities each time.
+     *
+     * @param entities An array of entities
+     */
     public void addEntities(Entity... entities){
         Arrays.asList(entities).forEach(entityManager::addEntity);
     }
@@ -70,20 +79,19 @@ public class World {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) return Tile.bug;
-        Tile t = Tile.tiles[tiles[x][y]];
+        final Tile t = Tile.tiles[tiles[x][y]];
 
         if (t == null) return Tile.bug;
         return t;
     }
 
-    // Loaded from Text File (Should we change it to get Entities from same site?) -> v0.7.0 Alpha
     private void loadWorld() {
         final String file = Utils.loadFileAsString(path);
         final String[] tokens = file.split("\\s+");
         width = Utils.parseInt(tokens[0]);
         height = Utils.parseInt(tokens[1]);
-        spawnX = Utils.parseInt(tokens[2]);
-        spawnY = Utils.parseInt(tokens[3]);
+        playerX = Utils.parseInt(tokens[2]);
+        playerY = Utils.parseInt(tokens[3]);
 
         tiles = new int[width][height];
         for (int y = 0; y < height; y++) {

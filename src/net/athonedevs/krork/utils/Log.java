@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.utils;
@@ -23,11 +24,11 @@ public class Log {
 
     @AllArgsConstructor
     public enum LogType {
-        SUCCESS("[Success]", "\u001B[32m"),
+        SUCCESS("[Success] ", "\u001B[32m"),
         NORMAL("", ""),
-        WARNING("[Warning]", "\u001B[33m"),
-        DANGER("[Danger]", "\u001B[31m"),
-        DEBUG("[Debug]", "\u001B[36m");
+        WARNING("[Warning] ", "\u001B[33m"),
+        DANGER("[Danger] ", "\u001B[31m"),
+        DEBUG("[Debug] ", "\u001B[36m");
 
         @Getter private String prefix;
         @Getter private String color;

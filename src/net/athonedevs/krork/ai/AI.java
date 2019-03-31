@@ -6,6 +6,7 @@
  *
  * For any question/bug/suggestion, please, mail me at cadox8@gmail.com
  * Written by Cadox8 <cadox8@gmail.com>, 24 October 2018
+ *
  */
 
 package net.athonedevs.krork.ai;
@@ -51,26 +52,6 @@ public abstract class AI {
     private boolean isOnDelay() {
         return tempDelay != 0;
     }
-
-    // Example Method
-/*    private void attack(float xMove, float yMove) {
-        boolean isAttacking;
-
-        entity.setAttackTimer(entity.getAttackTimer() + System.currentTimeMillis() - entity.getLastAttackTimer());
-        entity.setLastAttackTimer(System.currentTimeMillis());
-        if (entity.getAttackTimer() < entity.getAttackCooldown()) return;
-
-        for (Entity e : API.getWorld().getEntityManager().getEntities()) {
-            if (e instanceof Player) {
-                if (e.getCollisionBounds(xMove, yMove).intersects(player.getCollisionBounds(0, 0))) {
-                    isAttacking = true;
-                    if (!isAttacking) return;
-                    entity.setAttackTimer(0);
-                    player.hurt(entity);
-                }
-            }
-        }
-    }*/
 
     //TODO: Change
     protected Rectangle getTrackingArea() {
