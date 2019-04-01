@@ -40,11 +40,10 @@ public class World {
      * @param API The KrorkAPI Class
      * @param path The path to the world
      */
-    public World(KrorkAPI API, String path, int tilesAmount) {
+    public World(KrorkAPI API, String path) {
         this.API = API;
         this.path = path;
         this.entityManager = new EntityManager(API);
-        Tile.setTiles(new Tile[tilesAmount]);
 
         loadWorld();
     }

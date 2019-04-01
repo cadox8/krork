@@ -20,10 +20,9 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
 
-    @Setter public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+    public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 
-
-    @Setter public static Tile[] tiles;
+    @Setter public static Tile[] tiles = new Tile[256];
 
     public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
 
