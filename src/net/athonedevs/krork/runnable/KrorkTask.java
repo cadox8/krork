@@ -16,11 +16,11 @@ import net.athonedevs.krork.Krork;
 
 import java.util.Random;
 
-public abstract class KrorkRunnable {
+public abstract class KrorkTask {
 
     @Getter private final int taskID;
 
-    private KrorkRunnable() {
+    private KrorkTask() {
         taskID = randomID();
         Krork.getRunnables().add(this);
     }

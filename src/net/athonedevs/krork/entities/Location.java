@@ -9,7 +9,7 @@
  *
  */
 
-package net.athonedevs.krork.utils;
+package net.athonedevs.krork.entities;
 
 import lombok.Getter;
 import lombok.Setter;

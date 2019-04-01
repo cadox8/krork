@@ -28,7 +28,6 @@ public class Tile {
     public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
 
 
-
     @Getter protected final BufferedImage texture;
     @Getter protected final int id;
     @Getter protected final Animation animation;

@@ -15,7 +15,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.gfx.Animation;
-import net.athonedevs.krork.utils.Location;
 import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
@@ -129,11 +128,22 @@ public abstract class Entity {
         setHealth(0);
     }
 
+    /**
+     * Method to get the current frame if only one animation exists
+     *
+     * @return BufferedImage Current Frame
+     */
+    protected BufferedImage getCurrentFrame() {
+        return animations[0].getCurrentFrame();
+    }
 
+    /**
+     * Method to get the current frame
+     *
+     * @return BufferedImage Current Frame
+     */
     protected BufferedImage getCurrentAnimationFrame() {
         switch (direction) {
-            case 0:
-                return animDown.getCurrentFrame();
             case 1:
                 return animUp.getCurrentFrame();
             case 2:
