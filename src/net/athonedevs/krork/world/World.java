@@ -16,6 +16,7 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
 import net.athonedevs.krork.tiles.Tile;
+import net.athonedevs.krork.tiles.TileManager;
 import net.athonedevs.krork.utils.Utils;
 
 import java.awt.*;
@@ -79,10 +80,7 @@ public class World {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) return Tile.bug;
-        final Tile t = Tile.tiles[tiles[x][y]];
-
-        if (t == null) return Tile.bug;
-        return t;
+        return TileManager.getTile(tiles[x][y]);
     }
 
     private void loadWorld() {
