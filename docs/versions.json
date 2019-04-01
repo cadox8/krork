@@ -1,4 +1,10 @@
 {
+  "0.7-Alpha": [
+    "Rewrite some parts",
+    "Better way to load Entities",
+    "Changed constructor of world",
+    "Small structure changes"
+  ],
   "0.6.4-Alpha": [
     "Added Fonts"
   ],
