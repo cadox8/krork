@@ -13,9 +13,11 @@ package net.athonedevs.krork.gfx;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.awt.image.BufferedImage;
 
+@ToString
 public class Animation {
 
     @Getter @Setter private int speed, index;

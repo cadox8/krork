@@ -12,11 +12,10 @@
 package net.athonedevs.krork.entities;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
-import net.athonedevs.krork.ex.EntityRegisteredException;
-import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -55,14 +54,14 @@ public class EntityManager {
         entities.forEach(e -> e.render(g));
     }
 
-    public void addEntity(Entity e) {
-        try {
+    public void addEntity(@NonNull Entity e) {
+/*        try {
             if (exists(e.getEntityID(), e.getEntityName())) throw new EntityRegisteredException(e);
         } catch (EntityRegisteredException ex) {
             Log.log(Log.LogType.DANGER, ex.getMessage());
             ex.printStackTrace();
             return;
-        }
+        }*/
         entities.add(e);
     }
 

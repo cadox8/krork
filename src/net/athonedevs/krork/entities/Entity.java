@@ -13,6 +13,7 @@ package net.athonedevs.krork.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.utils.Log;
@@ -20,6 +21,7 @@ import net.athonedevs.krork.utils.Log;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@ToString
 public abstract class Entity {
 
     @Getter private final int entityID;
@@ -55,8 +57,8 @@ public abstract class Entity {
 
     @Getter @Setter protected Entity killer;
 
-    @Getter @Setter protected Animation animDown, animUp, animLeft, animRight;
     @Getter @Setter protected Animation[] animations = new Animation[4];
+    @Getter @Setter protected BufferedImage texture;
 
     public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
@@ -126,33 +128,6 @@ public abstract class Entity {
 
     public void kill() {
         setHealth(0);
-    }
-
-    /**
-     * Method to get the current frame if only one animation exists
-     *
-     * @return BufferedImage Current Frame
-     */
-    protected BufferedImage getCurrentFrame() {
-        return animations[0].getCurrentFrame();
-    }
-
-    /**
-     * Method to get the current frame
-     *
-     * @return BufferedImage Current Frame
-     */
-    protected BufferedImage getCurrentAnimationFrame() {
-        switch (direction) {
-            case 1:
-                return animUp.getCurrentFrame();
-            case 2:
-                return animRight.getCurrentFrame();
-            case 3:
-                return animLeft.getCurrentFrame();
-            default:
-                return animDown.getCurrentFrame();
-        }
     }
 
 

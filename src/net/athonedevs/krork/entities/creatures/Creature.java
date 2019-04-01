@@ -18,7 +18,6 @@ import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.tiles.Tile;
 
 import java.awt.*;
-import java.util.Arrays;
 
 
 public abstract class Creature extends Entity {
@@ -96,7 +95,6 @@ public abstract class Creature extends Entity {
 
     @Deprecated
     public void fixAnimations() {
-        if (animations[0] != null) Arrays.asList(animations).forEach(a -> a.setSpeed((int)(speed * 166.66)));
     }
 
     @Override
