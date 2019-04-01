@@ -1,4 +1,7 @@
 {
+  "0.7.1-Alpha": [
+    "Fixed Tiles"
+  ],
   "0.7-Alpha": [
     "Rewrite some parts",
     "Better way to load Entities",
