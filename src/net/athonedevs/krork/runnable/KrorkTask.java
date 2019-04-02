@@ -20,7 +20,7 @@ public abstract class KrorkTask {
 
     @Getter private final int taskID;
 
-    private KrorkTask() {
+    public KrorkTask() {
         taskID = randomID();
         Krork.getRunnables().add(this);
     }
