@@ -27,18 +27,18 @@ public abstract class Entity {
     @Getter private final int entityID;
     @Getter private final String entityName;
 
-    protected final int DEFAULT_HEALTH = 10;
-    protected final int DEFAULT_DAMAGE = 3;
-    protected final float DEFAULT_ARMOR = 0;
+    protected final double DEFAULT_HEALTH = 10;
+    protected final double DEFAULT_DAMAGE = 3;
+    protected final double DEFAULT_ARMOR = 0;
 
     @Getter @Setter protected KrorkAPI API;
 
     @Getter @Setter protected float x, y;
     @Getter @Setter protected int width, height;
-    @Getter @Setter private int health;
-    @Getter @Setter private int damage;
+    @Getter @Setter private double health;
+    @Getter @Setter private double damage;
     @Getter @Setter private double armor;
-    @Getter @Setter private int maxHealth;
+    @Getter @Setter private double maxHealth;
 
     @Getter @Setter private boolean damageable = true;
 
@@ -90,7 +90,7 @@ public abstract class Entity {
     public void hurt(Entity attacker) {
         if (!isDamageable()) return;
 
-        int amt = attacker.getDamage();
+        double amt = attacker.getDamage();
         health -= amt;
 
         if (KrorkAPI.isDebugEnabled()) Log.log("Health: " + getHealth());
