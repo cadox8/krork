@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
 
-    public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+    public static int TILEWIDTH = 64, TILEHEIGHT = 64;
 
     @Setter public static Tile[] tiles = new Tile[256];
 
