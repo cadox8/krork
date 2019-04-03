@@ -11,18 +11,15 @@
 
 package net.athonedevs.krork.runnable;
 
-import lombok.Getter;
-import net.athonedevs.krork.Krork;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import java.util.Random;
+public abstract class KrorkTask extends TimerTask implements Runnable {
 
-public abstract class KrorkTask {
-
-    @Getter private final int taskID;
+    private Timer timer;
 
     public KrorkTask() {
-        taskID = randomID();
-        Krork.getRunnables().add(this);
+       timer = new Timer();
     }
 
     /**
@@ -30,12 +27,18 @@ public abstract class KrorkTask {
      */
     public abstract void run();
 
-
-    private int randomID() {
-        final int id = new Random().nextInt();
-        return exists(id) ? randomID() : id;
+    public KrorkTask scheduleDelayed(int delay) {
+        timer.schedule(this, delay);
+        stop();
+        return this;
     }
-    private boolean exists(int id) {
-        return Krork.getRunnables().stream().anyMatch(r -> r.getTaskID() == id);
+    public KrorkTask schedule(int initialDelay, int period) {
+        timer.scheduleAtFixedRate(this, initialDelay, period);
+        return this;
+    }
+
+
+    public void stop() {
+        timer.cancel();
     }
 }

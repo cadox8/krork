@@ -17,7 +17,6 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
 import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
-import net.athonedevs.krork.runnable.KrorkTask;
 import net.athonedevs.krork.state.DefaultState;
 import net.athonedevs.krork.state.State;
 import net.athonedevs.krork.utils.GameCamera;
@@ -26,8 +25,6 @@ import net.athonedevs.krork.utils.Updater;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class Krork implements Runnable {
 
@@ -53,9 +50,6 @@ public class Krork implements Runnable {
 
     // API
     @Getter private KrorkAPI API;
-
-    // Runnable
-    @Getter private static ArrayList<KrorkTask> runnables;
 
     /**
      * The default constructor.
@@ -83,8 +77,6 @@ public class Krork implements Runnable {
         this.title = title;
 
         API = new KrorkAPI(this);
-
-        runnables = new ArrayList<>();
 
         mouseManager = new MouseManager();
         keyManager = new KeyManager(API);
@@ -151,7 +143,6 @@ public class Krork implements Runnable {
             if (delta >= 1) {
                 tick();
                 render();
-                runnables.forEach(KrorkTask::run);
                 ticks++;
                 delta--;
             }
@@ -179,12 +170,5 @@ public class Krork implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean stopTask(int idTask) {
-        final Optional<KrorkTask> task = getRunnables().stream().filter(r -> r.getTaskID() == idTask).findAny();
-
-        if (!task.isPresent()) return false;
-        return getRunnables().remove(task.get());
     }
 }

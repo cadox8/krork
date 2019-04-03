@@ -39,7 +39,7 @@ public class EntityManager {
     }
 
     public void tick() {
-        Iterator<Entity> it = entities.iterator();
+        final Iterator<Entity> it = entities.iterator();
         while (it.hasNext()) {
             final Entity e = it.next();
             e.tick();
@@ -55,18 +55,11 @@ public class EntityManager {
     }
 
     public void addEntity(@NonNull Entity e) {
-/*        try {
-            if (exists(e.getEntityID(), e.getEntityName())) throw new EntityRegisteredException(e);
-        } catch (EntityRegisteredException ex) {
-            Log.log(Log.LogType.DANGER, ex.getMessage());
-            ex.printStackTrace();
-            return;
-        }*/
         entities.add(e);
     }
 
-    private boolean exists(int entityID, String entityName) {
-        return getEntities().stream().anyMatch(e -> e.getEntityID() == entityID) || getEntities().stream().anyMatch(e -> e.getEntityName().equalsIgnoreCase(entityName));
+    public Entity getEntityOnLoc(float x, float y) {
+        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getX() == x && e.getY() == y).findAny().orElse(null);
     }
 
     public void freezeCreatures(Creature except) {

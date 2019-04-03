@@ -1,4 +1,8 @@
 {
+  "0.7.3-Alpha": [
+    "Added way to get entities by clicking on them",
+    "Better schedule"
+  ],
   "0.7.2-Alpha": [
     "Fixed entities"
   ],
