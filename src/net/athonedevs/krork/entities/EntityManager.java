@@ -59,7 +59,7 @@ public class EntityManager {
     }
 
     public Entity getEntityOnLoc(float x, float y) {
-        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getX() == x && e.getY() == y).findAny().orElse(null);
+        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains(new Point((int)x, (int)y))).findAny().orElse(null);
     }
 
     public void freezeCreatures(Creature except) {
