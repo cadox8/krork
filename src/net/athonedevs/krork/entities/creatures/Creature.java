@@ -18,6 +18,8 @@ import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.tiles.Tile;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class Creature extends Entity {

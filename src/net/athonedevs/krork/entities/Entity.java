@@ -20,6 +20,9 @@ import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @ToString
 public abstract class Entity {
@@ -60,6 +63,8 @@ public abstract class Entity {
     @Getter @Setter protected Animation[] animations = new Animation[4];
     @Getter @Setter protected BufferedImage texture;
 
+    @Getter private List<Entity> noCollide;
+
     public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
         this.entityID = entityID;
@@ -77,6 +82,8 @@ public abstract class Entity {
         location.setAPI(API);
 
         bounds = new Rectangle(0, 0, width, height);
+
+        noCollide = new ArrayList<>();
     }
 
 
@@ -105,6 +112,7 @@ public abstract class Entity {
     public boolean checkEntityCollisions(float xOffset, float yOffset) {
         for (Entity e : API.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) continue;
+            if (noCollide.contains(e)) return false;
 
             if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
                 collisionEntity = e;
@@ -130,6 +138,9 @@ public abstract class Entity {
         setHealth(0);
     }
 
+    public void addNoCollideEntities(Entity... enntities) {
+        noCollide.addAll(Arrays.asList(enntities));
+    }
 
     public Location getLocation() {
         return new Location(API.getWorld(), getX(), getY(), getDirection());
