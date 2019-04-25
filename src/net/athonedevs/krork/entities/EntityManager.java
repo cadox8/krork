@@ -49,12 +49,12 @@ public class EntityManager {
         entities.sort(renderSorter);
     }
 
-    public void render(Graphics g) {
+    public synchronized void render(Graphics g) {
         entities.forEach(e -> e.specialRender(g));
         entities.forEach(e -> e.render(g));
     }
 
-    public void addEntity(@NonNull Entity e) {
+    public synchronized void addEntity(@NonNull Entity e) {
         entities.add(e);
     }
 
