@@ -30,7 +30,7 @@ public class Sprites {
     }
 
     public static BufferedImage coloredSprite(int width, int height, Color color) {
-        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        final BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {

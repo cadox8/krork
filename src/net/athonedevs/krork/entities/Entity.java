@@ -20,6 +20,9 @@ import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @ToString
 public abstract class Entity {
@@ -62,6 +65,8 @@ public abstract class Entity {
 
     @Getter @Setter protected boolean collidable = true;
 
+    @Getter private List<Integer> noCollisionID;
+
     public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
         this.entityID = entityID;
@@ -74,6 +79,8 @@ public abstract class Entity {
         health = DEFAULT_HEALTH;
         damage = DEFAULT_DAMAGE;
         armor = DEFAULT_ARMOR;
+
+        noCollisionID = new ArrayList<>();
 
         this.location = new Location(API.getWorld(), x, y, direction);
         location.setAPI(API);
@@ -108,6 +115,7 @@ public abstract class Entity {
         if (!isCollidable()) return false;
         for (Entity e : API.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) continue;
+            if (getNoCollisionID().contains(e.getEntityID())) continue;
 
             if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
                 collisionEntity = e;
@@ -131,6 +139,10 @@ public abstract class Entity {
 
     public void kill() {
         setHealth(0);
+    }
+
+    public void addNoCollisionIDs(Integer... ids) {
+        noCollisionID.addAll(Arrays.asList(ids));
     }
 
     public Location getLocation() {

@@ -17,33 +17,33 @@ import net.athonedevs.krork.gfx.Sprites;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tile {
 
     public static int TILEWIDTH = 64, TILEHEIGHT = 64;
 
-    @Setter public static Tile[] tiles = new Tile[256];
-
     public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
-
 
     @Getter protected final BufferedImage texture;
     @Getter protected final int id;
-    @Getter protected final Animation animation;
+    @Getter protected Animation animation;
 
-    @Getter private final TileData tileData;
+    @Getter private final List<SubTile> subtiles;
 
     public Tile(BufferedImage texture, int id) {
-        this(texture, id, null);
-    }
-    public Tile(BufferedImage texture, int id, Animation animation) {
         this.texture = texture;
         this.id = id;
+
+        subtiles = new ArrayList<>();
+    }
+
+    public void addSubTile(SubTile subTile) {
+        subtiles.add(subTile);
+    }
+    public void addAnimation(@NonNull Animation animation) {
         this.animation = animation;
-
-        tileData = new TileData(texture.getRGB(0, 0), (byte) 0);
-
-        tiles[id] = this;
     }
 
     public void tick() {
@@ -65,6 +65,10 @@ public class Tile {
         return false;
     }
 
+    public SubTile getSubTile(int subID) {
+        return getSubtiles().stream().filter(t -> t.getSubID() == subID).findAny().orElse(null);
+    }
+
 
     @Override
     public String toString() {
@@ -74,9 +78,9 @@ public class Tile {
     @AllArgsConstructor
     @ToString
     @Data
-    public class TileData {
+    public class SubTile {
 
-        private final int tileColor;
-        private final byte data;
+        private int subID;
+        private BufferedImage image;
     }
 }

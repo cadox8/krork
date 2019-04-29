@@ -11,6 +11,8 @@
 
 package net.athonedevs.krork.world;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
@@ -28,7 +30,7 @@ public class World {
 
     @Getter private int width, height;
     @Getter private int playerX, playerY;
-    private int[][] tiles;
+    private TileData[][] tiles;
 
     //Entities
     @Getter private EntityManager entityManager;
@@ -80,7 +82,7 @@ public class World {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) return Tile.bug;
-        return TileManager.getTile(tiles[x][y]);
+        return TileManager.getTile(tiles[x][y].getId(), tiles[x][y].getSubid());
     }
 
     private void loadWorld() {
@@ -91,10 +93,17 @@ public class World {
         playerX = Utils.parseInt(tokens[2]);
         playerY = Utils.parseInt(tokens[3]);
 
-        tiles = new int[width][height];
+        tiles = new TileData[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+                final TileData data;
+                if (tokens[(x + y * width) + 4].contains(":")) {
+                    final String[] parts = tokens[(x + y * width) + 4].split(":");
+                    data = new TileData(Utils.parseInt(parts[0]), Utils.parseInt(parts[1]));
+                } else {
+                    data = new TileData(Utils.parseInt(tokens[(x + y * width) + 4]), 0);
+                }
+                tiles[x][y] = data;
             }
         }
     }
@@ -105,5 +114,12 @@ public class World {
     @Override
     public String toString() {
         return "World{Name:" + worldName() + "}";
+    }
+
+    @AllArgsConstructor
+    @Data
+    private class TileData {
+        private int id;
+        private int subid;
     }
 }

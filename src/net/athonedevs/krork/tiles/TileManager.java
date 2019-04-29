@@ -14,6 +14,7 @@ package net.athonedevs.krork.tiles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class TileManager {
 
@@ -31,7 +32,14 @@ public class TileManager {
         tiles.stream().filter(t -> t.getId() == tileID).findAny().ifPresent(t -> tiles.remove(t));
     }
 
-    public static Tile getTile(int tileID) {
-        return tiles.stream().filter(t -> t.getId() == tileID).findAny().orElse(Tile.bug);
+    public static Tile getTile(int tileID, int subID) {
+        final Optional<Tile> tile = tiles.stream().filter(t -> t.getId() == tileID).findAny();
+
+        if (!tile.isPresent()) return Tile.bug;
+        if (subID != 0 && tile.get().getSubtiles().stream().noneMatch(t -> t.getSubID() == subID)) {
+            return tile.get();
+        } else {
+            return new Tile(tile.get().getSubTile(subID).getImage(), -1);
+        }
     }
 }
