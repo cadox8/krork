@@ -69,7 +69,6 @@ public class Tile {
         return getSubtiles().stream().filter(t -> t.getSubID() == subID).findAny().orElse(null);
     }
 
-
     @Override
     public String toString() {
         return "Tile{Id: " + id + ", Class: " + getClass() + "}";

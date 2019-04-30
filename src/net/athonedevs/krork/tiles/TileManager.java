@@ -36,10 +36,10 @@ public class TileManager {
         final Optional<Tile> tile = tiles.stream().filter(t -> t.getId() == tileID).findAny();
 
         if (!tile.isPresent()) return Tile.bug;
-        if (subID != 0 && tile.get().getSubtiles().stream().noneMatch(t -> t.getSubID() == subID)) {
-            return tile.get();
-        } else {
+        if (subID != 0 && tile.get().getSubtiles().stream().anyMatch(t -> t.getSubID() == subID)) {
             return new Tile(tile.get().getSubTile(subID).getImage(), -1);
+        } else {
+            return tile.get();
         }
     }
 }
