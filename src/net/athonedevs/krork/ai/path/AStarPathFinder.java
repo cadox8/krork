@@ -68,13 +68,13 @@ public class AStarPathFinder implements PathFinder {
     }
 
     /**
-     * @see PathFinder#findPath(Entity, int, int, int, int)
+     * @see PathFinder#findPath(Entity, int, int, int, int, int)
      */
     @Override
-    public Path findPath(Entity entity, int sx, int sy, int tx, int ty) {
+    public Path findPath(Entity entity, int sx, int sy, int tx, int ty, int exceptEntity) {
         // easy first check, if the destination is blocked, we can't get there
 
-        if (map.blocked(entity, tx, ty)) return null;
+        if (map.blocked(entity, tx, ty, exceptEntity)) return null;
 
         // initial state for A*. The closed group is empty. Only the starting
 
@@ -129,7 +129,7 @@ public class AStarPathFinder implements PathFinder {
                     int xp = x + current.x;
                     int yp = y + current.y;
 
-                    if (isValidLocation(entity,sx,sy,xp,yp)) {
+                    if (isValidLocation(entity,sx,sy,xp,yp, exceptEntity)) {
                         // the cost to get to this node is cost the current plus the movement
 
                         // cost to reach this node. Note that the heursitic value is only used
@@ -174,7 +174,7 @@ public class AStarPathFinder implements PathFinder {
 
         if (nodes[tx][ty].parent == null) return null;
 
-        final net.athonedevs.krork.ai.path.Path path = new net.athonedevs.krork.ai.path.Path();
+        final Path path = new Path();
         Node target = nodes[tx][ty];
         while (target != nodes[sx][sy]) {
             path.prependStep(target.x, target.y);
@@ -261,11 +261,11 @@ public class AStarPathFinder implements PathFinder {
      * @param y The y coordinate of the location to check
      * @return True if the location is valid for the given mover
      */
-    protected boolean isValidLocation(Entity entity, int sx, int sy, int x, int y) {
+    protected boolean isValidLocation(Entity entity, int sx, int sy, int x, int y, int exceptEntity) {
         boolean invalid = (x < 0) || (y < 0) || (x >= map.getWidthInTiles()) || (y >= map.getHeightInTiles());
 
         if ((!invalid) && ((sx != x) || (sy != y))) {
-            invalid = map.blocked(entity, x, y);
+            invalid = map.blocked(entity, x, y, exceptEntity);
         }
 
         return !invalid;

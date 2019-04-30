@@ -46,6 +46,10 @@ public class Location {
         this.y += y;
     }
 
+    public boolean is(float x, float y) {
+        return getX() == x && getY() == y;
+    }
+
     public void teleport(float x, float y, int direction) {
         teleport(API.getWorld(), x, y, direction);
     }

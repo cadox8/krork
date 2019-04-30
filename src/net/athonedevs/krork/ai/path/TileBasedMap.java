@@ -49,7 +49,7 @@ public interface TileBasedMap {
      * @param y The y coordinate of the tile to check
      * @return True if the location is blocked
      */
-    public boolean blocked(Entity entity, int x, int y);
+    public boolean blocked(Entity entity, int x, int y, int exceptEntity);
 
     /**
      * Get the cost of moving through the given tile. This can be used to
