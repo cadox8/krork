@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 
 public class UIText extends UIObject {
 
@@ -36,6 +37,8 @@ public class UIText extends UIObject {
         this.clicker = clicker;
 
         font = new Font("Agency FB", Font.PLAIN, 14);
+
+        setWidth((int)font.getStringBounds(text, new FontRenderContext(null, false, false)).getWidth());
     }
 
 

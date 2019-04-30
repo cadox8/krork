@@ -13,8 +13,6 @@ package net.athonedevs.krork.ai.path;
 
 import net.athonedevs.krork.entities.Entity;
 
-import java.nio.file.Path;
-
 public interface PathFinder {
 
     /**
@@ -22,9 +20,7 @@ public interface PathFinder {
      * location (tx,ty) avoiding blockages and attempting to honour costs
      * provided by the tile map.
      *
-     * @param entity The entity that will be moving along the path. This provides
-     * a place to pass context information about the game entity doing the moving, e.g.
-     * can it fly? can it swim etc.
+     * @param entity The entity that will be moving along the path.
      *
      * @param sx The x coordinate of the start location
      * @param sy The y coordinate of the start location
