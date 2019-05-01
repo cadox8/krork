@@ -32,7 +32,7 @@ public class World implements TileBasedMap {
     @Getter private int width, height;
     @Getter private int playerX, playerY;
     private TileData[][] tiles;
-    private boolean[][] visited = new boolean[width][height];
+    private boolean[][] visited;
 
     //Entities
     @Getter private EntityManager entityManager;
@@ -95,6 +95,7 @@ public class World implements TileBasedMap {
         playerX = Utils.parseInt(tokens[2]);
         playerY = Utils.parseInt(tokens[3]);
 
+        visited = new boolean[width][height];
         tiles = new TileData[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -112,12 +113,12 @@ public class World implements TileBasedMap {
 
     @Override
     public int getWidthInTiles() {
-        return width;
+        return width * 64;
     }
 
     @Override
     public int getHeightInTiles() {
-        return height;
+        return height * 64;
     }
 
     @Override
@@ -145,7 +146,7 @@ public class World implements TileBasedMap {
 
     @Override
     public float getCost(Entity entity, int sx, int sy, int tx, int ty) {
-        return 1;
+        return 64;
     }
 
     public String worldName() {
