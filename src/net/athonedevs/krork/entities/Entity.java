@@ -65,7 +65,7 @@ public abstract class Entity {
 
     @Getter @Setter protected boolean collidable = true;
 
-    @Getter private List<Integer> noCollisionID;
+    @Getter private List<Integer> collisionID;
 
     public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
@@ -80,7 +80,7 @@ public abstract class Entity {
         damage = DEFAULT_DAMAGE;
         armor = DEFAULT_ARMOR;
 
-        noCollisionID = new ArrayList<>();
+        collisionID = new ArrayList<>();
 
         this.location = new Location(API.getWorld(), x, y, direction);
         location.setAPI(API);
@@ -115,9 +115,9 @@ public abstract class Entity {
         if (!isCollidable()) return false;
         for (Entity e : API.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) continue;
-            if (getNoCollisionID().contains(e.getEntityID())) continue;
 
             if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
+                if (!getCollisionID().contains(e.getEntityID())) return false;
                 collisionEntity = e;
                 return true;
             }
@@ -141,8 +141,8 @@ public abstract class Entity {
         setHealth(0);
     }
 
-    public void addNoCollisionIDs(Integer... ids) {
-        noCollisionID.addAll(Arrays.asList(ids));
+    public void addCollisionIDs(Integer... ids) {
+        collisionID.addAll(Arrays.asList(ids));
     }
 
     public Location getLocation() {

@@ -11,16 +11,22 @@
 
 package net.athonedevs.krork.ai.path;
 
-import net.athonedevs.krork.entities.Entity;
+import lombok.Getter;
 
-public class ClosestHeuristic implements AStarHeuristic {
-    /**
-     * @see AStarHeuristic#getCost(TileBasedMap, Entity, int, int, int, int)
-     */
-    public float getCost(TileBasedMap map, Entity entity, int x, int y, int tx, int ty) {
-        float dx = tx - x;
-        float dy = ty - y;
+public class Node {
 
-        return (float) (Math.sqrt((dx*dx)+(dy*dy)));
+    @Getter public int x, y;
+
+    public Node(int i, int j) {
+        x = i;
+        y = j;
+    }
+
+    public boolean equals(Object obj) {
+        if(obj instanceof Node) {
+            Node n = (Node) obj;
+            return (x == n.x && y == n.y);
+        }
+        else return false;
     }
 }

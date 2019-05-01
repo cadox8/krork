@@ -12,8 +12,10 @@
 package net.athonedevs.krork.ai;
 
 import lombok.Getter;
+import net.athonedevs.krork.ai.path.PathFinder;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
+import net.athonedevs.krork.entities.creatures.Creature;
 
 import java.awt.*;
 
@@ -21,7 +23,6 @@ public abstract class AI {
 
     protected KrorkAPI API;
     private Entity entity;
-    protected Entity player;
 
     private float speed;
     private int delay;
@@ -48,6 +49,16 @@ public abstract class AI {
     protected abstract boolean isTracking();
     public abstract void attack(float xMove, float yMove);
 
+
+    protected void move(int x, int y) {
+        final PathFinder path = new PathFinder(API);
+        path.generate((int)entity.getX(), (int)entity.getY(), x, y).forEach(n -> {
+            ((Creature)entity).setXMove(n.x);
+            ((Creature)entity).setYMove(n.y);
+            ((Creature)entity).move();
+        });
+
+    }
 
     private boolean isOnDelay() {
         return tempDelay != 0;

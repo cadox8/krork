@@ -14,7 +14,6 @@ package net.athonedevs.krork.world;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import net.athonedevs.krork.ai.path.TileBasedMap;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
@@ -25,13 +24,13 @@ import net.athonedevs.krork.utils.Utils;
 import java.awt.*;
 import java.util.Arrays;
 
-public class World implements TileBasedMap {
+public class World {
 
     private KrorkAPI API;
 
     @Getter private int width, height;
     @Getter private int playerX, playerY;
-    private TileData[][] tiles;
+    @Getter private TileData[][] tiles;
     private boolean[][] visited;
 
     //Entities
@@ -109,44 +108,6 @@ public class World implements TileBasedMap {
                 tiles[x][y] = data;
             }
         }
-    }
-
-    @Override
-    public int getWidthInTiles() {
-        return width * 64;
-    }
-
-    @Override
-    public int getHeightInTiles() {
-        return height * 64;
-    }
-
-    @Override
-    public void pathFinderVisited(int x, int y) {
-        visited[x][y] = true;
-    }
-
-    public void clearVisited() {
-        for (int x=0;x<getWidthInTiles();x++) {
-            for (int y=0;y<getHeightInTiles();y++) {
-                visited[x][y] = false;
-            }
-        }
-    }
-
-    public boolean visited(int x, int y) {
-        return visited[x][y];
-    }
-
-    @Override
-    public boolean blocked(Entity entity, int x, int y, int exceptEntity) {
-        if (getEntityManager().getEntities().stream().filter(e -> e.getEntityID() != exceptEntity).anyMatch(e -> e.getLocation().is((float)x, (float) y))) return true;
-        return getTile(x, y).isSolid();
-    }
-
-    @Override
-    public float getCost(Entity entity, int sx, int sy, int tx, int ty) {
-        return 64;
     }
 
     public String worldName() {
