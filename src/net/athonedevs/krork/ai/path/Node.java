@@ -12,21 +12,49 @@
 package net.athonedevs.krork.ai.path;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Node {
 
-    @Getter public int x, y;
+    @Getter @Setter public int x, y;
+    @Getter @Setter public int h; //heuristic distance from endNode
+    @Getter @Setter public int g; //distance from startNode
+    @Getter @Setter public int f; //h+g
+    @Getter @Setter public boolean isBlock; //path blocker?
+    @Getter @Setter public Node parent; //the parent node. if algorithm founds a path it can trace back
 
-    public Node(int i, int j) {
-        x = i;
-        y = j;
+    public Node(int x, int y) {
+        super();
+        this.x = x;
+        this.y = y;
     }
 
-    public boolean equals(Object obj) {
-        if(obj instanceof Node) {
-            Node n = (Node) obj;
-            return (x == n.x && y == n.y);
+    public void calculateH(Node endNode) {
+        //this.h = Math.abs(endNode.yy - this.yy) + Math.abs(endNode.xx - this.xx);
+        int dstX = Math.abs(this.getX() - endNode.getX());
+        int dstY = Math.abs(this.getY() - endNode.getY());
+
+        if (dstX > dstY) {
+            this.h = 14*dstY + 10* (dstX-dstY);
+        } else {
+            this.h = 14*dstX + 10 * (dstY-dstX);
         }
-        else return false;
+    }
+
+    public void calculateG(Node startNode) {
+        //this.g=Math.abs(startNode.yy - this.yy) + Math.abs(startNode.xx - this.xx);
+        int dstX = Math.abs(this.getX() - startNode.getX());
+        int dstY = Math.abs(this.getY() - startNode.getY());
+
+        if (dstX > dstY) {
+            this.g = 14*dstY + 10* (dstX-dstY);
+        } else {
+            this.g = 14*dstX + 10 * (dstY-dstX);
+        }
+    }
+
+    public void calculateF() {
+        int finalCost = getG() + getH();
+        this.setF(finalCost);
     }
 }
