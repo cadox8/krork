@@ -34,7 +34,7 @@ public class AStar {
 
     public AStar(KrorkAPI api, int startNodeX,int startNodeY, int endNodeX,int endNodeY) {
         this.api = api;
-        width = api.getWorld().getWidth();
+        width = api.getWorld().getWidth()*64;
         height = api.getWorld().getHeight()*64;
         this.searchArea = new Node[width][height];
         this.startNode=searchArea[startNodeX][startNodeY];
