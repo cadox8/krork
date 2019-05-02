@@ -34,11 +34,19 @@ public class AStar {
 
     public AStar(KrorkAPI api, int startNodeX,int startNodeY, int endNodeX,int endNodeY) {
         this.api = api;
-        width = api.getWorld().getWidth()*64;
-        height = api.getWorld().getHeight()*64;
+        width = api.getWorld().getWidth();
+        height = api.getWorld().getHeight();
+
         this.searchArea = new Node[width][height];
-        this.startNode=searchArea[startNodeX][startNodeY];
-        this.endNode=searchArea[endNodeX][endNodeY];
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                searchArea[x][y] = new Node(x, y);
+            }
+        }
+
+        this.startNode=searchArea[startNodeX/64][startNodeY/64];
+        this.endNode=searchArea[endNodeX/64][endNodeY/64];
         this.openList = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node node0, Node node1) {
