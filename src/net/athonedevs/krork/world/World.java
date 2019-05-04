@@ -62,11 +62,11 @@ public class World {
         Arrays.asList(entities).forEach(entityManager::addEntity);
     }
 
-    public void tick(){
+    public synchronized void tick(){
         entityManager.tick();
     }
 
-    public void render(Graphics g){
+    public synchronized void render(Graphics g){
         int xStart = (int) Math.max(0, API.getGameCamera().getXOffset() / Tile.TILEWIDTH);
         int xEnd = (int) Math.min(width, (API.getGameCamera().getXOffset() + API.getWidth()) / Tile.TILEWIDTH + 1);
         int yStart = (int) Math.max(0, API.getGameCamera().getYOffset() / Tile.TILEHEIGHT);
