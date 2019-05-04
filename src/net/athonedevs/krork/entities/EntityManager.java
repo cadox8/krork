@@ -38,7 +38,7 @@ public class EntityManager {
         entities = new ArrayList<>();
     }
 
-    public void tick() {
+    public synchronized void tick() {
         final Iterator<Entity> it = entities.iterator();
         while (it.hasNext()) {
             final Entity e = it.next();
