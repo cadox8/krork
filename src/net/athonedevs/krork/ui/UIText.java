@@ -38,7 +38,7 @@ public class UIText extends UIObject {
         font = new Font("Agency FB", Font.PLAIN, 14);
 
         width = (int)font.getStringBounds(text, new FontRenderContext(null, false, false)).getWidth();
-        bounds = new Rectangle((int) x, (int) y, width, height);
+        bounds = new Rectangle((int)getX(), (int)getY(), width, height);
     }
 
 
