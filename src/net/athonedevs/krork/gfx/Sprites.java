@@ -14,6 +14,8 @@ package net.athonedevs.krork.gfx;
 import lombok.AllArgsConstructor;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 @AllArgsConstructor
@@ -45,5 +47,15 @@ public class Sprites {
             }
         }
         return img;
+    }
+
+    public static BufferedImage rotateImage(double degrees, BufferedImage texture) {
+        final AffineTransform tx = new AffineTransform();
+
+        tx.translate(texture.getHeight() / 2, texture.getWidth() / 2);
+        tx.rotate(Math.toRadians(degrees));
+        tx.translate(-texture.getWidth() / 2, -texture.getHeight() / 2);
+
+        return new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR).filter(texture, new BufferedImage(texture.getHeight(), texture.getWidth(), texture.getType()));
     }
 }
