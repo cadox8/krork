@@ -50,7 +50,7 @@ public class EntityManager {
     }
 
     public synchronized void render(Graphics g) {
-        entities.forEach(e -> e.specialRender(g));
+        entities.forEach(e -> e.preRender(g));
         entities.forEach(e -> e.render(g));
     }
 

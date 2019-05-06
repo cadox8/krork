@@ -29,7 +29,6 @@ public class UIText extends UIObject {
     public UIText(float x, float y, Color color, String text) {
         this(x, y, color, text, () -> {});
     }
-
     public UIText(float x, float y, Color color, String text, ClickListener clicker) {
         super(x, y - 12, 250, 15);
         this.text = text;
@@ -38,7 +37,8 @@ public class UIText extends UIObject {
 
         font = new Font("Agency FB", Font.PLAIN, 14);
 
-        setWidth((int)font.getStringBounds(text, new FontRenderContext(null, false, false)).getWidth());
+        width = (int)font.getStringBounds(text, new FontRenderContext(null, false, false)).getWidth();
+        bounds = new Rectangle((int) x, (int) y, width, height);
     }
 
 
@@ -68,7 +68,7 @@ public class UIText extends UIObject {
     }
 
     public UIText setFontSize(int size){
-        font = new Font(font.getName(), 0, size);
+        font = new Font(font.getName(), Font.PLAIN, size);
         return this;
     }
 }

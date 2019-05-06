@@ -98,5 +98,5 @@ public abstract class Creature extends Entity {
     }
 
     @Override
-    public void specialRender(Graphics g) {}
+    public void preRender(Graphics g) {}
 }
