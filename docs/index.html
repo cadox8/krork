@@ -26,10 +26,10 @@
     <meta property="og:description" content="Java engine to make games" />
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
 
     <!-- Font Awesome -->
-    <script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
 
     <title>Krork Engine</title>
 
@@ -67,7 +67,8 @@
             <br><br>
             <a class="button is-info is-rounded" href="javadocs/index.html" target="_blank"><span class="icon"><i class="fas fa-info"></i></span><span>Javadocs</span></a>
             <a class="button is-danger is-rounded" href="#"><span class="icon"><i class="fas fa-book"></i></span><span>Documentation</span></a>
-            <a class="button is-success is-rounded" href="#license"><span class="icon"><i class="fas fa-book-open"></i></span><span>License</span></a>
+            <a class="button is-warning is-rounded" href="roadmap.html"><span class="icon"><i class="fas fa-tasks"></i></span><span>Roadmap</span></a>
+            <a class="button is-success is-rounded" href="#license"><span class="icon"><i class="fas fa-gavel"></i></span><span>License</span></a>
         </p>
     </div>
 </section>
@@ -75,34 +76,29 @@
 <section class="section" id="use">
     <div class="container">
         <h1 class="title">Using the Engine</h1><hr>
-        <p>
-            You can get our Engine by Maven or downloading it (see <a href="#license">License</a>)
-            <br><br>
-            <h3 class="subtitle">Maven</h3>
-            <small><b>NOTE:</b> Replace <b>VERSION</b> with the version you want to use (<a href="versions.json" target="_blank">Versions</a>)</small>
-            <div class="columns has-text-left">
-                <div class="column is-2"></div>
-                <div class="column">
-                    <xmp>
-                        <repository>
-                            <id>krork-repo</id>
-                            <url>https://cadox8.github.io/krork/repo/</url>
-                        </repository>
-                    </xmp>
-                    <xmp>
-                        <dependency>
-                            <groupId>net.athonedevs</groupId>
-                            <artifactId>Krork</artifactId>
-                            <version>0.8..3-Alpha</version>
-                        </dependency>
-                    </xmp>
-                </div>
-            </div>
-            <br>
+        <div class="notification is-info">
+            <h3 class="subtitle">You can see and download all versions <a style="color: black" class="has-text-weight-bold" href="versions.html" target="_blank">here</a>.</h3>
+        </div>
 
-            <h3 class="subtitle">Downloads</h3>
-            <a class="button is-success is-rounded" href="repo/net/athonedevs/Krork/0.8.3-Alpha/Krork-0.8.3-Alpha.jar" target="_blank"><span class="icon"><i class="fas fa-download"></i></span><span>Latest</span></a>
-        </p>
+        <small><b>NOTE:</b> Replace <b>VERSION</b> with the version you want to use (<a href="versions.html" target="_blank">Versions</a>)</small>
+        <div class="columns has-text-left">
+            <div class="column is-2"></div>
+            <div class="column">
+                <xmp>
+                    <repository>
+                        <id>krork-repo</id>
+                        <url>https://cadox8.github.io/krork/repo/</url>
+                    </repository>
+                </xmp>
+                <xmp>
+                    <dependency>
+                        <groupId>net.athonedevs</groupId>
+                        <artifactId>Krork</artifactId>
+                        <version>VERSION</version>
+                    </dependency>
+                </xmp>
+            </div>
+        </div>
     </div>
 </section>
 
