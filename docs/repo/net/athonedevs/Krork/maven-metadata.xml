@@ -14,7 +14,7 @@
   <groupId>net.athonedevs</groupId>
   <artifactId>Krork</artifactId>
   <versioning>
-    <release>0.8-Alpha</release>
+    <release>0.8.3-Alpha</release>
     <versions>
       <version>0.4.7-Alpha</version>
       <version>0.5-Alpha</version>
@@ -32,7 +32,8 @@
       <version>0.7.2-Alpha</version>
       <version>0.7.3-Alpha</version>
       <version>0.8-Alpha</version>
+      <version>0.8.3-Alpha</version>
     </versions>
-    <lastUpdated>20190506171615</lastUpdated>
+    <lastUpdated>20190527154150</lastUpdated>
   </versioning>
 </metadata>

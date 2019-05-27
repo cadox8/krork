@@ -1,4 +1,8 @@
 {
+  "0.8.3-Alpha": [
+    "Added Dialogs",
+    "Bug Fixes"
+  ],
   "0.8-Alpha": [
     "Added PathFinding",
     "Small changes",

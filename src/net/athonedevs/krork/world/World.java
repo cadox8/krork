@@ -31,7 +31,6 @@ public class World {
     @Getter private int width, height;
     @Getter private int playerX, playerY;
     @Getter private TileData[][] tiles;
-    private boolean[][] visited;
 
     //Entities
     @Getter private EntityManager entityManager;
@@ -94,7 +93,6 @@ public class World {
         playerX = Utils.parseInt(tokens[2]);
         playerY = Utils.parseInt(tokens[3]);
 
-        visited = new boolean[width][height];
         tiles = new TileData[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
