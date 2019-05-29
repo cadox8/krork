@@ -3,10 +3,6 @@ install: mvn clean install
 jdk:
   - oraclejdk8
   - oraclejdk9
-branches:
-  only:
-    - master
-    - 0.9-alpha
 notifications:
   recipients:
     - cadox8@gmail.com
@@ -17,7 +13,7 @@ after_success:
     - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
     - chmod +x send.sh
     - ./send.sh success $WEBHOOK_URL
- after_failure:
+after_failure:
     - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
     - chmod +x send.sh
     - ./send.sh failure $WEBHOOK_URL
