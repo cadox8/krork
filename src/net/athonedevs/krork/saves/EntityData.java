@@ -16,7 +16,6 @@ import lombok.ToString;
 
 @Data
 @ToString
-
 public abstract class EntityData {
     /**
      * Default Entity data class to save the data from the entities to load them later

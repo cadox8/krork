@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.utils.Log;
 
@@ -23,14 +24,24 @@ import java.util.Arrays;
 
 public class Save {
 
-    private final File entitySave;
-    private final File playerSave;
+    @Getter private final File entitySave;
+    @Getter private final File playerSave;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Default Save constructor. All files are saved in C:\\(GameName)
+     * @see Krork
+     */
     public Save() {
         this("C" + File.pathSeparator + Krork.getGame());
     }
+
+    /**
+     * Save constructor with a path to save the files
+     *
+     * @param path The path to save the files
+     */
     public Save(String path) {
         entitySave = new File(path, "entities.json");
         playerSave = new File(path, "player.json");
@@ -43,15 +54,37 @@ public class Save {
         }
     }
 
+    /**
+     * Method to save others files than aren't entities in JSON format
+     *
+     * @param file The file to be saved in
+     * @param save The object to save
+     * @throws IOException FileWriter exception
+     */
+    public void saveMoreFiles(File file, Object save) throws IOException {
+        final BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
-    public void savePlayer(EntityData player) throws IOException {
-        final BufferedWriter bw = new BufferedWriter(new FileWriter(playerSave));
-
-        bw.write(gson.toJson(player));
+        bw.write(gson.toJson(save));
         bw.flush();
         bw.close();
     }
 
+    /**
+     * A method to save a player (if exits)
+     *
+     * @param player The Player EntityData
+     * @throws IOException FileWriter exception
+     */
+    public void savePlayer(EntityData player) throws IOException {
+        saveMoreFiles(playerSave, player);
+    }
+
+    /**
+     * A method to save all Entities in one file
+     *
+     * @param entities The entities to be saved
+     * @throws IOException FileWriter exception
+     */
     public void saveEntities(EntityData... entities) throws IOException {
         final Gson gson = new GsonBuilder().setPrettyPrinting().create();
         final BufferedWriter bw = new BufferedWriter(new FileWriter(entitySave));
@@ -66,7 +99,15 @@ public class Save {
         bw.close();
     }
 
-    public EntityData loadData(EntityData data) throws IOException {
-        return gson.fromJson(new FileReader(playerSave), data.getClass());
+    /**
+     * Method to load all data from a file
+     *
+     * @param file The file from where we load the entities or data
+     * @param data The class to load the data (Your extension of EntityData)
+     * @return Your EntityData (or the default EntityData)
+     * @throws IOException FileReader exception
+     */
+    public EntityData loadData(File file, Class<EntityData> data) throws IOException {
+        return gson.fromJson(new FileReader(file), data);
     }
 }
