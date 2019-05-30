@@ -6,6 +6,7 @@ jdk:
 notifications:
   recipients:
     - cadox8@gmail.com
+    - wikyfg@gmail.com
   on_success: never # default: change
   on_failure: always # default: always
 
