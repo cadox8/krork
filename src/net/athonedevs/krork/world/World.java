@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 public class World {
 
-    private KrorkAPI API;
+    @Getter private KrorkAPI API;
 
     @Getter private int width, height;
     @Getter private int playerX, playerY;
@@ -57,7 +57,7 @@ public class World {
      *
      * @param entities An array of entities
      */
-    public void addEntities(Entity... entities){
+    public void addEntities(Entity... entities) {
         Arrays.asList(entities).forEach(entityManager::addEntity);
     }
 
@@ -108,12 +108,12 @@ public class World {
         }
     }
 
-    public String worldName() {
+    public String getWorldName() {
         return path.split("/")[2].split("\\.")[0];
     }
     @Override
     public String toString() {
-        return "World{Name:" + worldName() + "}";
+        return "World{Name:" + getWorldName() + " Entities: " + entityManager.getEntities().toString() + "}";
     }
 
     @AllArgsConstructor

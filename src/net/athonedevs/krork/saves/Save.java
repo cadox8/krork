@@ -15,12 +15,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.utils.Log;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class Save {
 
@@ -31,19 +34,22 @@ public class Save {
 
     /**
      * Default Save constructor. All files are saved in C:\\(GameName)
-     * @see Krork
+     * @see Krork#getGame()
+     *
+     * @param worldName The world to create the folder to save the entities per world
      */
-    public Save() {
-        this("C" + File.pathSeparator + Krork.getGame());
+    public Save(String worldName) {
+        this("C" + File.pathSeparator + Krork.getGame() + File.pathSeparator, worldName);
     }
 
     /**
      * Save constructor with a path to save the files
      *
      * @param path The path to save the files
+     * @param worldName The world to create the folder to save the entities per world
      */
-    public Save(String path) {
-        entitySave = new File(path, "entities.json");
+    public Save(String path, String worldName) {
+        entitySave = new File(path + File.pathSeparator + worldName, "entities.json");
         playerSave = new File(path, "player.json");
 
         try {
@@ -62,6 +68,7 @@ public class Save {
      * @throws IOException FileWriter exception
      */
     public void saveMoreFiles(File file, Object save) throws IOException {
+        if (!file.exists()) file.createNewFile();
         final BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
         bw.write(gson.toJson(save));
@@ -100,14 +107,26 @@ public class Save {
     }
 
     /**
-     * Method to load all data from a file
+     * Method to load all data from a file (Used while loading one entity per file)
      *
      * @param file The file from where we load the entities or data
      * @param data The class to load the data (Your extension of EntityData)
      * @return Your EntityData (or the default EntityData)
      * @throws IOException FileReader exception
      */
-    public EntityData loadData(File file, Class<EntityData> data) throws IOException {
-        return gson.fromJson(new FileReader(file), data);
+    public EntityData loadSingleData(File file, Class<? extends EntityData> data) throws IOException {
+        return gson.fromJson(new JsonReader(new FileReader(file)), data);
+    }
+
+    /**
+     * Method to load all data from a file (Used while loading multiple entity per file)
+     *
+     * @param file The file from where we load the entities or data
+     * @param data The class to load the data (Your extension of EntityData)
+     * @return Your EntityData (or the default EntityData)
+     * @throws IOException FileReader exception
+     */
+    public EntityData[] loadMultipleData(File file, Class<? extends EntityData> data) throws IOException {
+        return gson.fromJson(new JsonReader(new FileReader(file)), TypeToken.getParameterized(Collection.class, data).getType());
     }
 }

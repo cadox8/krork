@@ -16,11 +16,15 @@ import lombok.NonNull;
 import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
+import net.athonedevs.krork.ex.WorldNotLoadedException;
+import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EntityManager {
 
@@ -54,12 +58,22 @@ public class EntityManager {
         entities.forEach(e -> e.render(g));
     }
 
-    public synchronized void addEntity(@NonNull Entity e) {
-        entities.add(e);
+    /**
+     * Adds an entity to the World
+     *
+     * @param entity The entity to be added
+     */
+    public synchronized void addEntity(@NonNull Entity entity) {
+        try {
+            if (entity.getLocation() == null || !entity.getLocation().getWorld().getWorldName().equalsIgnoreCase(API.getWorld().getWorldName())) throw new WorldNotLoadedException(entity, API.getWorld());
+            entities.add(entity);
+        } catch (WorldNotLoadedException e) {
+            Log.log(Log.LogType.DANGER, e.getMessage());
+        }
     }
 
-    public Entity getEntityOnLoc(float x, float y) {
-        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains(new Point((int)x, (int)y))).findAny().orElse(null);
+    public List<Entity> getEntityOnLoc(float x, float y) {
+        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains((int)x, (int)y)).collect(Collectors.toList());
     }
 
     public void freezeCreatures(Creature except) {

@@ -70,7 +70,7 @@ public class Location {
     public Map<String, Object> serializeLocation() {
         final Map<String, Object> location = new HashMap<>();
 
-        location.put("world", getWorld().worldName());
+        location.put("world", getWorld().getWorldName());
         location.put("x", getX());
         location.put("y", getY());
         location.put("direction", getDirection());
