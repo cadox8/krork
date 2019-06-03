@@ -11,7 +11,6 @@
 
 package net.athonedevs.krork.ai;
 
-import lombok.Getter;
 import net.athonedevs.krork.ai.path.AStar;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
@@ -27,8 +26,8 @@ public abstract class AI {
     private float speed;
     private int delay;
     protected int direction = 0;
-    @Getter protected boolean noAI = false;
-    @Getter protected Rectangle bounds;
+    protected boolean noAI = false;
+    protected Rectangle bounds;
     private int tempDelay = 0;
 
     public AI(KrorkAPI API, Entity entity, float speed, int delay) {
@@ -66,5 +65,13 @@ public abstract class AI {
     //TODO: Change
     protected Rectangle getTrackingArea() {
         return new Rectangle((int) (entity.getX() - (entity.getX() / 4)) + 8, (int) (entity.getY() - (entity.getY() / 4)), bounds.width, bounds.height);
+    }
+
+    public boolean isNoAI() {
+        return this.noAI;
+    }
+
+    public Rectangle getBounds() {
+        return this.bounds;
     }
 }

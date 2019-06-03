@@ -11,7 +11,6 @@
 
 package net.athonedevs.krork.display;
 
-import lombok.Getter;
 import net.athonedevs.krork.utils.Utils;
 
 import javax.swing.*;
@@ -19,8 +18,8 @@ import java.awt.*;
 
 public class Display {
 
-    @Getter private JFrame frame;
-    @Getter private Canvas canvas;
+    private JFrame frame;
+    private Canvas canvas;
 
     private String title;
     private int width, height;
@@ -53,5 +52,13 @@ public class Display {
 
     public void setIconImage(String path) {
         frame.setIconImage(Utils.loadImage(path));
+    }
+
+    public JFrame getFrame() {
+        return this.frame;
+    }
+
+    public Canvas getCanvas() {
+        return this.canvas;
     }
 }

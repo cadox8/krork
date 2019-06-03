@@ -11,22 +11,19 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public abstract class UIObject {
 
-    @Getter @Setter protected float x, y;
-    @Getter @Setter protected int width, height;
-    @Getter @Setter protected Rectangle bounds;
+    protected float x, y;
+    protected int width, height;
+    protected Rectangle bounds;
 
-    @Getter @Setter protected boolean hovering = false;
-    @Getter @Setter protected boolean enabled = true;
+    protected boolean hovering = false;
+    protected boolean enabled = true;
 
-    @Getter @Setter protected Font font = new Font("Arial", Font.PLAIN, 11);
+    protected Font font = new Font("Arial", Font.PLAIN, 11);
 
     public UIObject(float x, float y, int width, int height) {
         this.x = x;
@@ -60,5 +57,69 @@ public abstract class UIObject {
 
     public void newFont(String font, int style, int size) {
         setFont(new Font(font, style, size));
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public Rectangle getBounds() {
+        return this.bounds;
+    }
+
+    public boolean isHovering() {
+        return this.hovering;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public Font getFont() {
+        return this.font;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+    }
+
+    public void setHovering(boolean hovering) {
+        this.hovering = hovering;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 }

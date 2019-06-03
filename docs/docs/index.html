@@ -20,7 +20,12 @@
   <div id="app">Loading...</div>
   <script>
     window.$docsify = {
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md'
+      },
       name: 'Krork',
+      loadNavbar: true,
+      mergeNavbar: true,
       loadSidebar: true,
       auto2top: true,
       homepage: 'README.md',

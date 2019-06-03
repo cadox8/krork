@@ -17,7 +17,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.utils.Log;
 
@@ -27,8 +26,8 @@ import java.util.Collection;
 
 public class Save {
 
-    @Getter private final File entitySave;
-    @Getter private final File playerSave;
+    private final File entitySave;
+    private final File playerSave;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -128,5 +127,13 @@ public class Save {
      */
     public EntityData[] loadMultipleData(File file, Class<? extends EntityData> data) throws IOException {
         return gson.fromJson(new JsonReader(new FileReader(file)), TypeToken.getParameterized(Collection.class, data).getType());
+    }
+
+    public File getEntitySave() {
+        return this.entitySave;
+    }
+
+    public File getPlayerSave() {
+        return this.playerSave;
     }
 }

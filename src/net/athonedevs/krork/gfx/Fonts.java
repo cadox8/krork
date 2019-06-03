@@ -11,20 +11,25 @@
 
 package net.athonedevs.krork.gfx;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class Fonts {
 
     private final String name;
     private int type = Font.PLAIN;
     private int size = 14;
+
+    public Fonts(String name) {
+        this.name = name;
+    }
+
+    public Fonts(String name, int type, int size) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+    }
 
     public Font getFont() {
         return new Font(name, type, size);

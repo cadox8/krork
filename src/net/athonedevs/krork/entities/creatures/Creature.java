@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.entities.creatures;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.tiles.Tile;
@@ -26,10 +24,10 @@ public abstract class Creature extends Entity {
 
     public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 
-    @Getter @Setter protected float speed;
-    @Getter @Setter protected float xMove, yMove;
+    protected float speed;
+    protected float xMove, yMove;
 
-    @Getter @Setter protected boolean freeze = false;
+    protected boolean freeze = false;
 
 
     public Creature(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
@@ -99,4 +97,36 @@ public abstract class Creature extends Entity {
 
     @Override
     public void preRender(Graphics g) {}
+
+    public float getSpeed() {
+        return this.speed;
+    }
+
+    public float getXMove() {
+        return this.xMove;
+    }
+
+    public float getYMove() {
+        return this.yMove;
+    }
+
+    public boolean isFreeze() {
+        return this.freeze;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public void setXMove(float xMove) {
+        this.xMove = xMove;
+    }
+
+    public void setYMove(float yMove) {
+        this.yMove = yMove;
+    }
+
+    public void setFreeze(boolean freeze) {
+        this.freeze = freeze;
+    }
 }

@@ -11,17 +11,20 @@
 
 package net.athonedevs.krork.utils;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.tiles.Tile;
 
-@AllArgsConstructor
 public class GameCamera {
 
     private KrorkAPI API;
-    @Getter private float xOffset, yOffset;
+    private float xOffset, yOffset;
+
+    public GameCamera(KrorkAPI API, float xOffset, float yOffset) {
+        this.API = API;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+    }
 
     private void checkBlankSpace() {
         if (xOffset < 0) {
@@ -47,5 +50,13 @@ public class GameCamera {
         xOffset += xAmt;
         yOffset += yAmt;
         checkBlankSpace();
+    }
+
+    public float getXOffset() {
+        return this.xOffset;
+    }
+
+    public float getYOffset() {
+        return this.yOffset;
     }
 }

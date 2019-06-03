@@ -11,9 +11,6 @@
 
 package net.athonedevs.krork.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.utils.Log;
@@ -24,48 +21,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@ToString
 public abstract class Entity {
 
-    @Getter private final int entityID;
-    @Getter private final String entityName;
+    private final int entityID;
+    private final String entityName;
 
     protected final double DEFAULT_HEALTH = 10;
     protected final double DEFAULT_DAMAGE = 3;
     protected final double DEFAULT_ARMOR = 0;
 
-    @Getter @Setter protected KrorkAPI API;
+    protected KrorkAPI API;
 
-    @Getter @Setter protected float x, y;
-    @Getter @Setter protected int width, height;
-    @Getter @Setter private double health;
-    @Getter @Setter private double damage;
-    @Getter @Setter private double armor;
-    @Getter @Setter private double maxHealth;
+    protected float x, y;
+    protected int width, height;
+    private double health;
+    private double damage;
+    private double armor;
+    private double maxHealth;
 
-    @Getter @Setter private boolean damageable = true;
+    private boolean damageable = true;
 
     // Attack timer
-    @Getter @Setter protected long lastAttackTimer, attackCooldown = 400, attackTimer = attackCooldown;
+    protected long lastAttackTimer, attackCooldown = 400, attackTimer = attackCooldown;
 
-    @Getter @Setter protected int direction = 0; //0 = South, 1 = North, 2 = East, 3 = West
+    protected int direction = 0; //0 = South, 1 = North, 2 = East, 3 = West
 
-    @Getter @Setter private boolean active = true;
+    private boolean active = true;
 
-    @Setter private Location location;
+    private Location location;
 
-    @Getter @Setter protected Rectangle bounds;
+    protected Rectangle bounds;
 
-    @Getter @Setter private Entity collisionEntity;
+    private Entity collisionEntity;
 
-    @Getter @Setter protected Entity killer;
+    protected Entity killer;
 
-    @Getter @Setter protected Animation[] animations = new Animation[4];
-    @Getter @Setter protected BufferedImage texture;
+    protected Animation[] animations = new Animation[4];
+    protected BufferedImage texture;
 
-    @Getter @Setter protected boolean collidable = true;
+    protected boolean collidable = true;
 
-    @Getter private List<Integer> collisionID;
+    private List<Integer> collisionID;
 
     public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
         this.API = API;
@@ -147,5 +143,193 @@ public abstract class Entity {
 
     public Location getLocation() {
         return new Location(API.getWorld(), getX(), getY(), getDirection());
+    }
+
+    public String toString() {
+        return "Entity(entityID=" + this.entityID + ", entityName=" + this.entityName + ", DEFAULT_HEALTH=" + this.DEFAULT_HEALTH + ", DEFAULT_DAMAGE=" + this.DEFAULT_DAMAGE + ", DEFAULT_ARMOR=" + this.DEFAULT_ARMOR + ", API=" + this.API + ", x=" + this.x + ", y=" + this.y + ", width=" + this.width + ", height=" + this.height + ", health=" + this.health + ", damage=" + this.damage + ", armor=" + this.armor + ", maxHealth=" + this.maxHealth + ", damageable=" + this.damageable + ", lastAttackTimer=" + this.lastAttackTimer + ", attackCooldown=" + this.attackCooldown + ", attackTimer=" + this.attackTimer + ", direction=" + this.direction + ", active=" + this.active + ", location=" + this.getLocation() + ", bounds=" + this.bounds + ", collisionEntity=" + this.collisionEntity + ", killer=" + this.killer + ", animations=" + Arrays.deepToString(this.animations) + ", texture=" + this.texture + ", collidable=" + this.collidable + ", collisionID=" + this.collisionID + ")";
+    }
+
+    public int getEntityID() {
+        return this.entityID;
+    }
+
+    public String getEntityName() {
+        return this.entityName;
+    }
+
+    public KrorkAPI getAPI() {
+        return this.API;
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public double getHealth() {
+        return this.health;
+    }
+
+    public double getDamage() {
+        return this.damage;
+    }
+
+    public double getArmor() {
+        return this.armor;
+    }
+
+    public double getMaxHealth() {
+        return this.maxHealth;
+    }
+
+    public boolean isDamageable() {
+        return this.damageable;
+    }
+
+    public long getLastAttackTimer() {
+        return this.lastAttackTimer;
+    }
+
+    public long getAttackCooldown() {
+        return this.attackCooldown;
+    }
+
+    public long getAttackTimer() {
+        return this.attackTimer;
+    }
+
+    public int getDirection() {
+        return this.direction;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public Rectangle getBounds() {
+        return this.bounds;
+    }
+
+    public Entity getCollisionEntity() {
+        return this.collisionEntity;
+    }
+
+    public Entity getKiller() {
+        return this.killer;
+    }
+
+    public Animation[] getAnimations() {
+        return this.animations;
+    }
+
+    public BufferedImage getTexture() {
+        return this.texture;
+    }
+
+    public boolean isCollidable() {
+        return this.collidable;
+    }
+
+    public List<Integer> getCollisionID() {
+        return this.collisionID;
+    }
+
+    public void setAPI(KrorkAPI API) {
+        this.API = API;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
+    public void setArmor(double armor) {
+        this.armor = armor;
+    }
+
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setDamageable(boolean damageable) {
+        this.damageable = damageable;
+    }
+
+    public void setLastAttackTimer(long lastAttackTimer) {
+        this.lastAttackTimer = lastAttackTimer;
+    }
+
+    public void setAttackCooldown(long attackCooldown) {
+        this.attackCooldown = attackCooldown;
+    }
+
+    public void setAttackTimer(long attackTimer) {
+        this.attackTimer = attackTimer;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+    }
+
+    public void setCollisionEntity(Entity collisionEntity) {
+        this.collisionEntity = collisionEntity;
+    }
+
+    public void setKiller(Entity killer) {
+        this.killer = killer;
+    }
+
+    public void setAnimations(Animation[] animations) {
+        this.animations = animations;
+    }
+
+    public void setTexture(BufferedImage texture) {
+        this.texture = texture;
+    }
+
+    public void setCollidable(boolean collidable) {
+        this.collidable = collidable;
     }
 }

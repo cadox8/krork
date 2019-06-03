@@ -12,8 +12,6 @@
 package net.athonedevs.krork.api;
 
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.gfx.Fonts;
 import net.athonedevs.krork.input.KeyManager;
@@ -25,15 +23,31 @@ import java.awt.*;
 
 public class KrorkAPI {
 
-    @Getter @Setter private static boolean debugEnabled = false;
+    private static boolean debugEnabled = false;
 
-    @Getter @Setter private Krork krork;
-    @Getter @Setter private World world;
+    private Krork krork;
+    private World world;
 
-    @Getter @Setter private static Font gameFont = new Fonts("Open Sans").getFont();
+    private static Font gameFont = new Fonts("Open Sans").getFont();
 
     public KrorkAPI(Krork krork) {
         this.krork = krork;
+    }
+
+    public static boolean isDebugEnabled() {
+        return KrorkAPI.debugEnabled;
+    }
+
+    public static Font getGameFont() {
+        return KrorkAPI.gameFont;
+    }
+
+    public static void setDebugEnabled(boolean debugEnabled) {
+        KrorkAPI.debugEnabled = debugEnabled;
+    }
+
+    public static void setGameFont(Font gameFont) {
+        KrorkAPI.gameFont = gameFont;
     }
 
     public KeyManager getKeyManager() {
@@ -53,5 +67,21 @@ public class KrorkAPI {
 
     public int getHeight() {
         return krork.getHeight();
+    }
+
+    public Krork getKrork() {
+        return this.krork;
+    }
+
+    public World getWorld() {
+        return this.world;
+    }
+
+    public void setKrork(Krork krork) {
+        this.krork = krork;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 }

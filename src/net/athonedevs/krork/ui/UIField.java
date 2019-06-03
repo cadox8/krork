@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
@@ -21,11 +19,11 @@ public class UIField extends UIObject {
 
     private ClickListener clicker;
 
-    @Getter @Setter private String text = "";
+    private String text = "";
 
-    @Getter private UIText uiText;
+    private UIText uiText;
 
-    @Getter @Setter private Color baseColor = new Color(217, 217, 217);
+    private Color baseColor = new Color(217, 217, 217);
 
     public UIField(float x, float y, int width, int height, KrorkAPI api) {
         super(x, y - height, width, height);
@@ -63,5 +61,25 @@ public class UIField extends UIObject {
 
     private boolean canWrite(Graphics g, String text) {
         return g.getFontMetrics(g.getFont()).stringWidth(text) > width;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public UIText getUiText() {
+        return this.uiText;
+    }
+
+    public Color getBaseColor() {
+        return this.baseColor;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setBaseColor(Color baseColor) {
+        this.baseColor = baseColor;
     }
 }

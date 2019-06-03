@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 public class UIManager {
 
     private KrorkAPI API;
-    @Getter @Setter private ArrayList<UIObject> objects;
+    private ArrayList<UIObject> objects;
 
     public UIManager(KrorkAPI API) {
         this.API = API;
@@ -53,5 +51,13 @@ public class UIManager {
     }
     public void removeAllObjects() {
         objects.clear();
+    }
+
+    public ArrayList<UIObject> getObjects() {
+        return this.objects;
+    }
+
+    public void setObjects(ArrayList<UIObject> objects) {
+        this.objects = objects;
     }
 }

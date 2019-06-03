@@ -11,9 +11,6 @@
 
 package net.athonedevs.krork.items;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import net.athonedevs.krork.attributes.Attribute;
 import net.athonedevs.krork.ex.ItemRegisteredException;
 
@@ -21,16 +18,13 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString
 public abstract class Item {
 
-    public static Item[] items = new Item[Integer.MAX_VALUE];
+    private final int id;
+    private String name;
+    private BufferedImage texture;
 
-    @Getter private final int id;
-    @Getter @Setter private String name;
-    @Getter @Setter private BufferedImage texture;
-
-    @Getter @Setter private List<Attribute> attributes;
+    private List<Attribute> attributes;
 
     public Item(int id, String name, BufferedImage texture) throws ItemRegisteredException {
         this.id = id;
@@ -38,14 +32,43 @@ public abstract class Item {
         this.texture = texture;
 
         attributes = new ArrayList<>();
-
-        if (items[id] != null) throw new ItemRegisteredException(id);
-        items[id] = this;
     }
 
     public abstract void use();
 
     public void performAttributes() {
         attributes.forEach(Attribute::perform);
+    }
+
+    public String toString() {
+        return "Item(id=" + this.id + ", name=" + this.name + ", texture=" + this.texture + ", attributes=" + this.attributes + ")";
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public BufferedImage getTexture() {
+        return this.texture;
+    }
+
+    public List<Attribute> getAttributes() {
+        return this.attributes;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTexture(BufferedImage texture) {
+        this.texture = texture;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
     }
 }

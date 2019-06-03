@@ -11,17 +11,18 @@
 
 package net.athonedevs.krork.gfx;
 
-import lombok.AllArgsConstructor;
-
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-@AllArgsConstructor
 public class Sprites {
 
     private BufferedImage sprites;
+
+    public Sprites(BufferedImage sprites) {
+        this.sprites = sprites;
+    }
 
     public BufferedImage crop(int x, int y, int width, int height) {
         return sprites.getSubimage(x, y, width, height);

@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.utils;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
 
@@ -22,7 +20,6 @@ import java.util.Locale;
 
 public class Log {
 
-    @AllArgsConstructor
     public enum LogType {
         SUCCESS("[Success] ", "\u001B[32m"),
         NORMAL("", ""),
@@ -30,8 +27,21 @@ public class Log {
         DANGER("[Danger] ", "\u001B[31m"),
         DEBUG("[Debug] ", "\u001B[36m");
 
-        @Getter private String prefix;
-        @Getter private String color;
+        private String prefix;
+        private String color;
+
+        private LogType(String prefix, String color) {
+            this.prefix = prefix;
+            this.color = color;
+        }
+
+        public String getPrefix() {
+            return this.prefix;
+        }
+
+        public String getColor() {
+            return this.color;
+        }
     }
 
 

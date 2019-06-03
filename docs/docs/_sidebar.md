@@ -5,9 +5,17 @@
 
 - Getting started
     - [Quick start](quickstart.md)
-    - [Installation](installation.md)
-    
+    - [API](api.md)
+
 - Usage
     - [Creating the first project](first.md)
 
-- About    
+
+- Utils
+    - [Fonts](fonts.md)
+    - [Logs](logs.md)
+
+- [About](about.md)    
+- [Javadocs](https://cadox8.github.io/krork/javadocs/index.html)
+- [Roadmap](https://cadox8.github.io/krork/roadmap.html)
+- [Versions](https://cadox8.github.io/krork/versions.html)

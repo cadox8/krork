@@ -11,14 +11,12 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class UIImage extends UIObject {
 
-    @Getter private BufferedImage[] images;
+    private BufferedImage[] images;
 
     public UIImage(float x, float y, int width, int height, BufferedImage image) {
         this(x, y, width, height, new BufferedImage[]{image});
@@ -58,5 +56,9 @@ public class UIImage extends UIObject {
     }
     public void changeImage(int id, BufferedImage img) {
         images[id] = img;
+    }
+
+    public BufferedImage[] getImages() {
+        return this.images;
     }
 }
