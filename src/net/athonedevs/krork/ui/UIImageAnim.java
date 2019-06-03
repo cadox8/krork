@@ -20,6 +20,18 @@ public class UIImageAnim extends UIObject {
     private Animation anim;
     private ClickListener clicker;
 
+    /**
+     * Generates a Image Animation Object
+     *
+     * @see Animation
+     *
+     * @param x The x position to be shown
+     * @param y The y position to be shown
+     * @param width The width of the object
+     * @param height The height of the object
+     * @param anim The animation to be shown
+     * @param clicker Executes the inside code on click
+     */
     public UIImageAnim(float x, float y, int width, int height, Animation anim, ClickListener clicker) {
         super(x, y, width, height);
         this.anim = anim;

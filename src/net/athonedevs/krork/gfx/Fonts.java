@@ -21,20 +21,45 @@ public class Fonts {
     private int type = Font.PLAIN;
     private int size = 14;
 
+    /**
+     * Creates a new font from a name
+     *
+     * @param name The font name
+     */
     public Fonts(String name) {
         this.name = name;
     }
 
+    /**
+     * Creates a new font
+     *
+     * @see Font
+     *
+     * @param name The font name
+     * @param type The font type
+     * @param size The font size
+     */
     public Fonts(String name, int type, int size) {
         this.name = name;
         this.type = type;
         this.size = size;
     }
 
+    /**
+     * Generates the font
+     *
+     * @return Returns the font
+     */
     public Font getFont() {
         return new Font(name, type, size);
     }
 
+    /**
+     * Generates a custom font from a file
+     *
+     * @param path The path where the file is (in .ttf format)
+     * @return The new font generated
+     */
     public Font newFont(String path) {
         try {
             return Font.createFont(Font.TRUETYPE_FONT, new File(path + File.pathSeparator + name + ".ttf")).deriveFont(type, size);

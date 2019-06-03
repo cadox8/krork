@@ -24,6 +24,9 @@ public class Tile {
 
     public static int TILEWIDTH = 64, TILEHEIGHT = 64;
 
+    /**
+     * Default tile to show if no-one is presented
+     */
     public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
 
     protected final BufferedImage texture;
@@ -32,6 +35,14 @@ public class Tile {
 
     private final List<SubTile> subtiles;
 
+    /**
+     * Generates a new Tile
+     *
+     * In world.txt this should appear as [id]
+     *
+     * @param texture The texture of the tile
+     * @param id The id of the tile
+     */
     public Tile(BufferedImage texture, int id) {
         this.texture = texture;
         this.id = id;
@@ -39,9 +50,22 @@ public class Tile {
         subtiles = new ArrayList<>();
     }
 
+    /**
+     * Adds a subtile to the Tile
+     * @see SubTile
+     *
+     * @param subTile The subtile to be added
+     */
     public void addSubTile(SubTile subTile) {
         subtiles.add(subTile);
     }
+
+    /**
+     * Adds an animation to the tile
+     * @see Animation
+     *
+     * @param animation The animation to be added
+     */
     public void addAnimation(@NonNull Animation animation) {
         this.animation = animation;
     }
@@ -95,6 +119,16 @@ public class Tile {
         private int subID;
         private BufferedImage image;
 
+        /**
+         * Creates a subtile for a Tile
+         *
+         * This is made for a tiles which has two or more states (for example, a rotated tile)
+         *
+         * The way to add this into the world.txt is [id]:[subID]
+         *
+         * @param subID The subtile ID
+         * @param image The subitile texture
+         */
         public SubTile(int subID, BufferedImage image) {
             this.subID = subID;
             this.image = image;

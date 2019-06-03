@@ -20,6 +20,14 @@ public class GameCamera {
     private KrorkAPI API;
     private float xOffset, yOffset;
 
+    /**
+     * The default Game Camera constructor.
+     * This class will set the camera on a location to render the world
+     *
+     * @param API The KrorkAPI
+     * @param xOffset The xOffset to start
+     * @param yOffset The yOffset to start
+     */
     public GameCamera(KrorkAPI API, float xOffset, float yOffset) {
         this.API = API;
         this.xOffset = xOffset;
@@ -40,12 +48,23 @@ public class GameCamera {
         }
     }
 
-    public void centerOnEntity(Entity e) {
-        xOffset = e.getX() - API.getWidth() / 2 + e.getWidth() / 2;
-        yOffset = e.getY() - API.getHeight() / 2 + e.getHeight() / 2;
+    /**
+     * Centers the camera on an entity
+     *
+     * @param entity The entity to be centered on
+     */
+    public void centerOnEntity(Entity entity) {
+        xOffset = entity.getX() - API.getWidth() / 2 + entity.getWidth() / 2;
+        yOffset = entity.getY() - API.getHeight() / 2 + entity.getHeight() / 2;
         checkBlankSpace();
     }
 
+    /**
+     * Moves to camera to a direction
+     *
+     * @param xAmt The x coords to move
+     * @param yAmt The y coords to move
+     */
     public void move(float xAmt, float yAmt) {
         xOffset += xAmt;
         yOffset += yAmt;

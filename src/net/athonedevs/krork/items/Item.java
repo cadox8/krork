@@ -12,10 +12,10 @@
 package net.athonedevs.krork.items;
 
 import net.athonedevs.krork.attributes.Attribute;
-import net.athonedevs.krork.ex.ItemRegisteredException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class Item {
@@ -26,7 +26,14 @@ public abstract class Item {
 
     private List<Attribute> attributes;
 
-    public Item(int id, String name, BufferedImage texture) throws ItemRegisteredException {
+    /**
+     * Default Item constructor
+     *
+     * @param id The Item id
+     * @param name The item name
+     * @param texture The texture
+     */
+    public Item(int id, String name, BufferedImage texture) {
         this.id = id;
         this.name = name;
         this.texture = texture;
@@ -36,12 +43,17 @@ public abstract class Item {
 
     public abstract void use();
 
+    public void addAttributes(Attribute... attributes) {
+        this.attributes.addAll(Arrays.asList(attributes));
+    }
     public void performAttributes() {
         attributes.forEach(Attribute::perform);
     }
 
+
+
     public String toString() {
-        return "Item(id=" + this.id + ", name=" + this.name + ", texture=" + this.texture + ", attributes=" + this.attributes + ")";
+        return "Item{id=" + this.id + ", name=" + this.name + ", texture=" + this.texture + ", attributes=" + this.attributes + "}";
     }
 
     public int getId() {

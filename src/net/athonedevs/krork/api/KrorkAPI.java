@@ -28,7 +28,7 @@ public class KrorkAPI {
     private Krork krork;
     private World world;
 
-    private static Font gameFont = new Fonts("Open Sans").getFont();
+    private static Font gameFont = new Fonts("Arial", Font.PLAIN, 11).getFont();
 
     public KrorkAPI(Krork krork) {
         this.krork = krork;

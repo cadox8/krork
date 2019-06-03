@@ -9,7 +9,7 @@
 
 - Usage
     - [Creating the first project](first.md)
-
+    - [Working with worlds](world.md)
 
 - Utils
     - [Fonts](fonts.md)

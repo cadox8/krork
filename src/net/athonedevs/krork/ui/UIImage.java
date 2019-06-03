@@ -18,9 +18,28 @@ public class UIImage extends UIObject {
 
     private BufferedImage[] images;
 
+    /**
+     * Generates a Image Object
+     *
+     * @param x The x position to be shown
+     * @param y The y position to be shown
+     * @param width The width of the object
+     * @param height The height of the object
+     * @param image The image to be shown
+     */
     public UIImage(float x, float y, int width, int height, BufferedImage image) {
         this(x, y, width, height, new BufferedImage[]{image});
     }
+
+    /**
+     * Generates a Image Object
+     *
+     * @param x The x position to be shown
+     * @param y The y position to be shown
+     * @param width The width of the object
+     * @param height The height of the object
+     * @param images The images to be shown
+     */
     public UIImage(float x, float y, int width, int height, BufferedImage[] images) {
         super(x, y, width, height);
         this.images = images;
@@ -51,13 +70,30 @@ public class UIImage extends UIObject {
     @Override
     public void onClick() {}
 
+    /**
+     * Changes the images on the fly
+     *
+     * @param imgs The new images
+     */
     public void changeImages(BufferedImage... imgs) {
         images = imgs;
     }
+
+    /**
+     * Changes an image on the fly
+     *
+     * @param id The image id
+     * @param img The new image
+     */
     public void changeImage(int id, BufferedImage img) {
         images[id] = img;
     }
 
+    /**
+     * Gets all the images
+     *
+     * @return The images
+     */
     public BufferedImage[] getImages() {
         return this.images;
     }

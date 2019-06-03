@@ -11,6 +11,8 @@
 
 package net.athonedevs.krork.ui;
 
+import net.athonedevs.krork.api.KrorkAPI;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -23,8 +25,16 @@ public abstract class UIObject {
     protected boolean hovering = false;
     protected boolean enabled = true;
 
-    protected Font font = new Font("Arial", Font.PLAIN, 11);
+    protected Font font = KrorkAPI.getGameFont();
 
+    /**
+     * Default UIObject constructor
+     *
+     * @param x The x position to be shown
+     * @param y The y position to be shown
+     * @param width The width of the object
+     * @param height The height of the object
+     */
     public UIObject(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -37,6 +47,7 @@ public abstract class UIObject {
     public abstract void render(Graphics g);
     public abstract void onClick();
 
+
     public void onMouseMove(MouseEvent e) {
         hovering = bounds.contains(e.getX(), e.getY());
     }
@@ -44,6 +55,7 @@ public abstract class UIObject {
     public void onMouseRelease(MouseEvent e) {
         if (hovering) onClick();
     }
+
 
     public void setSize(int size) {
         setStyleAndSize(getFont().getStyle(), size);

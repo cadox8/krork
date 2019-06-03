@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Sound {
 
-    private File file;
+    private final File file;
     private Clip clip;
 
     /**
@@ -58,7 +58,9 @@ public class Sound {
 
     /**
      * Stops the sound.
+     *
      * WARNING: if this method is used, you must start the sound again with startSound()
+     *
      * @see Sound#startSound()
      */
     public void stopSound() {

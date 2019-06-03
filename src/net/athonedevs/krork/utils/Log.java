@@ -30,7 +30,7 @@ public class Log {
         private String prefix;
         private String color;
 
-        private LogType(String prefix, String color) {
+        LogType(String prefix, String color) {
             this.prefix = prefix;
             this.color = color;
         }
@@ -44,19 +44,34 @@ public class Log {
         }
     }
 
-
-    public static void log(Object text){
-        if (KrorkAPI.isDebugEnabled()) log(LogType.DEBUG, text);
+    /**
+     * Logs the info as Debug
+     * @see KrorkAPI#isDebugEnabled()
+     *
+     * @param info The object to be logged
+     */
+    public static void log(Object info){
+        if (KrorkAPI.isDebugEnabled()) log(LogType.DEBUG, info);
     }
 
-    public static void log(LogType type, Object text){
-        String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ENGLISH)) + "]";
+    /**
+     * Logs the info as the type you select
+     * @see KrorkAPI#isDebugEnabled()
+     * @see LogType
+     *
+     * @param type The log type
+     * @param info The object to be logged
+     */
+    public static void log(LogType type, Object info){
+        final String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ENGLISH)) + "]";
         String log;
 
+        if (type == LogType.DEBUG && !KrorkAPI.isDebugEnabled()) return;
+
         if (System.getProperty("os.name").contains("10")) {
-            log = time + type.getColor() + type.getPrefix() + Krork.getGame() + " >> \u001B[0m" + text + "\u001B[0m";
+            log = time + type.getColor() + type.getPrefix() + Krork.getGame() + " >> \u001B[0m" + info + "\u001B[0m";
         } else {
-            log = time + type.getPrefix() + Krork.getGame() + " >> " + text;
+            log = time + type.getPrefix() + Krork.getGame() + " >> " + info;
         }
         System.out.println(log);
     }
