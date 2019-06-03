@@ -4,20 +4,24 @@ import net.athonedevs.krork.utils.Log;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import java.io.File;
 
 public class Sound {
 
     private final File file;
+    private float volume;
     private Clip clip;
 
     /**
      * Loads a file
      *
      * @param file The sound file
+     * @param volume The volume of the file
      */
-    public Sound(File file) {
+    public Sound(File file, float volume) {
         this.file = file;
+        this.volume = volume;
     }
 
     /**
@@ -27,6 +31,8 @@ public class Sound {
         try {
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(file));
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volume);
             clip.start();
         } catch(Exception exc) {
             Log.log(Log.LogType.DANGER, exc.toString());

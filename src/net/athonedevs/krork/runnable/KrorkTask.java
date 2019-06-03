@@ -23,21 +23,37 @@ public abstract class KrorkTask extends TimerTask implements Runnable {
     }
 
     /**
-     * The run method to start the runnable
+     * The run method which will execute
      */
     public abstract void run();
 
+    /**
+     * Starts the runnable after a period of time
+     *
+     * @param delay The delay in seconds
+     * @return The KrorkTask class
+     */
     public KrorkTask scheduleDelayed(int delay) {
         timer.schedule(this, delay);
         stop();
         return this;
     }
+
+    /**
+     * Starts the runnable
+     *
+     * @param initialDelay The initial delay before the first execution (in seconds)
+     * @param period The period between the executions
+     * @return The KrorkTask class
+     */
     public KrorkTask schedule(int initialDelay, int period) {
         timer.scheduleAtFixedRate(this, initialDelay, period);
         return this;
     }
 
-
+    /**
+     * Stops the runnable
+     */
     public void stop() {
         timer.cancel();
     }
