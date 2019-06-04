@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import net.athonedevs.krork.Krork;
+import net.athonedevs.krork.stats.Stats;
 import net.athonedevs.krork.utils.Log;
 
 import java.io.*;
@@ -28,6 +29,7 @@ public class Save {
 
     private final File entitySave;
     private final File playerSave;
+    private final File statsFile;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -50,10 +52,12 @@ public class Save {
     public Save(String path, String worldName) {
         entitySave = new File(path + File.pathSeparator + worldName, "entities.json");
         playerSave = new File(path, "player.json");
+        statsFile = new File(path, "stats.json");
 
         try {
             if (!playerSave.exists()) playerSave.createNewFile();
             if (!entitySave.exists()) entitySave.createNewFile();
+            if (!statsFile.exists()) statsFile.createNewFile();
         } catch (IOException e) {
             Log.log(Log.LogType.DANGER, e.getCause());
         }
@@ -75,13 +79,22 @@ public class Save {
         bw.close();
     }
 
+    public void saveStats(Stats stats) throws IOException {
+        stats.setTimePlayer(System.currentTimeMillis() - stats.getFirstRun());
+        final BufferedWriter bw = new BufferedWriter(new FileWriter(statsFile));
+
+        bw.write(gson.toJson(stats));
+        bw.flush();
+        bw.close();
+    }
+
     /**
      * A method to save a player (if exits)
      *
      * @param player The Player EntityData
      * @throws IOException FileWriter exception
      */
-    public void savePlayer(EntityData player) throws IOException {
+    public void savePlayer(Class<? extends EntityData> player) throws IOException {
         saveMoreFiles(playerSave, player);
     }
 
@@ -91,8 +104,7 @@ public class Save {
      * @param entities The entities to be saved
      * @throws IOException FileWriter exception
      */
-    public void saveEntities(EntityData... entities) throws IOException {
-        final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public void saveEntities(Class<? extends EntityData>... entities) throws IOException {
         final BufferedWriter bw = new BufferedWriter(new FileWriter(entitySave));
         final JsonObject ent = new JsonObject();
         final JsonArray array = new JsonArray();
@@ -103,6 +115,10 @@ public class Save {
         bw.write(gson.toJson(ent));
         bw.flush();
         bw.close();
+    }
+
+    public Stats loadStats(Class<? extends Stats> stats) throws IOException {
+        return gson.fromJson(new JsonReader(new FileReader(statsFile)), stats);
     }
 
     /**
@@ -132,8 +148,10 @@ public class Save {
     public File getEntitySave() {
         return this.entitySave;
     }
-
     public File getPlayerSave() {
         return this.playerSave;
+    }
+    public File getStatsFile() {
+        return statsFile;
     }
 }
