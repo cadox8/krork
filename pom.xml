@@ -14,7 +14,7 @@
 
     <groupId>net.athonedevs</groupId>
     <artifactId>Krork</artifactId>
-    <version>0.9-Alpha</version>
+    <version>1.0-Beta</version>
     <packaging>jar</packaging>
 
     <name>Krork</name>
@@ -78,6 +78,10 @@
         <finalName>${project.artifactId}</finalName>
     </build>
     <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
     </repositories>
     <dependencies>
         <!-- Lombok Repo -->
