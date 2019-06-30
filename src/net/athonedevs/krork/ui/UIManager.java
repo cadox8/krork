@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
@@ -22,12 +20,44 @@ import java.util.ArrayList;
 public class UIManager {
 
     private KrorkAPI API;
-    @Getter @Setter private ArrayList<UIObject> objects;
+    private ArrayList<UIObject> objects;
 
+    /**
+     * The constructor of the class
+     *
+     * @param API The KrorkAPI
+     */
     public UIManager(KrorkAPI API) {
         this.API = API;
         objects = new ArrayList<>();
     }
+
+    /**
+     * Adds an UIObject
+     * @see UIObject
+     *
+     * @param object The UIObject
+     */
+    public void addObject(UIObject object) {
+        objects.add(object);
+    }
+    /**
+     * Removes an UIObject
+     * @see UIObject
+     *
+     * @param object The UIObject
+     */
+    public void removeObject(UIObject object) {
+        objects.remove(object);
+    }
+
+    /**
+     * Removes all the objects
+     */
+    public void removeAllObjects() {
+        objects.clear();
+    }
+
 
     public void tick() {
         objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
@@ -45,13 +75,11 @@ public class UIManager {
         objects.forEach(o -> o.onMouseRelease(e));
     }
 
-    public void addObject(UIObject o) {
-        objects.add(o);
+    public ArrayList<UIObject> getObjects() {
+        return this.objects;
     }
-    public void removeObject(UIObject o) {
-        objects.remove(o);
-    }
-    public void removeAllObjects() {
-        objects.clear();
+
+    public void setObjects(ArrayList<UIObject> objects) {
+        this.objects = objects;
     }
 }

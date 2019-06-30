@@ -11,7 +11,6 @@
 
 package net.athonedevs.krork.dialog;
 
-import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
 
@@ -30,7 +29,6 @@ public class Dialog {
     private final List<String> text;
     private int page = 0;
 
-    @Getter
     private boolean end = false;
 
     public Dialog(KrorkAPI krorkAPI, Creature entity, BufferedImage texture) {
@@ -90,5 +88,9 @@ public class Dialog {
         if (temp.isEmpty()) end = true;
         if (end) return new ArrayList<>();
         return temp;
+    }
+
+    public boolean isEnd() {
+        return this.end;
     }
 }

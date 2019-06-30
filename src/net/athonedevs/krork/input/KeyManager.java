@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.input;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.ui.UIField;
 
@@ -26,7 +24,7 @@ public class KeyManager implements KeyListener {
 
     private boolean[] keys, justPressed, cantPress;
 
-    @Getter @Setter private UIField writingTo;
+    private UIField writingTo;
 
     public KeyManager(KrorkAPI API) {
         keys = new boolean[256];
@@ -84,5 +82,13 @@ public class KeyManager implements KeyListener {
             }
             writingTo.setText(writingTo.getText() + e.getKeyChar());
         }
+    }
+
+    public UIField getWritingTo() {
+        return this.writingTo;
+    }
+
+    public void setWritingTo(UIField writingTo) {
+        this.writingTo = writingTo;
     }
 }

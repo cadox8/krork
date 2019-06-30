@@ -20,6 +20,13 @@ public abstract class Attribute {
     @Getter private final int id;
     @Getter private final String name;
 
+    /**
+     * Creates a new Attribute
+     *
+     * @param API The KrorkAPI
+     * @param id The Attribute ID
+     * @param name The Attribute Name
+     */
     public Attribute(KrorkAPI API, int id, String name) {
         this.API = API;
         this.id = id;

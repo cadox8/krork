@@ -11,17 +11,14 @@
 
 package net.athonedevs.krork.ai.path;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class Node {
 
-    @Getter @Setter public int x, y;
-    @Getter @Setter public int h; //heuristic distance from endNode
-    @Getter @Setter public int g; //distance from startNode
-    @Getter @Setter public int f; //h+g
-    @Getter @Setter public boolean isBlock; //path blocker?
-    @Getter @Setter public Node parent; //the parent node. if algorithm founds a path it can trace back
+    public int x, y;
+    public int h; //heuristic distance from endNode
+    public int g; //distance from startNode
+    public int f; //h+g
+    public boolean isBlock; //path blocker?
+    public Node parent; //the parent node. if algorithm founds a path it can trace back
 
     public Node(int x, int y) {
         super();
@@ -56,5 +53,61 @@ public class Node {
     public void calculateF() {
         int finalCost = getG() + getH();
         this.setF(finalCost);
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public int getH() {
+        return this.h;
+    }
+
+    public int getG() {
+        return this.g;
+    }
+
+    public int getF() {
+        return this.f;
+    }
+
+    public boolean isBlock() {
+        return this.isBlock;
+    }
+
+    public Node getParent() {
+        return this.parent;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public void setF(int f) {
+        this.f = f;
+    }
+
+    public void setBlock(boolean isBlock) {
+        this.isBlock = isBlock;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
     }
 }

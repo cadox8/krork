@@ -11,19 +11,16 @@
 
 package net.athonedevs.krork.ui;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 
 public class UIText extends UIObject {
 
-    @Getter @Setter private String text;
-    @Getter @Setter private Color color;
+    private String text;
+    private Color color;
     private ClickListener clicker;
 
-    @Getter @Setter private Font font;
+    private Font font;
 
 
     public UIText(float x, float y, Color color, String text) {
@@ -70,5 +67,29 @@ public class UIText extends UIObject {
     public UIText setFontSize(int size){
         font = new Font(font.getName(), Font.PLAIN, size);
         return this;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
+    public Font getFont() {
+        return this.font;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 }

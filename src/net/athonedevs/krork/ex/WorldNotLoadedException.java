@@ -11,12 +11,12 @@
 
 package net.athonedevs.krork.ex;
 
-
 import net.athonedevs.krork.entities.Entity;
+import net.athonedevs.krork.world.World;
 
-public class EntityRegisteredException extends Exception {
+public class WorldNotLoadedException extends RuntimeException {
 
-    public EntityRegisteredException(Entity e) {
-        super("The ID or the username of " + e.getEntityName() + " - " + e.getEntityID() + " already exists in database");
+    public WorldNotLoadedException(Entity entity, World world) {
+        super("You are trying to add an Entity (" + entity.getEntityID() + " - " + entity.getEntityName() + ") into a unloaded World (Current: " + world.getWorldName() + ")");
     }
 }

@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.state;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 
 import java.awt.*;
@@ -21,10 +19,18 @@ public abstract class State {
 
     protected KrorkAPI API;
 
-    @Getter @Setter private static State state = null;
+    private static State state = null;
 
     public State(KrorkAPI API) {
         this.API = API;
+    }
+
+    public static State getState() {
+        return State.state;
+    }
+
+    public static void setState(State state) {
+        State.state = state;
     }
 
 

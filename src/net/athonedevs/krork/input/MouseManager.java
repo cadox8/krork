@@ -11,17 +11,15 @@
 
 package net.athonedevs.krork.input;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.ui.UIManager;
 
 import java.awt.event.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-    @Getter private boolean leftPressed, rightPressed;
-    @Getter private int mouseX, mouseY, mouseXClick, mouseYClick;
-    @Getter @Setter private UIManager uiManager;
+    private boolean leftPressed, rightPressed;
+    private int mouseX, mouseY, mouseXClick, mouseYClick;
+    private UIManager uiManager;
 
     //Mouse
     @Override
@@ -70,5 +68,37 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
 
     //Wheel
     public void mouseWheelMoved(MouseWheelEvent e) {
+    }
+
+    public boolean isLeftPressed() {
+        return this.leftPressed;
+    }
+
+    public boolean isRightPressed() {
+        return this.rightPressed;
+    }
+
+    public int getMouseX() {
+        return this.mouseX;
+    }
+
+    public int getMouseY() {
+        return this.mouseY;
+    }
+
+    public int getMouseXClick() {
+        return this.mouseXClick;
+    }
+
+    public int getMouseYClick() {
+        return this.mouseYClick;
+    }
+
+    public UIManager getUiManager() {
+        return this.uiManager;
+    }
+
+    public void setUiManager(UIManager uiManager) {
+        this.uiManager = uiManager;
     }
 }

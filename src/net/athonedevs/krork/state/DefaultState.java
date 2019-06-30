@@ -11,7 +11,6 @@
 
 package net.athonedevs.krork.state;
 
-import lombok.Getter;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.ui.UIField;
@@ -23,7 +22,7 @@ import java.awt.*;
 
 public class DefaultState extends State {
 
-    @Getter private UIManager uiManager;
+    private UIManager uiManager;
 
     public DefaultState(KrorkAPI api) {
         super(api);
@@ -44,5 +43,9 @@ public class DefaultState extends State {
     @Override
     public void render(Graphics g) {
         uiManager.render(g);
+    }
+
+    public UIManager getUiManager() {
+        return this.uiManager;
     }
 }

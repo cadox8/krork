@@ -13,6 +13,7 @@ net.athonedevs.krork.input
 net.athonedevs.krork.items
 net.athonedevs.krork.runnable
 net.athonedevs.krork.saves
+net.athonedevs.krork.sound
 net.athonedevs.krork.state
 net.athonedevs.krork.tiles
 net.athonedevs.krork.ui

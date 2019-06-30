@@ -11,9 +11,6 @@
 
 package net.athonedevs.krork.world;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 import net.athonedevs.krork.entities.EntityManager;
@@ -28,12 +25,12 @@ public class World {
 
     private KrorkAPI API;
 
-    @Getter private int width, height;
-    @Getter private int playerX, playerY;
-    @Getter private TileData[][] tiles;
+    private int width, height;
+    private int playerX, playerY;
+    private TileData[][] tiles;
 
     //Entities
-    @Getter private EntityManager entityManager;
+    private EntityManager entityManager;
 
     private final String path;
 
@@ -57,7 +54,7 @@ public class World {
      *
      * @param entities An array of entities
      */
-    public void addEntities(Entity... entities){
+    public void addEntities(Entity... entities) {
         Arrays.asList(entities).forEach(entityManager::addEntity);
     }
 
@@ -108,18 +105,91 @@ public class World {
         }
     }
 
-    public String worldName() {
+    public String getWorldName() {
         return path.split("/")[2].split("\\.")[0];
     }
     @Override
     public String toString() {
-        return "World{Name:" + worldName() + "}";
+        return "World{Name:" + getWorldName() + " Entities: " + entityManager.getEntities().toString() + "}";
     }
 
-    @AllArgsConstructor
-    @Data
+    public KrorkAPI getAPI() {
+        return this.API;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getPlayerX() {
+        return this.playerX;
+    }
+
+    public int getPlayerY() {
+        return this.playerY;
+    }
+
+    public TileData[][] getTiles() {
+        return this.tiles;
+    }
+
+    public EntityManager getEntityManager() {
+        return this.entityManager;
+    }
+
     private class TileData {
         private int id;
         private int subid;
+
+        public TileData(int id, int subid) {
+            this.id = id;
+            this.subid = subid;
+        }
+
+        public int getId() {
+            return this.id;
+        }
+
+        public int getSubid() {
+            return this.subid;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setSubid(int subid) {
+            this.subid = subid;
+        }
+
+        public boolean equals(final Object o) {
+            if (o == this) return true;
+            if (!(o instanceof TileData)) return false;
+            final TileData other = (TileData) o;
+            if (!other.canEqual((Object) this)) return false;
+            if (this.getId() != other.getId()) return false;
+            if (this.getSubid() != other.getSubid()) return false;
+            return true;
+        }
+
+        protected boolean canEqual(final Object other) {
+            return other instanceof TileData;
+        }
+
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            result = result * PRIME + this.getId();
+            result = result * PRIME + this.getSubid();
+            return result;
+        }
+
+        public String toString() {
+            return "World.TileData(id=" + this.getId() + ", subid=" + this.getSubid() + ")";
+        }
     }
 }

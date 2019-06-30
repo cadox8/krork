@@ -11,16 +11,11 @@
 
 package net.athonedevs.krork.gfx;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 import java.awt.image.BufferedImage;
 
-@ToString
 public class Animation {
 
-    @Getter @Setter private int speed, index;
+    private int speed, index;
     private long lastTime, timer;
     private BufferedImage[] frames;
 
@@ -45,5 +40,25 @@ public class Animation {
 
     public BufferedImage getCurrentFrame() {
         return frames[index];
+    }
+
+    public String toString() {
+        return "Animation(speed=" + this.speed + ", index=" + this.index + ", lastTime=" + this.lastTime + ", timer=" + this.timer + ", frames=" + java.util.Arrays.deepToString(this.frames) + ")";
+    }
+
+    public int getSpeed() {
+        return this.speed;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

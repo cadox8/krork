@@ -17,6 +17,16 @@ public class UIImageButton extends UIImage {
 
     private ClickListener clicker;
 
+    /**
+     * Generates a Image Button Object
+     *
+     * @param x The x position to be shown
+     * @param y The y position to be shown
+     * @param width The width of the object
+     * @param height The height of the object
+     * @param images The images (changes on hover) to be shown
+     * @param clicker Executes the inside code on click
+     */
     public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
         super(x, y, width, height, images);
         this.clicker = clicker;

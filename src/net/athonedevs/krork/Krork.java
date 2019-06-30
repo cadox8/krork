@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.display.Display;
 import net.athonedevs.krork.input.KeyManager;
@@ -29,27 +27,27 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    @Getter private static final String version = "v0.8.3 Alpha";
-    @Getter @Setter private static String game;
+    private static final String version = "v1.0 Beta";
+    private static String game;
     //
 
 
-    @Getter private Display display;
-    @Getter @Setter private int width, height;
+    private Display display;
+    private int width, height;
     private String title;
 
 
-    @Getter @Setter private boolean running = false;
+    private boolean running = false;
     private Thread thread;
 
-    @Getter private MouseManager mouseManager;
-    @Getter private KeyManager keyManager;
+    private MouseManager mouseManager;
+    private KeyManager keyManager;
 
     // Camera
-    @Getter public GameCamera gameCamera;
+    public GameCamera gameCamera;
 
     // API
-    @Getter private KrorkAPI API;
+    private KrorkAPI API;
 
     /**
      * The default constructor.
@@ -81,6 +79,18 @@ public class Krork implements Runnable {
         mouseManager = new MouseManager();
         keyManager = new KeyManager(API);
         init();
+    }
+
+    public static String getVersion() {
+        return Krork.version;
+    }
+
+    public static String getGame() {
+        return Krork.game;
+    }
+
+    public static void setGame(String game) {
+        Krork.game = game;
     }
 
     private void init() {
@@ -170,5 +180,49 @@ public class Krork implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public Display getDisplay() {
+        return this.display;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public boolean isRunning() {
+        return this.running;
+    }
+
+    public MouseManager getMouseManager() {
+        return this.mouseManager;
+    }
+
+    public KeyManager getKeyManager() {
+        return this.keyManager;
+    }
+
+    public GameCamera getGameCamera() {
+        return this.gameCamera;
+    }
+
+    public KrorkAPI getAPI() {
+        return this.API;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 }

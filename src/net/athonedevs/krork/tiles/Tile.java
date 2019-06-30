@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.tiles;
 
-import lombok.*;
+import lombok.NonNull;
 import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.gfx.Sprites;
 
@@ -24,14 +24,25 @@ public class Tile {
 
     public static int TILEWIDTH = 64, TILEHEIGHT = 64;
 
+    /**
+     * Default tile to show if no-one is presented
+     */
     public static Tile bug = new Tile(Sprites.randomImage(TILEWIDTH, TILEHEIGHT), 0);
 
-    @Getter protected final BufferedImage texture;
-    @Getter protected final int id;
-    @Getter protected Animation animation;
+    protected final BufferedImage texture;
+    protected final int id;
+    protected Animation animation;
 
-    @Getter private final List<SubTile> subtiles;
+    private final List<SubTile> subtiles;
 
+    /**
+     * Generates a new Tile
+     *
+     * In world.txt this should appear as [id]
+     *
+     * @param texture The texture of the tile
+     * @param id The id of the tile
+     */
     public Tile(BufferedImage texture, int id) {
         this.texture = texture;
         this.id = id;
@@ -39,9 +50,22 @@ public class Tile {
         subtiles = new ArrayList<>();
     }
 
+    /**
+     * Adds a subtile to the Tile
+     * @see SubTile
+     *
+     * @param subTile The subtile to be added
+     */
     public void addSubTile(SubTile subTile) {
         subtiles.add(subTile);
     }
+
+    /**
+     * Adds an animation to the tile
+     * @see Animation
+     *
+     * @param animation The animation to be added
+     */
     public void addAnimation(@NonNull Animation animation) {
         this.animation = animation;
     }
@@ -74,12 +98,85 @@ public class Tile {
         return "Tile{Id: " + id + ", Class: " + getClass() + "}";
     }
 
-    @AllArgsConstructor
-    @ToString
-    @Data
+    public BufferedImage getTexture() {
+        return this.texture;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public Animation getAnimation() {
+        return this.animation;
+    }
+
+    public List<SubTile> getSubtiles() {
+        return this.subtiles;
+    }
+
     public class SubTile {
 
         private int subID;
         private BufferedImage image;
+
+        /**
+         * Creates a subtile for a Tile
+         *
+         * This is made for a tiles which has two or more states (for example, a rotated tile)
+         *
+         * The way to add this into the world.txt is [id]:[subID]
+         *
+         * @param subID The subtile ID
+         * @param image The subitile texture
+         */
+        public SubTile(int subID, BufferedImage image) {
+            this.subID = subID;
+            this.image = image;
+        }
+
+        public int getSubID() {
+            return this.subID;
+        }
+
+        public BufferedImage getImage() {
+            return this.image;
+        }
+
+        public void setSubID(int subID) {
+            this.subID = subID;
+        }
+
+        public void setImage(BufferedImage image) {
+            this.image = image;
+        }
+
+        public boolean equals(final Object o) {
+            if (o == this) return true;
+            if (!(o instanceof SubTile)) return false;
+            final SubTile other = (SubTile) o;
+            if (!other.canEqual((Object) this)) return false;
+            if (this.getSubID() != other.getSubID()) return false;
+            final Object this$image = this.getImage();
+            final Object other$image = other.getImage();
+            if (this$image == null ? other$image != null : !this$image.equals(other$image)) return false;
+            return true;
+        }
+
+        protected boolean canEqual(final Object other) {
+            return other instanceof SubTile;
+        }
+
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            result = result * PRIME + this.getSubID();
+            final Object $image = this.getImage();
+            result = result * PRIME + ($image == null ? 43 : $image.hashCode());
+            return result;
+        }
+
+        public String toString() {
+            return "Tile.SubTile(subID=" + this.getSubID() + ", image=" + this.getImage() + ")";
+        }
     }
 }
