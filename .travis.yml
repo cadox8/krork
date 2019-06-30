@@ -3,6 +3,7 @@ install: mvn clean install
 jdk:
   - oraclejdk8
   - oraclejdk9
+  - oraclejdk11
 notifications:
   recipients:
     - cadox8@gmail.com
