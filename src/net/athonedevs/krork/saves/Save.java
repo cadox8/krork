@@ -104,7 +104,8 @@ public class Save {
      * @param entities The entities to be saved
      * @throws IOException FileWriter exception
      */
-    public void saveEntities(Class<? extends EntityData>... entities) throws IOException {
+    @SafeVarargs
+    public final void saveEntities(Class<? extends EntityData>... entities) throws IOException {
         final BufferedWriter bw = new BufferedWriter(new FileWriter(entitySave));
         final JsonObject ent = new JsonObject();
         final JsonArray array = new JsonArray();
