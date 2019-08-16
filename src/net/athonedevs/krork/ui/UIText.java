@@ -11,6 +11,8 @@
 
 package net.athonedevs.krork.ui;
 
+import net.athonedevs.krork.api.KrorkAPI;
+
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 
@@ -22,7 +24,6 @@ public class UIText extends UIObject {
 
     private Font font;
 
-
     public UIText(float x, float y, Color color, String text) {
         this(x, y, color, text, () -> {});
     }
@@ -32,7 +33,7 @@ public class UIText extends UIObject {
         this.color = color;
         this.clicker = clicker;
 
-        font = new Font("Agency FB", Font.PLAIN, 14);
+        font = KrorkAPI.getGameFont();
 
         width = (int)font.getStringBounds(text, new FontRenderContext(null, false, false)).getWidth();
         bounds = new Rectangle((int)getX(), (int)getY(), width, height);

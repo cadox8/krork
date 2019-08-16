@@ -11,14 +11,13 @@
 
 package net.athonedevs.krork.attributes;
 
-import lombok.Getter;
 import net.athonedevs.krork.api.KrorkAPI;
 
 public abstract class Attribute {
 
     protected final KrorkAPI API;
-    @Getter private final int id;
-    @Getter private final String name;
+    private final int id;
+    private final String name;
 
     /**
      * Creates a new Attribute
@@ -34,4 +33,12 @@ public abstract class Attribute {
     }
 
     public abstract void perform();
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }

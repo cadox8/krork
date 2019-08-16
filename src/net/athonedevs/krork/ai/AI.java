@@ -11,10 +11,8 @@
 
 package net.athonedevs.krork.ai;
 
-import net.athonedevs.krork.ai.path.AStar;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
-import net.athonedevs.krork.entities.creatures.Creature;
 
 import java.awt.*;
 
@@ -50,12 +48,6 @@ public abstract class AI {
 
 
     protected void move(int x, int y) {
-        final AStar path = new AStar(API, (int)entity.getX(), (int)entity.getY(), x, y);
-        path.findPath().forEach(n -> {
-            ((Creature)entity).setXMove(n.x);
-            ((Creature)entity).setYMove(n.y);
-            ((Creature)entity).move();
-        });
     }
 
     private boolean isOnDelay() {

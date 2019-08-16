@@ -41,15 +41,27 @@ public abstract class Item {
         attributes = new ArrayList<>();
     }
 
+    /**
+     * Method that will be triggered when the item is being used
+     */
     public abstract void use();
 
+    /**
+     * Adds attributes to the item
+     * @see Attribute
+     *
+     * @param attributes The attributes to be added to the item
+     */
     public void addAttributes(Attribute... attributes) {
         this.attributes.addAll(Arrays.asList(attributes));
     }
+
+    /**
+     * Performs the attributes of the item
+     */
     public void performAttributes() {
         attributes.forEach(Attribute::perform);
     }
-
 
 
     public String toString() {

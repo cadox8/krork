@@ -78,19 +78,8 @@
         <finalName>${project.artifactId}</finalName>
     </build>
     <repositories>
-        <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
     </repositories>
     <dependencies>
-        <!-- Lombok Repo -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
-        </dependency>
-
         <!-- Gson Repo -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

@@ -7,14 +7,16 @@ net.athonedevs.krork.dialog
 net.athonedevs.krork.display
 net.athonedevs.krork.entities
 net.athonedevs.krork.entities.creatures
-net.athonedevs.krork.ex
+net.athonedevs.krork.exceptions
 net.athonedevs.krork.gfx
 net.athonedevs.krork.input
 net.athonedevs.krork.items
+net.athonedevs.krork.options
 net.athonedevs.krork.runnable
 net.athonedevs.krork.saves
 net.athonedevs.krork.sound
 net.athonedevs.krork.state
+net.athonedevs.krork.stats
 net.athonedevs.krork.tiles
 net.athonedevs.krork.ui
 net.athonedevs.krork.utils

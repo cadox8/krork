@@ -77,16 +77,10 @@ public class Dialog {
     }
 
     private List<String> renderText() {
-        final List<String> temp = new ArrayList<>();
         int index = page * 4;
-
-        try {
-            temp.addAll(text.subList(index, text.size() >= (index + 4) ? index + 4 : text.size()));
-        } catch (IllegalArgumentException e) { // Problems? Nope
-            end = true;
-        }
-        if (temp.isEmpty()) end = true;
-        if (end) return new ArrayList<>();
+        if (index > text.size()) return new ArrayList<>();
+        final List<String> temp = new ArrayList<>(text.subList(index, Math.min(text.size(), (index + 4))));
+        if (temp.isEmpty()) return new ArrayList<>();
         return temp;
     }
 

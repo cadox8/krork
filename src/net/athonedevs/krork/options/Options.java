@@ -11,11 +11,6 @@
 
 package net.athonedevs.krork.options;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public abstract class Options {
 
     /**
@@ -31,4 +26,20 @@ public abstract class Options {
      * 2  => Borderless Screen
      */
     private int windowType = 1;
+
+    public float getVolume() {
+        return this.volume;
+    }
+
+    public int getWindowType() {
+        return this.windowType;
+    }
+
+    public void setVolume(float volume) {
+        this.volume = volume;
+    }
+
+    public void setWindowType(int windowType) {
+        this.windowType = windowType;
+    }
 }

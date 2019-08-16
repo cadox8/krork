@@ -11,13 +11,11 @@
 
 package net.athonedevs.krork.entities;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
-import net.athonedevs.krork.ex.WorldNotLoadedException;
+import net.athonedevs.krork.exceptions.WorldNotLoadedException;
 import net.athonedevs.krork.utils.Log;
+import net.athonedevs.krork.utils.NotNull;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -28,9 +26,9 @@ import java.util.stream.Collectors;
 
 public class EntityManager {
 
-    @Getter @Setter private KrorkAPI API;
+    private KrorkAPI API;
 
-    @Getter @Setter private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities;
 
     private Comparator<Entity> renderSorter = (Entity a, Entity b)-> {
         if (a.getY() + a.getHeight() < b.getY() + b.getHeight()) return -1;
@@ -63,7 +61,7 @@ public class EntityManager {
      *
      * @param entity The entity to be added
      */
-    public synchronized void addEntity(@NonNull Entity entity) {
+    public synchronized void addEntity(@NotNull Entity entity) {
         try {
             if (entity.getLocation() == null || !entity.getLocation().getWorld().getWorldName().equalsIgnoreCase(API.getWorld().getWorldName())) throw new WorldNotLoadedException(entity, API.getWorld());
             entities.add(entity);
@@ -82,5 +80,21 @@ public class EntityManager {
 
     public void killAll() {
         entities.forEach(Entity::kill);
+    }
+
+    public KrorkAPI getAPI() {
+        return this.API;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return this.entities;
+    }
+
+    public void setAPI(KrorkAPI API) {
+        this.API = API;
+    }
+
+    public void setEntities(ArrayList<Entity> entities) {
+        this.entities = entities;
     }
 }

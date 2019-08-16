@@ -11,6 +11,8 @@
 
 package net.athonedevs.krork.saves;
 
+import java.util.Objects;
+
 public abstract class EntityData {
 
     public EntityData() {}
@@ -55,11 +57,11 @@ public abstract class EntityData {
         if (this.getEntityID() != other.getEntityID()) return false;
         final Object this$entityData = this.getEntityData();
         final Object other$entityData = other.getEntityData();
-        if (this$entityData == null ? other$entityData != null : !this$entityData.equals(other$entityData))
+        if (!Objects.equals(this$entityData, other$entityData))
             return false;
         final Object this$location = this.getLocation();
         final Object other$location = other.getLocation();
-        if (this$location == null ? other$location != null : !this$location.equals(other$location)) return false;
+        if (!Objects.equals(this$location, other$location)) return false;
         return true;
     }
 
@@ -82,7 +84,7 @@ public abstract class EntityData {
         return "EntityData(entityID=" + this.getEntityID() + ", entityData=" + this.getEntityData() + ", location=" + this.getLocation() + ")";
     }
 
-    public class LocationUtils {
+    public static class LocationUtils {
 
         private String world;
         private float x;
@@ -131,7 +133,7 @@ public abstract class EntityData {
             if (!other.canEqual((Object) this)) return false;
             final Object this$world = this.getWorld();
             final Object other$world = other.getWorld();
-            if (this$world == null ? other$world != null : !this$world.equals(other$world)) return false;
+            if (!Objects.equals(this$world, other$world)) return false;
             if (Float.compare(this.getX(), other.getX()) != 0) return false;
             if (Float.compare(this.getY(), other.getY()) != 0) return false;
             if (this.getDirection() != other.getDirection()) return false;

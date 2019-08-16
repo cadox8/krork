@@ -11,24 +11,20 @@
 
 package net.athonedevs.krork.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@ToString
 public class Location {
 
-    @Setter private KrorkAPI API;
+    private KrorkAPI API;
 
-    @Getter @Setter private World world;
-    @Getter @Setter private float x;
-    @Getter @Setter private float y;
-    @Getter @Setter private int direction;
+    private World world;
+    private float x;
+    private float y;
+    private int direction;
 
     public Location(World world, float x, float y) {
         this(world, x, y, 0);
@@ -76,5 +72,45 @@ public class Location {
         location.put("direction", getDirection());
 
         return location;
+    }
+
+    public String toString() {
+        return "Location(API=" + this.API + ", world=" + this.world + ", x=" + this.x + ", y=" + this.y + ", direction=" + this.direction + ")";
+    }
+
+    public World getWorld() {
+        return this.world;
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public int getDirection() {
+        return this.direction;
+    }
+
+    public void setAPI(KrorkAPI API) {
+        this.API = API;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 }

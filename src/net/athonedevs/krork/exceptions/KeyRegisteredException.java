@@ -9,12 +9,12 @@
  *
  */
 
-package net.athonedevs.krork.ex;
+package net.athonedevs.krork.exceptions;
 
 
-public class ItemRegisteredException extends Exception {
+public class KeyRegisteredException extends Exception {
 
-    public ItemRegisteredException(int id) {
-        super("The item with the id " + id + " is already registered");
+    public KeyRegisteredException(int key) {
+        super("The key with the id " + key + " is already registered");
     }
 }

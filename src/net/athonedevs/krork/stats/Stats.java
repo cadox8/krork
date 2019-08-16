@@ -11,11 +11,6 @@
 
 package net.athonedevs.krork.stats;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public abstract class Stats {
 
     private int kills = 0;
@@ -23,4 +18,36 @@ public abstract class Stats {
 
     private float timePlayer = 0;
     private float firstRun = System.currentTimeMillis();
+
+    public int getKills() {
+        return this.kills;
+    }
+
+    public int getDeaths() {
+        return this.deaths;
+    }
+
+    public float getTimePlayer() {
+        return this.timePlayer;
+    }
+
+    public float getFirstRun() {
+        return this.firstRun;
+    }
+
+    public void setKills(int kills) {
+        this.kills = kills;
+    }
+
+    public void setDeaths(int deaths) {
+        this.deaths = deaths;
+    }
+
+    public void setTimePlayer(float timePlayer) {
+        this.timePlayer = timePlayer;
+    }
+
+    public void setFirstRun(float firstRun) {
+        this.firstRun = firstRun;
+    }
 }

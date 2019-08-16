@@ -9,14 +9,15 @@
  *
  */
 
-package net.athonedevs.krork.ex;
+package net.athonedevs.krork.utils;
 
-import net.athonedevs.krork.entities.Entity;
-import net.athonedevs.krork.world.World;
+import java.lang.annotation.*;
 
-public class WorldNotLoadedException extends RuntimeException {
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE})
+public @interface NotNull {
 
-    public WorldNotLoadedException(Entity entity, World world) {
-        super("You are trying to add an Entity (" + entity.getEntityID() + " - " + entity.getEntityName() + ") into a unloaded World (Current: " + world.getWorldName() + ")");
-    }
+    String value() default "";
+    String message() default "Value must not be null.";
 }

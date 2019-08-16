@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.items;
 
-import net.athonedevs.krork.ex.ItemRegisteredException;
+import net.athonedevs.krork.exceptions.ItemRegisteredException;
 import net.athonedevs.krork.utils.Log;
 
 import java.util.ArrayList;

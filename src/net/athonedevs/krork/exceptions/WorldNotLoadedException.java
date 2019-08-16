@@ -9,12 +9,14 @@
  *
  */
 
-package net.athonedevs.krork.ex;
+package net.athonedevs.krork.exceptions;
 
+import net.athonedevs.krork.entities.Entity;
+import net.athonedevs.krork.world.World;
 
-public class KeyRegisteredException extends Exception {
+public class WorldNotLoadedException extends RuntimeException {
 
-    public KeyRegisteredException(int key) {
-        super("The key with the id " + key + " is already registered");
+    public WorldNotLoadedException(Entity entity, World world) {
+        super("You are trying to add an Entity (" + entity.getEntityID() + " - " + entity.getEntityName() + ") into a unloaded World (Current: " + world.getWorldName() + ")");
     }
 }

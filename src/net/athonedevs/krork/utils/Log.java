@@ -55,6 +55,43 @@ public class Log {
     }
 
     /**
+     * Logs the info as Danger
+     *
+     * @param info The object to be logged
+     */
+    public static void danger(Object info) {
+        log(LogType.DANGER, info);
+    }
+
+    /**
+     * Logs the info as Warning
+     *
+     * @param info The object to be logged
+     */
+    public static void warning(Object info) {
+        log(LogType.WARNING, info);
+    }
+
+    /**
+     * Logs the info as Normal
+     *
+     * @param info The object to be logged
+     */
+    public static void normal(Object info) {
+        log(LogType.NORMAL, info);
+    }
+
+    /**
+     * Logs the info as Success
+     *
+     * @param info The object to be logged
+     */
+    public static void success(Object info) {
+        log(LogType.SUCCESS, info);
+    }
+
+
+    /**
      * Logs the info as the type you select
      * @see KrorkAPI#isDebugEnabled()
      * @see LogType
