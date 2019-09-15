@@ -141,7 +141,7 @@ public class World {
         return this.entityManager;
     }
 
-    private class TileData {
+    private static class TileData {
         private int id;
         private int subid;
 

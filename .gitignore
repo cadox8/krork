@@ -6,4 +6,4 @@ hs_err_pid*
 .idea/
 Krork.iml
 src/net/athonedevs/krork/Launcher.java
-target/
+target

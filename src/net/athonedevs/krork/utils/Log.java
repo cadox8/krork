@@ -21,18 +21,18 @@ import java.util.Locale;
 public class Log {
 
     public enum LogType {
-        SUCCESS("[Success] ", "\u001B[32m"),
-        NORMAL("", ""),
-        WARNING("[Warning] ", "\u001B[33m"),
-        DANGER("[Danger] ", "\u001B[31m"),
-        DEBUG("[Debug] ", "\u001B[36m");
+        SUCCESS("[Success] ", Colors.GREEN),
+        NORMAL("", Colors.WHITE),
+        WARNING("[Warning] ", Colors.ORANGE),
+        DANGER("[Danger] ", Colors.RED),
+        DEBUG("[Debug] ", Colors.PURPLE);
 
         private String prefix;
         private String color;
 
-        LogType(String prefix, String color) {
+        LogType(String prefix, Colors color) {
             this.prefix = prefix;
-            this.color = color;
+            this.color = color.getColor();
         }
 
         public String getPrefix() {
@@ -90,7 +90,6 @@ public class Log {
         log(LogType.SUCCESS, info);
     }
 
-
     /**
      * Logs the info as the type you select
      * @see KrorkAPI#isDebugEnabled()
@@ -99,14 +98,27 @@ public class Log {
      * @param type The log type
      * @param info The object to be logged
      */
-    public static void log(LogType type, Object info){
+    public static void log(LogType type, Object info) {
+        log(type, info, Krork.getGame());
+    }
+
+    /**
+     * Logs the info as the type you select
+     * @see KrorkAPI#isDebugEnabled()
+     * @see LogType
+     *
+     * @param type The log type
+     * @param info The object to be logged
+     * @param game The Game to show in the info
+     */
+    public static void log(LogType type, Object info, String game){
         final String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ENGLISH)) + "]";
         String log;
 
         if (type == LogType.DEBUG && !KrorkAPI.isDebugEnabled()) return;
 
         if (System.getProperty("os.name").contains("10")) {
-            log = time + type.getColor() + type.getPrefix() + Krork.getGame() + " >> \u001B[0m" + info + "\u001B[0m";
+            log = time + type.getColor() + type.getPrefix() + "\u001B[35m" + game + " >> \u001B[0m" + info + "\u001B[0m";
         } else {
             log = time + type.getPrefix() + Krork.getGame() + " >> " + info;
         }

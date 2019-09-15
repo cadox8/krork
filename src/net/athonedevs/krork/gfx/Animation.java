@@ -19,6 +19,12 @@ public class Animation {
     private long lastTime, timer;
     private BufferedImage[] frames;
 
+    /**
+     * Creates an animation with custom speed from the given frames
+     *
+     * @param speed The speed to be reproduced
+     * @param frames The Images from the animation
+     */
     public Animation(int speed, BufferedImage[] frames) {
         this.speed = speed;
         this.frames = frames;
@@ -38,6 +44,11 @@ public class Animation {
         }
     }
 
+    /**
+     * Returns the current image at the point
+     *
+     * @return The image in the frame
+     */
     public BufferedImage getCurrentFrame() {
         return frames[index];
     }

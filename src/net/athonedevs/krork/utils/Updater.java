@@ -17,23 +17,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class Updater {
 
     public static void checkForUpdate(){
         if (!getEngineVersion().equalsIgnoreCase(Krork.getVersion())) {
-            Log.log(Log.LogType.WARNING, "\u001B[35mNew version found, Version: \u001B[31m" + getEngineVersion());
-            Log.log(Log.LogType.WARNING, "You can download it from here: \u001B[32mhttps://cadox8.github.io/krork/");
+            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + getEngineVersion(), "Krork");
+            Log.log(Log.LogType.WARNING, "You can download it from here: https://cadox8.github.io/krork/", "Krork");
         } else {
-            Log.log(Log.LogType.SUCCESS, "No updates found");
+            Log.log(Log.LogType.SUCCESS, "No updates found", "Krork");
         }
     }
 
     public static String getEngineVersion(){
         try {
-            URL u = new URL("https://cadox8.github.io/krork/version.txt");
-            return new BufferedReader(new InputStreamReader(u.openStream())).readLine();
-        } catch (IOException e){}
-        return Krork.getVersion();
+            URLConnection connection = new URL("https://cadox8.github.io/krork/version.txt").openConnection();
+            final String redirect = connection.getHeaderField("Location");
+            if (redirect != null) connection = new URL(redirect).openConnection();
+            final BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            return br.readLine();
+        } catch (IOException e) {
+            return Krork.getVersion();
+        }
     }
 }

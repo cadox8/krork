@@ -17,6 +17,7 @@ import net.athonedevs.krork.input.KeyManager;
 import net.athonedevs.krork.input.MouseManager;
 import net.athonedevs.krork.state.DefaultState;
 import net.athonedevs.krork.state.State;
+import net.athonedevs.krork.utils.Colors;
 import net.athonedevs.krork.utils.GameCamera;
 import net.athonedevs.krork.utils.Log;
 import net.athonedevs.krork.utils.Updater;
@@ -27,7 +28,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    private static final String version = "v1.0 Beta";
+    private static final String version = "v1.1 Beta";
     private static String game;
     //
 
@@ -110,9 +111,9 @@ public class Krork implements Runnable {
         // Version info
         KrorkAPI.setDebugEnabled(true);
 
-        Log.log(Log.LogType.SUCCESS, "Krork Engine is now working");
-        Log.log(Log.LogType.NORMAL, "Krork Version: \u001B[31m" + getVersion() + "\n");
-        Log.log(Log.LogType.NORMAL, "Checking for updates...");
+        Log.log(Log.LogType.SUCCESS, "Krork Engine is now working", "Krork");
+        Log.log(Log.LogType.NORMAL, "Krork Version: " + Colors.RED.getColor() + getVersion() + "\n", "Krork");
+        Log.log(Log.LogType.NORMAL, "Checking for updates...", "Krork");
         Updater.checkForUpdate();
     }
 
