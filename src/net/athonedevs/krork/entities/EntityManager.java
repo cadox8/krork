@@ -14,6 +14,7 @@ package net.athonedevs.krork.entities;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.exceptions.WorldNotLoadedException;
+import net.athonedevs.krork.utils.Experimental;
 import net.athonedevs.krork.utils.Log;
 import net.athonedevs.krork.utils.NotNull;
 
@@ -35,6 +36,11 @@ public class EntityManager {
         return 0;
     };
 
+    /**
+     * Default EntityManager constructor
+     *
+     * @param API The KrorkAPI
+     */
     public EntityManager(KrorkAPI API) {
         this.API = API;
         entities = new ArrayList<>();
@@ -70,14 +76,39 @@ public class EntityManager {
         }
     }
 
+    /**
+     * Gets the Entity which are at the given location
+     * @see Location
+     * @see Entity
+     *
+     * @param x The X value of the Location
+     * @param y The Y value of the Location
+     * @return The List of entities at the Location
+     */
+    @Experimental
     public List<Entity> getEntityOnLoc(float x, float y) {
         return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains((int)x, (int)y)).collect(Collectors.toList());
     }
 
+    /**
+     * Freezes all Creatures except the one selected
+     *
+     * @param except The creature to no be freeze
+     */
     public void freezeCreatures(Creature except) {
         entities.stream().filter(e -> e instanceof Creature).filter(e -> !e.equals(except)).forEach(e -> ((Creature)e).setFreeze(true));
     }
 
+    /**
+     * Freezes all Creatures
+     */
+    public void freezeCreatures() {
+        entities.stream().filter(e -> e instanceof Creature).forEach(e -> ((Creature)e).setFreeze(true));
+    }
+
+    /**
+     * Kills all entities
+     */
     public void killAll() {
         entities.forEach(Entity::kill);
     }

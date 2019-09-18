@@ -31,6 +31,13 @@ public class Dialog {
 
     private boolean end = false;
 
+    /**
+     * Default Dialog constructor
+     *
+     * @param krorkAPI The KrorkAPI
+     * @param entity The entity who has the Dialog
+     * @param texture The texture of the background
+     */
     public Dialog(KrorkAPI krorkAPI, Creature entity, BufferedImage texture) {
         this.krorkAPI = krorkAPI;
         this.entity = entity;
@@ -38,17 +45,28 @@ public class Dialog {
         text = new ArrayList<>();
     }
 
+    /**
+     * Add text lines to the Dialog
+     *
+     * @param newText The new lines to be added
+     * @return This class
+     */
     public Dialog addText(List<String> newText) {
-        final List<String> tempList = new ArrayList<>();
-        text.addAll(tempList);
+        text.addAll(newText);
         return this;
     }
 
+    /**
+     * Replaces the selected key to new one
+     *
+     * @param key The word(s) to be replaced
+     * @param newText The new worlds
+     * @return This class
+     */
     public Dialog replace(String key, String newText) {
         text.forEach(t -> text.set(text.indexOf(t), t.replaceAll(key, newText)));
         return this;
     }
-
 
     public void tick() {
         if (!end) {
@@ -84,6 +102,9 @@ public class Dialog {
         return temp;
     }
 
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
     public boolean isEnd() {
         return this.end;
     }

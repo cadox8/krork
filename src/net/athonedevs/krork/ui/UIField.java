@@ -17,6 +17,7 @@ import java.awt.*;
 
 public class UIField extends UIObject {
 
+    private final KrorkAPI api;
     private ClickListener clicker;
 
     private String text = "";
@@ -28,6 +29,8 @@ public class UIField extends UIObject {
     public UIField(float x, float y, int width, int height, KrorkAPI api) {
         super(x, y - height, width, height);
 
+        this.api = api;
+
         this.clicker = () -> {
             api.getKeyManager().setWritingTo(this);
             baseColor = new Color(185, 185, 185);
@@ -36,6 +39,7 @@ public class UIField extends UIObject {
 
     @Override
     public void tick() {
+        if (!api.getKeyManager().getWritingTo().equals(this)) baseColor = new Color(217, 217, 217);
     }
 
     @Override

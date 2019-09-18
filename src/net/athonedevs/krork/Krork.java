@@ -32,11 +32,9 @@ public class Krork implements Runnable {
     private static String game;
     //
 
-
     private Display display;
     private int width, height;
     private String title;
-
 
     private boolean running = false;
     private Thread thread;

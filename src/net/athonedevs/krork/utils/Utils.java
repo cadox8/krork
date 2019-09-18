@@ -12,6 +12,7 @@
 package net.athonedevs.krork.utils;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,6 +20,12 @@ import java.io.IOException;
 
 public class Utils {
 
+    /**
+     * Loads a file from the computer as String
+     *
+     * @param path The path where the file is located
+     * @return The content of the file
+     */
     public static String loadFileAsString(String path) {
         StringBuilder builder = new StringBuilder();
 
@@ -35,6 +42,12 @@ public class Utils {
         return builder.toString();
     }
 
+    /**
+     * Loads an image from file
+     *
+     * @param path The path where the image is located
+     * @return The BufferedImage of the file
+     */
     public static BufferedImage loadImage(String path) {
         try {
             return ImageIO.read(Utils.class.getResource(path));
@@ -52,5 +65,15 @@ public class Utils {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    /**
+     * Parses the Hex value to Color
+     *
+     * @param hex The hex value
+     * @return The color associated to that hex code
+     */
+    public static Color parseHex(String hex) {
+        return new Color(Integer.valueOf(hex.substring(1, 3), 16), Integer.valueOf(hex.substring(3, 5), 16), Integer.valueOf(hex.substring(5, 7), 16));
     }
 }

@@ -26,10 +26,28 @@ public class Location {
     private float y;
     private int direction;
 
+    /**
+     * Default Location constructor
+     * @see World
+     *
+     * @param world The world where the Entity is at
+     * @param x The X Location
+     * @param y The y Location
+     */
     public Location(World world, float x, float y) {
         this(world, x, y, 0);
     }
 
+    /**
+     * Default Location constructor
+     * @see World
+     * @see Entity
+     *
+     * @param world The world where the Entity is at
+     * @param x The X Location
+     * @param y The y Location
+     * @param direction The direction where the Entity is looking at
+     */
     public Location(World world, float x, float y, int direction) {
         this.world = world;
         this.x = x;
@@ -37,18 +55,49 @@ public class Location {
         this.direction = direction;
     }
 
+    /**
+     * Adds values to the Location
+     *
+     * @param x The X value to add
+     * @param y The Y value to add
+     */
     public void add(float x, float y) {
         this.x += x;
         this.y += y;
     }
 
+    /**
+     * Checks if the Location is the same
+     *
+     * @param x The X value to check
+     * @param y The Y value to check
+     * @return True if the location is the same, false if not
+     */
     public boolean is(float x, float y) {
         return getX() == x && getY() == y;
     }
 
+    /**
+     * Teleports an Entity to a specified location
+     * @see Entity
+     *
+     * @param x The new X value
+     * @param y The new Y value
+     * @param direction The new Direction value
+     */
     public void teleport(float x, float y, int direction) {
         teleport(API.getWorld(), x, y, direction);
     }
+    /**
+     * Teleports an Entity to a specified location
+     * @see Entity
+     * @see World
+     *
+     * @param world the new World value
+     * @param x The new X value
+     * @param y The new Y value
+     * @param direction The new Direction value
+     */
     public void teleport(World world, float x, float y, int direction) {
         setWorld(world);
         setX(x);
