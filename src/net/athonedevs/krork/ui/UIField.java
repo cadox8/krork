@@ -39,6 +39,7 @@ public class UIField extends UIObject {
 
     @Override
     public void tick() {
+        if (api.getKeyManager().getWritingTo() == null) return;
         if (!api.getKeyManager().getWritingTo().equals(this)) baseColor = new Color(217, 217, 217);
     }
 
