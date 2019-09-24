@@ -19,6 +19,9 @@ public class Animation {
     private long lastTime, timer;
     private BufferedImage[] frames;
 
+    protected boolean withEnd;
+    protected boolean end;
+
     /**
      * Creates an animation with custom speed from the given frames
      *
@@ -31,16 +34,22 @@ public class Animation {
         index = 0;
         timer = 0;
         lastTime = System.currentTimeMillis();
+        withEnd(false);
+        end = false;
     }
 
     public void tick() {
+        if (end) return;
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
 
         if (timer > speed) {
             index++;
             timer = 0;
-            if (index >= frames.length) index = 0;
+            if (index >= frames.length) {
+                index = 0;
+                if (withEnd) end = true;
+            }
         }
     }
 
@@ -71,5 +80,26 @@ public class Animation {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public BufferedImage[] getFrames() {
+        return frames;
+    }
+
+    public void setFrames(BufferedImage[] frames) {
+        this.frames = frames;
+    }
+
+    public boolean isEnd() {
+        return end;
+    }
+
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
+
+    public Animation withEnd(boolean end) {
+        this.withEnd = true;
+        return this;
     }
 }

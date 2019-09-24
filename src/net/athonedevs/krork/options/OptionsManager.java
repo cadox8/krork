@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.options;
 
-import net.athonedevs.krork.utils.NotNull;
+import net.athonedevs.krork.annotations.NotNull;
 
 import java.lang.reflect.Field;
 

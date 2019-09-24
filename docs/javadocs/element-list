@@ -1,6 +1,8 @@
 net.athonedevs.krork
+net.athonedevs.krork.achievements
 net.athonedevs.krork.ai
 net.athonedevs.krork.ai.path
+net.athonedevs.krork.annotations
 net.athonedevs.krork.api
 net.athonedevs.krork.attributes
 net.athonedevs.krork.dialog

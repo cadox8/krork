@@ -34,7 +34,6 @@ public class TileManager {
 
     public static Tile getTile(int tileID, int subID) {
         final Optional<Tile> tile = tiles.stream().filter(t -> t.getId() == tileID).findAny();
-
         if (!tile.isPresent()) return Tile.bug;
         if (subID != 0 && tile.get().getSubtiles().stream().anyMatch(t -> t.getSubID() == subID)) {
             return new Tile(tile.get().getSubTile(subID).getImage(), -1);

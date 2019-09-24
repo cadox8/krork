@@ -46,6 +46,7 @@ public class ItemManager {
             items.add(item);
         } catch (ItemRegisteredException e) {
             Log.log(Log.LogType.DANGER, e.getMessage());
+            System.exit(12);
         }
     }
 

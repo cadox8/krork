@@ -56,14 +56,16 @@ public class UIImage extends UIObject {
         width = getWidth();
         height = getHeight();
 
-        if (hovering) {
-            if (images.length > 1) {
-                g.drawImage(images[1], (int) x, (int) y, width, height, null);
+        synchronized (images) {
+            if (hovering) {
+                if (images.length > 1) {
+                    g.drawImage(images[1], (int) x, (int) y, width, height, null);
+                } else {
+                    g.drawImage(images[0], (int) x, (int) y, width + 5, height + 5, null);
+                }
             } else {
-                g.drawImage(images[0], (int) x, (int) y, width + 5, height + 5, null);
+                g.drawImage(images[0], (int) x, (int) y, width, height, null);
             }
-        } else {
-            g.drawImage(images[0], (int) x, (int) y, width, height, null);
         }
     }
 
@@ -75,7 +77,7 @@ public class UIImage extends UIObject {
      *
      * @param imgs The new images
      */
-    public void changeImages(BufferedImage... imgs) {
+    public synchronized void changeImages(BufferedImage... imgs) {
         images = imgs;
     }
 
@@ -85,7 +87,7 @@ public class UIImage extends UIObject {
      * @param id The image id
      * @param img The new image
      */
-    public void changeImage(int id, BufferedImage img) {
+    public synchronized void changeImage(int id, BufferedImage img) {
         images[id] = img;
     }
 

@@ -11,14 +11,15 @@
 
 package net.athonedevs.krork.tiles;
 
+import net.athonedevs.krork.annotations.NotNull;
 import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.gfx.Sprites;
-import net.athonedevs.krork.utils.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Tile {
 
@@ -158,7 +159,7 @@ public class Tile {
             if (this.getSubID() != other.getSubID()) return false;
             final Object this$image = this.getImage();
             final Object other$image = other.getImage();
-            if (this$image == null ? other$image != null : !this$image.equals(other$image)) return false;
+            if (!Objects.equals(this$image, other$image)) return false;
             return true;
         }
 

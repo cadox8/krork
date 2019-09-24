@@ -88,6 +88,7 @@ public class Dialog {
 
         int p = 1;
         for (String s : renderText()) {
+            g.setFont(KrorkAPI.getGameFont());
             g.setColor(Color.WHITE);
             g.drawString(s, 150, krorkAPI.getHeight() - 122 + (p * 20));
             p++;

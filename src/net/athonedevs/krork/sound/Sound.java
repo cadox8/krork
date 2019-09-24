@@ -37,7 +37,6 @@ public class Sound {
         } catch(Exception exc) {
             Log.log(Log.LogType.DANGER, exc.toString());
         }
-
     }
 
     /**

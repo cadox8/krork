@@ -107,7 +107,7 @@ public class Krork implements Runnable {
         State.setState(new DefaultState(API));
 
         // Version info
-        KrorkAPI.setDebugEnabled(true);
+        KrorkAPI.enableDebug(true);
 
         Log.log(Log.LogType.SUCCESS, "Krork Engine is now working", "Krork");
         Log.log(Log.LogType.NORMAL, "Krork Version: " + Colors.RED.getColor() + getVersion() + "\n", "Krork");
@@ -136,7 +136,7 @@ public class Krork implements Runnable {
 
     public void run() {
         int fps = 60;
-        double timePerTick = (double)(1000000000 / fps);
+        double timePerTick = (1000000000D / fps);
         double delta = 0;
         long now;
         long lastTime = System.nanoTime();

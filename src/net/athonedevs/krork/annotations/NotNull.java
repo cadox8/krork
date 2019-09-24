@@ -9,11 +9,13 @@
  *
  */
 
-package net.athonedevs.krork.utils;
+package net.athonedevs.krork.annotations;
 
 import java.lang.annotation.*;
 
 @Documented
+@Label("NotNull")
+@Description("Element can not be null")
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE})
 public @interface NotNull {

@@ -132,6 +132,7 @@ public abstract class UIObject {
     }
 
     public void setFont(Font font) {
+        KrorkAPI.setGameFont(font);
         this.font = font;
     }
 }

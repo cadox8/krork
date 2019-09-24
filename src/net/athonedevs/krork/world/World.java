@@ -93,14 +93,12 @@ public class World {
         tiles = new TileData[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                final TileData data;
                 if (tokens[(x + y * width) + 4].contains(":")) {
                     final String[] parts = tokens[(x + y * width) + 4].split(":");
-                    data = new TileData(Utils.parseInt(parts[0]), Utils.parseInt(parts[1]));
+                    tiles[x][y] = new TileData(Utils.parseInt(parts[0]), Utils.parseInt(parts[1]));
                 } else {
-                    data = new TileData(Utils.parseInt(tokens[(x + y * width) + 4]), 0);
+                    tiles[x][y] = new TileData(Utils.parseInt(tokens[(x + y * width) + 4]), 0);
                 }
-                tiles[x][y] = data;
             }
         }
     }

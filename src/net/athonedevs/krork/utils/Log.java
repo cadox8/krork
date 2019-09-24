@@ -113,15 +113,11 @@ public class Log {
      */
     public static void log(LogType type, Object info, String game){
         final String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ENGLISH)) + "]";
-        String log;
-
-        if (type == LogType.DEBUG && !KrorkAPI.isDebugEnabled()) return;
 
         if (System.getProperty("os.name").contains("10")) {
-            log = time + type.getColor() + type.getPrefix() + "\u001B[35m" + game + " >> \u001B[0m" + info + "\u001B[0m";
+            System.out.println(time + type.getColor() + type.getPrefix() + "\u001B[35m" + game + " >> \u001B[0m" + info + "\u001B[0m");
         } else {
-            log = time + type.getPrefix() + Krork.getGame() + " >> " + info;
+            System.out.println(time + type.getPrefix() + Krork.getGame() + " >> " + info);
         }
-        System.out.println(log);
     }
 }

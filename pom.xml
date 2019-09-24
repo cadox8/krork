@@ -14,7 +14,7 @@
 
     <groupId>net.athonedevs</groupId>
     <artifactId>Krork</artifactId>
-    <version>1.0-Beta</version>
+    <version>1.1-Beta</version>
     <packaging>jar</packaging>
 
     <name>Krork</name>

@@ -11,12 +11,12 @@
 
 package net.athonedevs.krork.entities;
 
+import net.athonedevs.krork.annotations.Experimental;
+import net.athonedevs.krork.annotations.NotNull;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.exceptions.WorldNotLoadedException;
-import net.athonedevs.krork.utils.Experimental;
 import net.athonedevs.krork.utils.Log;
-import net.athonedevs.krork.utils.NotNull;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -73,6 +73,7 @@ public class EntityManager {
             entities.add(entity);
         } catch (WorldNotLoadedException e) {
             Log.log(Log.LogType.DANGER, e.getMessage());
+            System.exit(11);
         }
     }
 

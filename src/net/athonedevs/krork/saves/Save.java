@@ -60,6 +60,7 @@ public class Save {
             if (!statsFile.exists()) statsFile.createNewFile();
         } catch (IOException e) {
             Log.log(Log.LogType.DANGER, e.getCause());
+            System.exit(13);
         }
     }
 

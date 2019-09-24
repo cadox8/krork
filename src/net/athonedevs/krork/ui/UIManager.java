@@ -39,7 +39,9 @@ public class UIManager {
      * @param object The UIObject
      */
     public void addObject(UIObject object) {
-        objects.add(object);
+        synchronized (objects) {
+            objects.add(object);
+        }
     }
     /**
      * Removes an UIObject
@@ -60,11 +62,15 @@ public class UIManager {
 
 
     public void tick() {
-        objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
+        synchronized (objects) {
+            objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
+        }
     }
 
     public void render(Graphics g) {
-        objects.stream().filter(UIObject::isEnabled).forEach(o -> o.render(g));
+        synchronized (objects) {
+            objects.stream().filter(UIObject::isEnabled).forEach(o -> o.render(g));
+        }
     }
 
     public void onMouseMove(MouseEvent e) {

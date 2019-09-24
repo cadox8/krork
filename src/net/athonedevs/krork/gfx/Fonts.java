@@ -11,6 +11,8 @@
 
 package net.athonedevs.krork.gfx;
 
+import net.athonedevs.krork.utils.Log;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -64,8 +66,9 @@ public class Fonts {
         try {
             return Font.createFont(Font.TRUETYPE_FONT, new File(path + File.pathSeparator + name + ".ttf")).deriveFont(type, size);
         } catch (FontFormatException | IOException e) {
+            Log.danger("Error while creating a new Font from file (" + path + ")");
             e.printStackTrace();
-            System.exit(1);
+            System.exit(10);
             return null;
         }
     }

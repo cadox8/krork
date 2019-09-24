@@ -53,7 +53,7 @@ public class Utils {
             return ImageIO.read(Utils.class.getResource(path));
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(1);
+            System.exit(20);
         }
         return null;
     }

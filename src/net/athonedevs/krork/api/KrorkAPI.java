@@ -35,14 +35,14 @@ public class KrorkAPI {
     }
 
     public static boolean isDebugEnabled() {
-        return KrorkAPI.debugEnabled;
+        return debugEnabled;
     }
 
     public static Font getGameFont() {
-        return KrorkAPI.gameFont;
+        return gameFont;
     }
 
-    public static void setDebugEnabled(boolean debugEnabled) {
+    public static void enableDebug(boolean debugEnabled) {
         KrorkAPI.debugEnabled = debugEnabled;
     }
 
