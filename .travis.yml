@@ -1,7 +1,6 @@
 language: java
 install: mvn clean install
 jdk:
-  - oraclejdk9
   - oraclejdk11
 notifications:
   recipients:
