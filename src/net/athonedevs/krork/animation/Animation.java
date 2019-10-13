@@ -9,15 +9,16 @@
  *
  */
 
-package net.athonedevs.krork.gfx;
+package net.athonedevs.krork.animation;
 
 import java.awt.image.BufferedImage;
 
 public class Animation {
 
-    private int speed, index;
-    private long lastTime, timer;
-    private BufferedImage[] frames;
+    protected int speed, index;
+    protected long lastTime, timer;
+
+    protected BufferedImage[] frames;
 
     protected boolean withEnd;
     protected boolean end;

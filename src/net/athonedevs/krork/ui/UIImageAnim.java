@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.ui;
 
-import net.athonedevs.krork.gfx.Animation;
+import net.athonedevs.krork.animation.Animation;
 
 import java.awt.*;
 

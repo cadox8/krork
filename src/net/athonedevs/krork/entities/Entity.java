@@ -11,8 +11,8 @@
 
 package net.athonedevs.krork.entities;
 
+import net.athonedevs.krork.animation.Animation;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.utils.Log;
 
 import java.awt.*;

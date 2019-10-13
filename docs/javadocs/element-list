@@ -2,6 +2,7 @@ net.athonedevs.krork
 net.athonedevs.krork.achievements
 net.athonedevs.krork.ai
 net.athonedevs.krork.ai.path
+net.athonedevs.krork.animation
 net.athonedevs.krork.annotations
 net.athonedevs.krork.api
 net.athonedevs.krork.attributes
@@ -14,6 +15,7 @@ net.athonedevs.krork.gfx
 net.athonedevs.krork.input
 net.athonedevs.krork.items
 net.athonedevs.krork.options
+net.athonedevs.krork.particles
 net.athonedevs.krork.runnable
 net.athonedevs.krork.saves
 net.athonedevs.krork.sound

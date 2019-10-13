@@ -16,6 +16,7 @@ import net.athonedevs.krork.api.KrorkAPI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class UIManager {
 
@@ -63,13 +64,17 @@ public class UIManager {
 
     public void tick() {
         synchronized (objects) {
-            objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
+            try {
+                objects.stream().filter(UIObject::isEnabled).forEach(UIObject::tick);
+            } catch (ConcurrentModificationException e) {}
         }
     }
 
     public void render(Graphics g) {
         synchronized (objects) {
-            objects.stream().filter(UIObject::isEnabled).forEach(o -> o.render(g));
+            try {
+                objects.stream().filter(UIObject::isEnabled).forEach(o -> o.render(g));
+            } catch (ConcurrentModificationException e) {}
         }
     }
 

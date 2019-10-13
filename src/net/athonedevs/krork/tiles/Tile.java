@@ -11,8 +11,8 @@
 
 package net.athonedevs.krork.tiles;
 
+import net.athonedevs.krork.animation.Animation;
 import net.athonedevs.krork.annotations.NotNull;
-import net.athonedevs.krork.gfx.Animation;
 import net.athonedevs.krork.gfx.Sprites;
 
 import java.awt.*;
