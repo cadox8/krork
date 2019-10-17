@@ -11,6 +11,7 @@
 
 package net.athonedevs.krork.utils;
 
+import com.google.gson.GsonBuilder;
 import net.athonedevs.krork.Krork;
 
 import java.io.BufferedReader;
@@ -18,27 +19,47 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 
 public class Updater {
 
     public static void checkForUpdate(){
-        if (!getEngineVersion().equalsIgnoreCase(Krork.getVersion())) {
-            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + getEngineVersion(), "Krork");
+        if (getEngineVersion().latest > Krork.getVersionNumber()) {
+            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + Arrays.asList(getEngineVersion().older).stream().filter(v -> v.id == getEngineVersion().latest).findAny().get().version, "Krork");
             Log.log(Log.LogType.WARNING, "You can download it from here: https://cadox8.github.io/krork/", "Krork");
+            Log.log(Log.LogType.WARNING, "Or just update your pom.xml file", "Krork");
         } else {
             Log.log(Log.LogType.SUCCESS, "No updates found", "Krork");
         }
     }
 
-    public static String getEngineVersion(){
+    public static Versions getEngineVersion(){
         try {
-            URLConnection connection = new URL("https://cadox8.github.io/krork/version.txt").openConnection();
+            URLConnection connection = new URL("https://cadox8.github.io/krork/versions.json").openConnection();
             final String redirect = connection.getHeaderField("Location");
             if (redirect != null) connection = new URL(redirect).openConnection();
             final BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            return br.readLine();
+            final StringBuilder sb = new StringBuilder();
+            String lines;
+            while ((lines = br.readLine()) != null) sb.append(lines);
+
+            return new GsonBuilder().setPrettyPrinting().create().fromJson(sb.toString(), Versions.class);
         } catch (IOException e) {
-            return Krork.getVersion();
+            final Versions versions = new Versions();
+            versions.latest = Krork.getVersionNumber();
+            versions.older = new Versions.VersionData[0];
+            return versions;
+        }
+    }
+
+    public static class Versions {
+
+        public int latest;
+        public VersionData[] older;
+
+        public class VersionData {
+            public int id;
+            public String version;
         }
     }
 }

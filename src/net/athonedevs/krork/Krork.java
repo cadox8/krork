@@ -29,6 +29,7 @@ public class Krork implements Runnable {
 
     // Info
     private static final String version = "v2 Beta";
+    private static final int versionNumber = 19;
     private static String game;
     //
 
@@ -82,6 +83,9 @@ public class Krork implements Runnable {
 
     public static String getVersion() {
         return Krork.version;
+    }
+    public static int getVersionNumber() {
+        return Krork.versionNumber;
     }
 
     public static String getGame() {

@@ -46,7 +46,7 @@ public class DefaultState extends State {
         final UIText info = new UIText(api);
         info.setText("Krork Engine " + Krork.getVersion() + " by AthoneDevs");
         info.setTextColor(NysvaColor.DARK_GRAY);
-        info.customizeFont(0, 36);
+        info.customizeFont(Font.BOLD, 36);
         info.setRelativeDimension(new RelativeDimension(API.getWidth() / 3, 10, 300, 300));
 
         uiManager.addObject(block);

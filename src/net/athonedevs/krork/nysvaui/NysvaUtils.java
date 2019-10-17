@@ -21,7 +21,7 @@ public class NysvaUtils {
     private static NysvaColor lastColor = null;
 
     public static NysvaColor randomColor() {
-        return randomColor(Arrays.asList(NysvaColor.DARK_GRAY, NysvaColor.BLUE, NysvaColor.GREEN, NysvaColor.ORANGE, NysvaColor.PURPLE, NysvaColor.RED, NysvaColor.TURQUOISE, NysvaColor.WHITE,
+        return randomColor(Arrays.asList(NysvaColor.DARK_GRAY, NysvaColor.BLUE, NysvaColor.GREEN, NysvaColor.ORANGE, NysvaColor.PURPLE, NysvaColor.RED, NysvaColor.TURQUOISE, /*NysvaColor.WHITE,*/
                 NysvaColor.YELLOW));
     }
 
