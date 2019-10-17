@@ -13,26 +13,45 @@ package net.athonedevs.krork.state;
 
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.ui.UIField;
-import net.athonedevs.krork.ui.UIManager;
-import net.athonedevs.krork.ui.UIText;
-import net.athonedevs.krork.utils.Log;
+import net.athonedevs.krork.nysvaui.NysvaColor;
+import net.athonedevs.krork.nysvaui.NysvaManager;
+import net.athonedevs.krork.nysvaui.RelativeDimension;
+import net.athonedevs.krork.nysvaui.components.UIButton;
+import net.athonedevs.krork.nysvaui.components.UIRainbowBlock;
+import net.athonedevs.krork.nysvaui.components.UIText;
 
 import java.awt.*;
 
 public class DefaultState extends State {
 
-    private UIManager uiManager;
+    private NysvaManager uiManager;
 
     public DefaultState(KrorkAPI api) {
         super(api);
 
-        uiManager = new UIManager(API);
+        uiManager = new NysvaManager();
         API.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIText((float)(API.getWidth() / 3), (float)(API.getHeight() / 2), Color.BLACK, "Krork Engine " + Krork.getVersion() + " by AthoneDevs", () -> Log.log("Works!")));
+        final UIRainbowBlock block = new UIRainbowBlock(api, 0.5);
+        block.setRounded(true);
+        block.setDraggable(true);
+        block.setRelativeDimension(new RelativeDimension(20, 20, 300, 300));
 
-        uiManager.addObject(new UIField(0, 400, API.getWidth(), 60, API));
+        final UIButton button = new UIButton(api, () -> {
+            ((UIRainbowBlock)uiManager.getObject(block.getComponentID())).setRounded(!((UIRainbowBlock)uiManager.getObject(block.getComponentID())).isRounded());
+        });
+        button.setText("Alterna los bordes!");
+        button.setRelativeDimension(new RelativeDimension(350, 145, 120, 20));
+
+        final UIText info = new UIText(api);
+        info.setText("Krork Engine " + Krork.getVersion() + " by AthoneDevs");
+        info.setTextColor(NysvaColor.DARK_GRAY);
+        info.customizeFont(0, 36);
+        info.setRelativeDimension(new RelativeDimension(API.getWidth() / 3, 10, 300, 300));
+
+        uiManager.addObject(block);
+        uiManager.addObject(button);
+        uiManager.addObject(info);
     }
 
     @Override
@@ -45,7 +64,7 @@ public class DefaultState extends State {
         uiManager.render(g);
     }
 
-    public UIManager getUiManager() {
+    public NysvaManager getUiManager() {
         return this.uiManager;
     }
 }

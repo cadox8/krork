@@ -12,11 +12,9 @@
 package net.athonedevs.krork.input;
 
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.ui.UIField;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Arrays;
 
 public class KeyManager implements KeyListener {
 
@@ -24,7 +22,7 @@ public class KeyManager implements KeyListener {
 
     private boolean[] keys, justPressed, cantPress;
 
-    private UIField writingTo;
+    //private UIField writingTo;
 
     public KeyManager(KrorkAPI API) {
         keys = new boolean[256];
@@ -33,7 +31,7 @@ public class KeyManager implements KeyListener {
 
         this.API = API;
 
-        writingTo = null;
+        //writingTo = null;
     }
 
     public void tick() {
@@ -74,21 +72,21 @@ public class KeyManager implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (writingTo != null) {
+/*        if (writingTo != null) {
             if (e.getKeyChar() == 8) {
                 if (writingTo.getText().toCharArray().length <= 0) return;
                 writingTo.setText(String.valueOf(Arrays.copyOfRange(writingTo.getText().toCharArray(), 0, writingTo.getText().toCharArray().length - 1)));
                 return;
             }
             writingTo.setText(writingTo.getText() + e.getKeyChar());
-        }
+        }*/
     }
-
+/*
     public UIField getWritingTo() {
         return this.writingTo;
     }
 
     public void setWritingTo(UIField writingTo) {
         this.writingTo = writingTo;
-    }
+    }*/
 }

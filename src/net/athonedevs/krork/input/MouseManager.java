@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.input;
 
-import net.athonedevs.krork.ui.UIManager;
+import net.athonedevs.krork.nysvaui.NysvaManager;
 
 import java.awt.event.*;
 
@@ -19,7 +19,7 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
 
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY, mouseXClick, mouseYClick;
-    private UIManager uiManager;
+    private NysvaManager uiManager;
 
     //Mouse
     @Override
@@ -36,8 +36,6 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
         if (e.getButton() == MouseEvent.BUTTON1) leftPressed = false;
         if (e.getButton() == MouseEvent.BUTTON3) rightPressed = false;
 
-        if (uiManager != null) uiManager.onMouseRelease(e);
-
         mouseXClick = 0;
         mouseYClick = 0;
     }
@@ -52,10 +50,18 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        mouseX = e.getX();
+        mouseY = e.getY();
+
+        if (uiManager != null) uiManager.onMouseDragged(e);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        mouseXClick = e.getX();
+        mouseYClick = e.getY();
+
+        if (uiManager != null) uiManager.onMouseClicked(e);
     }
 
     @Override
@@ -94,11 +100,11 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
         return this.mouseYClick;
     }
 
-    public UIManager getUiManager() {
+    public NysvaManager getUiManager() {
         return this.uiManager;
     }
 
-    public void setUiManager(UIManager uiManager) {
+    public void setUiManager(NysvaManager uiManager) {
         this.uiManager = uiManager;
     }
 }
