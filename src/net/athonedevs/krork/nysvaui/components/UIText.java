@@ -12,8 +12,8 @@
 package net.athonedevs.krork.nysvaui.components;
 
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.nysvaui.NysvaColor;
 import net.athonedevs.krork.nysvaui.NysvaUI;
+import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
 
 import java.awt.*;
 

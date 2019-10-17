@@ -9,7 +9,7 @@
  *
  */
 
-package net.athonedevs.krork.nysvaui;
+package net.athonedevs.krork.nysvaui.helpers;
 
 import java.awt.*;
 

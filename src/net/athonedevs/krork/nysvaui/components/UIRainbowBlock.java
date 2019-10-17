@@ -12,7 +12,7 @@
 package net.athonedevs.krork.nysvaui.components;
 
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.nysvaui.NysvaUtils;
+import net.athonedevs.krork.nysvaui.helpers.NysvaUtils;
 
 public class UIRainbowBlock extends UIBlock {
 

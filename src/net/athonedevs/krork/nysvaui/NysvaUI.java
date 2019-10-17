@@ -12,6 +12,7 @@
 package net.athonedevs.krork.nysvaui;
 
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

@@ -13,12 +13,12 @@ package net.athonedevs.krork.state;
 
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.nysvaui.NysvaColor;
 import net.athonedevs.krork.nysvaui.NysvaManager;
-import net.athonedevs.krork.nysvaui.RelativeDimension;
 import net.athonedevs.krork.nysvaui.components.UIButton;
 import net.athonedevs.krork.nysvaui.components.UIRainbowBlock;
 import net.athonedevs.krork.nysvaui.components.UIText;
+import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
+import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
 
 import java.awt.*;
 
