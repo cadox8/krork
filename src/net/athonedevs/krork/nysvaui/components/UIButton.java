@@ -21,7 +21,6 @@ public class UIButton extends UIText {
 
     private ClickListener clicker;
 
-    private boolean updated = false;
     private final UIBlock block = new UIBlock(api, NysvaColor.YELLOW);
 
     /**
@@ -34,8 +33,7 @@ public class UIButton extends UIText {
     }
 
     @Override
-    public void tick() {
-    }
+    public void tick() {}
 
     @Override
     public void render(Graphics g) {
@@ -46,5 +44,11 @@ public class UIButton extends UIText {
     }
 
     @Override
-    public void onClick() { clicker.onClick(); }
+    public void onClick() {
+        clicker.onClick();
+    }
+
+    public UIBlock getBlock() {
+        return block;
+    }
 }

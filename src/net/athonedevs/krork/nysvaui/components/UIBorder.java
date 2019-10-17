@@ -25,6 +25,11 @@ public class UIBorder extends NysvaUI {
     private boolean rounded = false;
     private int borderSize;
 
+    private int borderRadius = 30;
+
+    public UIBorder(KrorkAPI api) {
+        this(api, 2);
+    }
     public UIBorder(KrorkAPI api, int borderSize) {
         this(api, NysvaColor.DARK_GRAY, borderSize);
     }
@@ -35,9 +40,7 @@ public class UIBorder extends NysvaUI {
     }
 
     @Override
-    public void tick() {
-
-    }
+    public void tick() {}
 
     @Override
     public void render(Graphics g) {
@@ -47,16 +50,14 @@ public class UIBorder extends NysvaUI {
         final Rectangle r = getRelativeDimension().getBounds();
 
         if (isRounded()) {
-            g2.draw(new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), 50, 50));
+            g2.draw(new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), borderRadius, borderRadius));
         } else {
             g2.draw(r);
         }
     }
 
     @Override
-    public void onClick() {
-
-    }
+    public void onClick() {}
 
     public NysvaColor getBackground() {
         return background;
@@ -80,5 +81,13 @@ public class UIBorder extends NysvaUI {
 
     public void setBorderSize(int borderSize) {
         this.borderSize = borderSize;
+    }
+
+    public int getBorderRadius() {
+        return borderRadius;
+    }
+
+    public void setBorderRadius(int borderRadius) {
+        this.borderRadius = borderRadius;
     }
 }

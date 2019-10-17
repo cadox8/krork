@@ -12,47 +12,41 @@
 package net.athonedevs.krork.nysvaui.components;
 
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.nysvaui.ClickListener;
 import net.athonedevs.krork.nysvaui.NysvaUI;
-import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
 
 import java.awt.*;
 
-public class UIText extends NysvaUI {
+public class UIField extends NysvaUI {
 
-    protected NysvaColor textColor = NysvaColor.WHITE;
-    protected String text = "";
+    private ClickListener clicker;
 
-    /**
-     * Generates a Text Object
-     */
-    public UIText(KrorkAPI api) {
+    private String text;
+
+    public UIField(KrorkAPI api) {
         super(api);
+
+        clicker = () -> {
+            api.getKeyManager().setWritingTo(this);
+        };
     }
 
     @Override
-    public void tick() {}
+    public void tick() {
+        if (api.getKeyManager().getWritingTo() == null) return;
+    }
 
     @Override
     public void render(Graphics g) {
-        drawString(g);
     }
 
     @Override
-    public void onClick() {}
-
-    private void drawString(Graphics g) {
-        g.setColor(textColor.getColor());
-        g.setFont(getFont());
-        g.drawString(text, getRelativeDimension().getX() + 5, getRelativeDimension().getY() + g.getFont().getSize());
+    public void onClick() {
+        clicker.onClick();
     }
 
-    //
-    public NysvaColor getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(NysvaColor textColor) {
-        this.textColor = textColor;
+    private boolean canWrite(Graphics g, String text) {
+        return g.getFontMetrics(g.getFont()).stringWidth(text) > getRelativeDimension().getWidth();
     }
 
     public String getText() {

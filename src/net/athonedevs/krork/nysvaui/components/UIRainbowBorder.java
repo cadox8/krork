@@ -21,7 +21,6 @@ public class UIRainbowBorder extends UIBorder {
 
     public UIRainbowBorder(KrorkAPI api, int borderSize, double speedInSeconds) {
         super(api, borderSize);
-
         this.speed = 1000 * speedInSeconds;
     }
 

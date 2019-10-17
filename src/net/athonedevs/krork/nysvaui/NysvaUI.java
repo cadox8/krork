@@ -57,6 +57,7 @@ public abstract class NysvaUI {
         hovering = getRelativeDimension().getBounds().contains(e.getX(), e.getY());
     }
 
+    // ToDo: Make real & smooth movement
     public void onMouseDragged(MouseEvent e) {
         if (hovering && isDraggable()) {
             getRelativeDimension().setX(api.getMouseManager().getMouseX() - (getRelativeDimension().getWidth() / 2));
@@ -106,7 +107,6 @@ public abstract class NysvaUI {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
     public Font getFont() {
         return this.font;

@@ -21,7 +21,6 @@ public class UIRainbowBlock extends UIBlock {
 
     public UIRainbowBlock(KrorkAPI api, double speedInSeconds) {
         super(api);
-
         this.speed = 1000 * speedInSeconds;
     }
 

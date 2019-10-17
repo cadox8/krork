@@ -54,6 +54,15 @@ public class RelativeDimension {
         return this;
     }
 
+    public RelativeDimension addX(int x) {
+        setX(getX() + x);
+        return this;
+    }
+    public RelativeDimension addY(int y) {
+        setY(getY() + y);
+        return this;
+    }
+
     //
     public int getX() {
         return x;

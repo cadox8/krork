@@ -28,7 +28,6 @@ public class NysvaColor {
     public static NysvaColor YELLOW = new NysvaColor(241, 196, 15);
 
     //
-
     private int value;
 
     public NysvaColor(int r, int g, int b) {

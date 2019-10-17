@@ -65,16 +65,13 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-    }
+    public void mouseExited(MouseEvent e) {}
 
     //Wheel
-    public void mouseWheelMoved(MouseWheelEvent e) {
-    }
+    public void mouseWheelMoved(MouseWheelEvent e) {}
 
     public boolean isLeftPressed() {
         return this.leftPressed;

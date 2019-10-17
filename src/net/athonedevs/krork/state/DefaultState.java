@@ -14,7 +14,6 @@ package net.athonedevs.krork.state;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.NysvaManager;
-import net.athonedevs.krork.nysvaui.components.UIButton;
 import net.athonedevs.krork.nysvaui.components.UIRainbowBlock;
 import net.athonedevs.krork.nysvaui.components.UIText;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
@@ -35,13 +34,7 @@ public class DefaultState extends State {
         final UIRainbowBlock block = new UIRainbowBlock(api, 0.5);
         block.setRounded(true);
         block.setDraggable(true);
-        block.setRelativeDimension(new RelativeDimension(20, 20, 300, 300));
-
-        final UIButton button = new UIButton(api, () -> {
-            ((UIRainbowBlock)uiManager.getObject(block.getComponentID())).setRounded(!((UIRainbowBlock)uiManager.getObject(block.getComponentID())).isRounded());
-        });
-        button.setText("Alterna los bordes!");
-        button.setRelativeDimension(new RelativeDimension(350, 145, 120, 20));
+        block.setRelativeDimension(new RelativeDimension(100, 100, 300, 300));
 
         final UIText info = new UIText(api);
         info.setText("Krork Engine " + Krork.getVersion() + " by AthoneDevs");
@@ -50,7 +43,6 @@ public class DefaultState extends State {
         info.setRelativeDimension(new RelativeDimension(API.getWidth() / 3, 10, 300, 300));
 
         uiManager.addObject(block);
-        uiManager.addObject(button);
         uiManager.addObject(info);
     }
 
