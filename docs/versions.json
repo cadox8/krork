@@ -1,0 +1,85 @@
+{
+  "latest": 19,
+  "older": [
+    {
+      "id": 19,
+      "version": "2 - Beta"
+    },
+    {
+      "id": 18,
+      "version": "1.1 - Beta"
+    },
+    {
+      "id": 17,
+      "version": "1 - Beta"
+    },
+    {
+      "id": 16,
+      "version": "0.8.3 - Alpha"
+    },
+    {
+      "id": 15,
+      "version": "0.8 - Alpha"
+    },
+    {
+      "id": 14,
+      "version": "0.7.3 - Alpha"
+    },
+    {
+      "id": 13,
+      "version": "0.7.2 - Alpha"
+    },
+    {
+      "id": 12,
+      "version": "0.7.1 - Alpha"
+    },
+    {
+      "id": 11,
+      "version": "0.7 - Alpha"
+    },
+    {
+      "id": 10,
+      "version": "0.6.4 - Alpha"
+    },
+    {
+      "id": 9,
+      "version": "0.6.3 - Alpha"
+    },
+    {
+      "id": 8,
+      "version": "0.6.2 - Alpha"
+    },
+    {
+      "id": 7,
+      "version": "0.6.1 - Alpha"
+    },
+    {
+      "id": 6,
+      "version": "0.6 - Alpha"
+    },
+    {
+      "id": 5,
+      "version": "0.5.7 - Alpha"
+    },
+    {
+      "id": 4,
+      "version": "0.5.6 - Alpha"
+    },
+    {
+      "id": 3,
+      "version": "0.5.2 - Alpha"
+    },
+    {
+      "id": 2,
+      "version": "0.5.1 - Alpha"
+    },
+    {
+      "id": 1,
+      "version": "0.5 - Alpha"
+    },
+    {
+      "id": 0,
+      "version": "0.4.7 - Alpha"
+    }
+  ]
+}
