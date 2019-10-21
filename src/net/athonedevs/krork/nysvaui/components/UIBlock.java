@@ -60,12 +60,13 @@ public class UIBlock extends NysvaUI {
         if (!components.isEmpty()) components.forEach(NysvaUI::onClick);
     }
 
-    public void addTextComponent(UIText component) {
+    public void addUIComponent(NysvaUI component) {
         final RelativeDimension textDimension = component.getRelativeDimension();
         final RelativeDimension rd = new RelativeDimension(textDimension.getX() + getRelativeDimension().getX() + 5, 5 + textDimension.getY() + getRelativeDimension().getY(), textDimension.getWidth(), textDimension.getHeight());
         component.setRelativeDimension(rd);
         component.setMaxWidth(getRelativeDimension().getMaxWidth());
         components.add(component);
+        component.setParent(this);
     }
 
     public NysvaColor getBackground() {

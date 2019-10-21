@@ -36,6 +36,7 @@ public abstract class NysvaUI {
 
     protected int maxWidth = -1;
 
+    private NysvaUI parent;
     protected List<NysvaUI> components;
 
     /**
@@ -121,6 +122,13 @@ public abstract class NysvaUI {
         setFont(getFont().deriveFont(style, size));
     }
 
+    public NysvaUI getParent() {
+        return parent;
+    }
+
+    public void setParent(NysvaUI parent) {
+        this.parent = parent;
+    }
 
     public long getComponentID() {
         return componentID;
