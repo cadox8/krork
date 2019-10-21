@@ -9,10 +9,12 @@
  *
  */
 
-package net.athonedevs.krork.nysvaui.components;
+package net.athonedevs.krork.nysvaui.components.button;
 
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.ClickListener;
+import net.athonedevs.krork.nysvaui.components.base.UIBlock;
+import net.athonedevs.krork.nysvaui.components.text.UIText;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
 
 import java.awt.*;

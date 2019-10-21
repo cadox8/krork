@@ -9,55 +9,65 @@
  *
  */
 
-package net.athonedevs.krork.nysvaui.components;
+package net.athonedevs.krork.nysvaui.components.base;
 
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.NysvaUI;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
+import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public class UIBorder extends NysvaUI {
+public class UIBlock extends NysvaUI {
 
     private NysvaColor background;
 
     private boolean rounded = false;
-    private int borderSize;
 
-    private int borderRadius = 30;
-
-    public UIBorder(KrorkAPI api) {
-        this(api, 2);
+    public UIBlock(KrorkAPI api) {
+        this(api, NysvaColor.DARK_GRAY);
     }
-    public UIBorder(KrorkAPI api, int borderSize) {
-        this(api, NysvaColor.DARK_GRAY, borderSize);
-    }
-    public UIBorder(KrorkAPI api, NysvaColor background, int borderSize) {
+    public UIBlock(KrorkAPI api, NysvaColor background) {
         super(api);
         this.background = background;
-        this.borderSize = borderSize;
     }
 
     @Override
-    public void tick() {}
+    public void tick() {
+        if (!components.isEmpty()) components.forEach(NysvaUI::tick);
+    }
 
     @Override
     public void render(Graphics g) {
         final Graphics2D g2 = (Graphics2D) g;
         g2.setColor(background.getColor());
-        g2.setStroke(new BasicStroke(borderSize));
         final Rectangle r = getRelativeDimension().getBounds();
 
         if (isRounded()) {
-            g2.draw(new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), borderRadius, borderRadius));
+            final RoundRectangle2D r2 = new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), 35, 35);
+            g2.draw(r2);
+            g2.fill(r2);
         } else {
             g2.draw(r);
+            g2.fill(r);
         }
+        if (!components.isEmpty()) components.forEach(c -> c.render(g));
     }
 
     @Override
-    public void onClick() {}
+    public void onClick() {
+        if (!components.isEmpty()) components.forEach(NysvaUI::onClick);
+    }
+
+    public void addUIComponent(NysvaUI component) {
+        final RelativeDimension textDimension = component.getRelativeDimension();
+        final RelativeDimension rd = new RelativeDimension(textDimension.getX() + getRelativeDimension().getX() + 5, 5 + textDimension.getY() + getRelativeDimension().getY(), textDimension.getWidth(), textDimension.getHeight());
+        component.setRelativeDimension(rd);
+        component.setMaxWidth(getRelativeDimension().getMaxWidth());
+        components.add(component);
+        component.setParent(this);
+    }
 
     public NysvaColor getBackground() {
         return background;
@@ -73,21 +83,5 @@ public class UIBorder extends NysvaUI {
 
     public void setRounded(boolean rounded) {
         this.rounded = rounded;
-    }
-
-    public int getBorderSize() {
-        return borderSize;
-    }
-
-    public void setBorderSize(int borderSize) {
-        this.borderSize = borderSize;
-    }
-
-    public int getBorderRadius() {
-        return borderRadius;
-    }
-
-    public void setBorderRadius(int borderRadius) {
-        this.borderRadius = borderRadius;
     }
 }

@@ -12,7 +12,7 @@
 package net.athonedevs.krork.input;
 
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.nysvaui.components.UIField;
+import net.athonedevs.krork.nysvaui.components.field.UIField;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

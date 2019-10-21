@@ -16,6 +16,7 @@ import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -76,6 +77,17 @@ public abstract class NysvaUI {
     public void onMouseClicked(MouseEvent e) {
         if (hovering) onClick();
     }
+
+    protected void drawImage(Graphics g, BufferedImage image) {
+        if (hovering) {
+            g.drawImage(image, getRelativeDimension().getX(), getRelativeDimension().getY(), getRelativeDimension().getWidth() + 5, getRelativeDimension().getHeight() + 5, null);
+        } else {
+            g.drawImage(image, getRelativeDimension().getX(), getRelativeDimension().getY(), getRelativeDimension().getWidth(), getRelativeDimension().getHeight(),null);
+        }
+    }
+
+
+    //
 
 
     public RelativeDimension getRelativeDimension() {

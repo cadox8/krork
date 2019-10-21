@@ -9,18 +9,18 @@
  *
  */
 
-package net.athonedevs.krork.nysvaui.components;
+package net.athonedevs.krork.nysvaui.components.base;
 
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.helpers.NysvaUtils;
 
-public class UIRainbowBorder extends UIBorder {
+public class UIRainbowBlock extends UIBlock {
 
     private double speed;
     private long lastTime, timer = 0;
 
-    public UIRainbowBorder(KrorkAPI api, int borderSize, double speedInSeconds) {
-        super(api, borderSize);
+    public UIRainbowBlock(KrorkAPI api, double speedInSeconds) {
+        super(api);
         this.speed = 1000 * speedInSeconds;
     }
 
@@ -33,5 +33,13 @@ public class UIRainbowBorder extends UIBorder {
             timer = 0;
             setBackground(NysvaUtils.randomColor());
         }
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 }

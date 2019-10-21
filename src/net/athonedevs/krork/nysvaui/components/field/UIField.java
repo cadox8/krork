@@ -9,7 +9,7 @@
  *
  */
 
-package net.athonedevs.krork.nysvaui.components;
+package net.athonedevs.krork.nysvaui.components.field;
 
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.ClickListener;
