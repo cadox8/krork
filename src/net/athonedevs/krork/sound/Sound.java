@@ -2,84 +2,99 @@ package net.athonedevs.krork.sound;
 
 import net.athonedevs.krork.utils.Log;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.*;
 import java.io.File;
 
 public class Sound {
 
-    private final File file;
-    private float volume;
     private Clip clip;
+    private boolean active = false;
 
     /**
-     * Loads a file
+     * Default Sound constructor
      *
-     * @param file The sound file
-     * @param volume The volume of the file
+     * @param path The path to the file
      */
-    public Sound(File file, float volume) {
-        this.file = file;
-        this.volume = volume;
+    public Sound(String path){
+        check(path);
     }
 
     /**
-     * Starts playing the file selected
+     * Default Sound constructor
+     *
+     * @param file The file to be played
      */
-    public void startSound() {
+    public Sound(File file){
+        check(file.toString());
+    }
+
+    private void check(String path){
         try {
+            if(!path.equals("")){
+                initiate(path);
+            } else {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException e){
+            Log.danger("Destination Cannot be empty");
+            throw e;
+        }
+    }
+
+    private void initiate(String path){
+        try {
+            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(path));
+            final AudioFormat baseformat = audioInputStream.getFormat();
+            final AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseformat.getSampleRate(), 16, baseformat.getChannels(), baseformat.getChannels() * 2, baseformat.getSampleRate(), false);
+            final AudioInputStream decodedAudioInputStream = AudioSystem.getAudioInputStream(decodeFormat, audioInputStream);
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(file));
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(volume);
+            clip.open(decodedAudioInputStream);
+        } catch (Exception e) {
+            Log.danger("Audio failed to initiate");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Plays the Audio file
+     */
+    public void play(){
+        try{
+            if(clip == null) return;
+            stop();
+            clip.setFramePosition(0);
             clip.start();
-        } catch(Exception exc) {
-            Log.log(Log.LogType.DANGER, exc.toString());
+            active = true;
+        } catch (Exception e) {
+            Log.danger("Audio failed to play");
+            throw e;
         }
     }
 
     /**
-     * Pauses the sound
-     */
-    public void pauseSound() {
-        if(clip.isOpen()){
-            clip.stop();
-        } else {
-            startSound();
-        }
-    }
-
-    /**
-     * Starts the sound from where it was paused
-     */
-    public void resumeSound() {
-        if(clip.isOpen()){
-            clip.start();
-        } else {
-            startSound();
-        }
-    }
-
-    /**
-     * Stops the sound.
+     * Changes the volume
      *
-     * WARNING: if this method is used, you must start the sound again with startSound()
-     *
-     * @see Sound#startSound()
+     * @param volume The volume value
      */
-    public void stopSound() {
-        if(!clip.isOpen()) return;
+    public void setVolume(float volume){
+        final FloatControl v = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        v.setValue(volume);
+    }
 
-        clip.stop();
+    /**
+     * Stops the audio file
+     */
+    public void stop() {
+        if (clip.isRunning()) clip.stop();
+        active = false;
+    }
+
+    public void close(){
+        stop();
         clip.close();
     }
 
-    /**
-     * Gets if sound has finished
-     * @return if sound has finished
-     */
-    public boolean isSoundFinished() {
-        return clip.getFramePosition() == clip.getFrameLength();
+    public boolean isActive(){
+        return this.active;
     }
 }

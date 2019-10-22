@@ -12,7 +12,7 @@
 package net.athonedevs.krork.nysvaui;
 
 import net.athonedevs.krork.api.KrorkAPI;
-import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
+import net.athonedevs.krork.nysvaui.helpers.UIDimension;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -27,7 +27,7 @@ public abstract class NysvaUI {
 
     protected final KrorkAPI api;
 
-    protected RelativeDimension relativeDimension;
+    protected UIDimension UIDimension;
 
     private boolean draggable = false;
     protected boolean hovering = false;
@@ -39,6 +39,7 @@ public abstract class NysvaUI {
 
     private NysvaUI parent;
     protected List<NysvaUI> components;
+    protected int marginX, marginY;
 
     /**
      * Default NysvaUI constructor
@@ -48,29 +49,34 @@ public abstract class NysvaUI {
         this.api = api;
 
         components = new ArrayList<>();
-        setRelativeDimension(new RelativeDimension());
+        setUIDimension(new UIDimension());
+
+        marginX = 5;
+        marginY = 10;
     }
 
     public abstract void tick();
     public abstract void render(Graphics g);
     public abstract void onClick();
 
+    private int yc = 0;
     public void onMouseMove(MouseEvent e) {
-        hovering = getRelativeDimension().getBounds().contains(e.getX(), e.getY());
+        hovering = getUIDimension().getBounds().contains(e.getX(), e.getY());
+        yc = e.getY();
     }
 
-    // ToDo: Make real & smooth movement
     public void onMouseDragged(MouseEvent e) {
         if (hovering && isDraggable()) {
-            getRelativeDimension().setX(api.getMouseManager().getMouseX() - (getRelativeDimension().getWidth() / 2));
-            getRelativeDimension().setY(api.getMouseManager().getMouseY() - 20);
+            getUIDimension().setX(getUIDimension().getX() + (e.getX() - getUIDimension().getX()));
+            getUIDimension().setY(getUIDimension().getY() + (e.getY() - getUIDimension().getY()));
         }
-        if (!components.isEmpty()) components.forEach(c -> {
-            final int newX = e.getX() > c.getRelativeDimension().getX() ? c.getRelativeDimension().getX() + (e.getX() - c.getRelativeDimension().getX()) : c.getRelativeDimension().getX() - (e.getX() + c.getRelativeDimension().getX());
-            final int newY = e.getY() > c.getRelativeDimension().getY() ? c.getRelativeDimension().getY() + (e.getY() - c.getRelativeDimension().getY()) : c.getRelativeDimension().getY() - (e.getY() + c.getRelativeDimension().getY());
 
-            c.getRelativeDimension().setX(newX - (getRelativeDimension().getWidth() / 2) + 5);
-            c.getRelativeDimension().setY(newY + 20 + 5);
+        // Move all components inside
+        if (!components.isEmpty()) components.forEach(c -> {
+            c.getUIDimension().setX(c.getUIDimension().getX() + (getUIDimension().getX() - c.getUIDimension().getX()) + marginX);
+            if (yc < e.getY() | yc > e.getY()) {
+                c.getUIDimension().setY(c.getUIDimension().getY() + (getUIDimension().getY() - c.getUIDimension().getY()) + marginY);
+            }
         });
     }
 
@@ -80,9 +86,9 @@ public abstract class NysvaUI {
 
     protected void drawImage(Graphics g, BufferedImage image) {
         if (hovering) {
-            g.drawImage(image, getRelativeDimension().getX(), getRelativeDimension().getY(), getRelativeDimension().getWidth() + 5, getRelativeDimension().getHeight() + 5, null);
+            g.drawImage(image, getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth() + 5, getUIDimension().getHeight() + 5, null);
         } else {
-            g.drawImage(image, getRelativeDimension().getX(), getRelativeDimension().getY(), getRelativeDimension().getWidth(), getRelativeDimension().getHeight(),null);
+            g.drawImage(image, getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth(), getUIDimension().getHeight(),null);
         }
     }
 
@@ -90,12 +96,12 @@ public abstract class NysvaUI {
     //
 
 
-    public RelativeDimension getRelativeDimension() {
-        return relativeDimension == null ? relativeDimension = new RelativeDimension() : relativeDimension;
+    public UIDimension getUIDimension() {
+        return UIDimension == null ? UIDimension = new UIDimension() : UIDimension;
     }
-    public void setRelativeDimension(RelativeDimension relativeDimension) {
-        this.relativeDimension = relativeDimension;
-        setMaxWidth(relativeDimension.getMaxWidth());
+    public void setUIDimension(UIDimension UIDimension) {
+        this.UIDimension = UIDimension;
+        setMaxWidth(UIDimension.getMaxWidth());
     }
 
     public void setMaxWidth(int maxWidth) {

@@ -17,7 +17,7 @@ import net.athonedevs.krork.nysvaui.NysvaManager;
 import net.athonedevs.krork.nysvaui.components.base.UIRainbowBlock;
 import net.athonedevs.krork.nysvaui.components.text.UIText;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
-import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
+import net.athonedevs.krork.nysvaui.helpers.UIDimension;
 
 import java.awt.*;
 
@@ -34,13 +34,18 @@ public class DefaultState extends State {
         final UIRainbowBlock block = new UIRainbowBlock(api, 0.5);
         block.setRounded(true);
         block.setDraggable(true);
-        block.setRelativeDimension(new RelativeDimension(100, 100, 300, 300));
+        block.setUIDimension(new UIDimension(100, 100, 300, 300));
 
         final UIText info = new UIText(api);
         info.setText("Krork Engine " + Krork.getVersion() + " by AthoneDevs");
         info.setTextColor(NysvaColor.DARK_GRAY);
         info.customizeFont(Font.BOLD, 36);
-        info.setRelativeDimension(new RelativeDimension(API.getWidth() / 3, 10, 300, 300));
+        info.setUIDimension(new UIDimension(API.getWidth() / 3, 10, 300, 300));
+
+        final UIText i = new UIText(api);
+        i.setText("Hola");
+        i.setUIDimension(new UIDimension(5, 150, 300, 300));
+        block.addUIComponent(i);
 
         uiManager.addObject(block);
         uiManager.addObject(info);

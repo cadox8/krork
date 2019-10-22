@@ -43,7 +43,7 @@ public class UIText extends NysvaUI {
     private void drawString(Graphics g) {
         g.setColor(textColor.getColor());
         g.setFont(getFont());
-        g.drawString(text, getRelativeDimension().getX() + 5, getRelativeDimension().getY() + g.getFont().getSize());
+        g.drawString(text, getUIDimension().getX() + 5, getUIDimension().getY() + g.getFont().getSize());
     }
 
     //

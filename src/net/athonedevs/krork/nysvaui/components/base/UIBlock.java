@@ -14,7 +14,7 @@ package net.athonedevs.krork.nysvaui.components.base;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.NysvaUI;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
-import net.athonedevs.krork.nysvaui.helpers.RelativeDimension;
+import net.athonedevs.krork.nysvaui.helpers.UIDimension;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
@@ -42,7 +42,7 @@ public class UIBlock extends NysvaUI {
     public void render(Graphics g) {
         final Graphics2D g2 = (Graphics2D) g;
         g2.setColor(background.getColor());
-        final Rectangle r = getRelativeDimension().getBounds();
+        final Rectangle r = getUIDimension().getBounds();
 
         if (isRounded()) {
             final RoundRectangle2D r2 = new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), 35, 35);
@@ -61,10 +61,10 @@ public class UIBlock extends NysvaUI {
     }
 
     public void addUIComponent(NysvaUI component) {
-        final RelativeDimension textDimension = component.getRelativeDimension();
-        final RelativeDimension rd = new RelativeDimension(textDimension.getX() + getRelativeDimension().getX() + 5, 5 + textDimension.getY() + getRelativeDimension().getY(), textDimension.getWidth(), textDimension.getHeight());
-        component.setRelativeDimension(rd);
-        component.setMaxWidth(getRelativeDimension().getMaxWidth());
+        final UIDimension textDimension = component.getUIDimension();
+        final UIDimension rd = new UIDimension(textDimension.getX() + getUIDimension().getX() + 5, 5 + textDimension.getY() + getUIDimension().getY(), textDimension.getWidth(), textDimension.getHeight());
+        component.setUIDimension(rd);
+        component.setMaxWidth(getUIDimension().getMaxWidth());
         components.add(component);
         component.setParent(this);
     }

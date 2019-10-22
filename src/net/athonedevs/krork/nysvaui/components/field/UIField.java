@@ -46,7 +46,7 @@ public class UIField extends NysvaUI {
     }
 
     private boolean canWrite(Graphics g, String text) {
-        return g.getFontMetrics(g.getFont()).stringWidth(text) > getRelativeDimension().getWidth();
+        return g.getFontMetrics(g.getFont()).stringWidth(text) > getUIDimension().getWidth();
     }
 
     public String getText() {

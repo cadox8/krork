@@ -13,13 +13,13 @@ package net.athonedevs.krork.nysvaui.helpers;
 
 import java.awt.*;
 
-public class RelativeDimension {
+public class UIDimension {
 
     private int x = 0, y = 0, width = 0, height = 0;
 
-    public RelativeDimension() {}
+    public UIDimension() {}
 
-    public RelativeDimension(int x, int y, int width, int height) {
+    public UIDimension(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -38,7 +38,7 @@ public class RelativeDimension {
         return y + height;
     }
 
-    public RelativeDimension add(int x, int y, int width, int height) {
+    public UIDimension add(int x, int y, int width, int height) {
         this.x += x;
         this.y += y;
         this.width += width;
@@ -46,7 +46,7 @@ public class RelativeDimension {
         return this;
     }
 
-    public RelativeDimension set(int x, int y, int width, int height) {
+    public UIDimension set(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -54,11 +54,11 @@ public class RelativeDimension {
         return this;
     }
 
-    public RelativeDimension addX(int x) {
+    public UIDimension addX(int x) {
         setX(getX() + x);
         return this;
     }
-    public RelativeDimension addY(int y) {
+    public UIDimension addY(int y) {
         setY(getY() + y);
         return this;
     }

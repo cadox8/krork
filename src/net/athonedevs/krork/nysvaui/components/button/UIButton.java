@@ -40,7 +40,7 @@ public class UIButton extends UIText {
     @Override
     public void render(Graphics g) {
         g.setFont(KrorkAPI.getGameFont());
-        block.setRelativeDimension(getRelativeDimension());
+        block.setUIDimension(getUIDimension());
         block.render(g);
         super.render(g);
     }
