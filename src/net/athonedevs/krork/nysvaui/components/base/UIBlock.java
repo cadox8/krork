@@ -25,6 +25,8 @@ public class UIBlock extends NysvaUI {
 
     private boolean rounded = false;
 
+    private int roundRadius = 35;
+
     public UIBlock(KrorkAPI api) {
         this(api, NysvaColor.DARK_GRAY);
     }
@@ -45,7 +47,7 @@ public class UIBlock extends NysvaUI {
         final Rectangle r = getUIDimension().getBounds();
 
         if (isRounded()) {
-            final RoundRectangle2D r2 = new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), 35, 35);
+            final RoundRectangle2D r2 = new RoundRectangle2D.Double(r.getX(), r.getY(), r.getWidth(), r.getHeight(), roundRadius, roundRadius);
             g2.draw(r2);
             g2.fill(r2);
         } else {
@@ -83,5 +85,14 @@ public class UIBlock extends NysvaUI {
 
     public void setRounded(boolean rounded) {
         this.rounded = rounded;
+    }
+
+    public int getRoundRadius() {
+        return roundRadius;
+    }
+
+    public void setRoundRadius(int roundRadius) {
+        if (roundRadius < 0 || roundRadius > 100) throw new IllegalArgumentException("The round radius must be between 0 and 100 (" + roundRadius + ")");
+        this.roundRadius = roundRadius;
     }
 }

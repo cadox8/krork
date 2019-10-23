@@ -59,10 +59,8 @@ public abstract class NysvaUI {
     public abstract void render(Graphics g);
     public abstract void onClick();
 
-    private int yc = 0;
     public void onMouseMove(MouseEvent e) {
         hovering = getUIDimension().getBounds().contains(e.getX(), e.getY());
-        yc = e.getY();
     }
 
     public void onMouseDragged(MouseEvent e) {
@@ -73,10 +71,8 @@ public abstract class NysvaUI {
 
         // Move all components inside
         if (!components.isEmpty()) components.forEach(c -> {
-            c.getUIDimension().setX(c.getUIDimension().getX() + (getUIDimension().getX() - c.getUIDimension().getX()) + marginX);
-            if (yc < e.getY() | yc > e.getY()) {
-                c.getUIDimension().setY(c.getUIDimension().getY() + (getUIDimension().getY() - c.getUIDimension().getY()) + marginY);
-            }
+            c.getUIDimension().setX(c.getParent().getUIDimension().getX() + c.getUIDimension().getX());
+            c.getUIDimension().setY(c.getParent().getUIDimension().getY() + c.getUIDimension().getY());
         });
     }
 
@@ -92,10 +88,7 @@ public abstract class NysvaUI {
         }
     }
 
-
     //
-
-
     public UIDimension getUIDimension() {
         return UIDimension == null ? UIDimension = new UIDimension() : UIDimension;
     }
