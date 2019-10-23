@@ -3,7 +3,7 @@ net.athonedevs.krork.achievements
 net.athonedevs.krork.ai
 net.athonedevs.krork.ai.path
 net.athonedevs.krork.animation
-net.athonedevs.krork.annotations
+net.athonedevs.krork.annotation
 net.athonedevs.krork.api
 net.athonedevs.krork.attributes
 net.athonedevs.krork.dialog
@@ -14,6 +14,14 @@ net.athonedevs.krork.exceptions
 net.athonedevs.krork.gfx
 net.athonedevs.krork.input
 net.athonedevs.krork.items
+net.athonedevs.krork.nysvaui
+net.athonedevs.krork.nysvaui.components.base
+net.athonedevs.krork.nysvaui.components.border
+net.athonedevs.krork.nysvaui.components.button
+net.athonedevs.krork.nysvaui.components.field
+net.athonedevs.krork.nysvaui.components.images
+net.athonedevs.krork.nysvaui.components.text
+net.athonedevs.krork.nysvaui.helpers
 net.athonedevs.krork.options
 net.athonedevs.krork.particles
 net.athonedevs.krork.runnable
@@ -22,6 +30,5 @@ net.athonedevs.krork.sound
 net.athonedevs.krork.state
 net.athonedevs.krork.stats
 net.athonedevs.krork.tiles
-net.athonedevs.krork.ui
 net.athonedevs.krork.utils
 net.athonedevs.krork.world

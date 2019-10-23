@@ -11,7 +11,7 @@
 
 package net.athonedevs.krork.ai.path;
 
-import net.athonedevs.krork.annotations.Experimental;
+import net.athonedevs.krork.annotation.Experimental;
 
 @Experimental
 public class Node {

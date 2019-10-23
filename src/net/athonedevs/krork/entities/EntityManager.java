@@ -11,8 +11,6 @@
 
 package net.athonedevs.krork.entities;
 
-import net.athonedevs.krork.annotations.Experimental;
-import net.athonedevs.krork.annotations.NotNull;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.creatures.Creature;
 import net.athonedevs.krork.exceptions.WorldNotLoadedException;
@@ -24,6 +22,10 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+;
+;
+;
 
 public class EntityManager {
 
@@ -67,7 +69,7 @@ public class EntityManager {
      *
      * @param entity The entity to be added
      */
-    public synchronized void addEntity(@NotNull Entity entity) {
+    public synchronized void addEntity( Entity entity) {
         try {
             if (entity.getLocation() == null || !entity.getLocation().getWorld().getWorldName().equalsIgnoreCase(API.getWorld().getWorldName())) throw new WorldNotLoadedException(entity, API.getWorld());
             entities.add(entity);
@@ -86,7 +88,7 @@ public class EntityManager {
      * @param y The Y value of the Location
      * @return The List of entities at the Location
      */
-    @Experimental
+
     public List<Entity> getEntityOnLoc(float x, float y) {
         return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains((int)x, (int)y)).collect(Collectors.toList());
     }

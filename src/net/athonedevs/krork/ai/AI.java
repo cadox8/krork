@@ -11,13 +11,14 @@
 
 package net.athonedevs.krork.ai;
 
-import net.athonedevs.krork.annotations.Experimental;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.entities.Entity;
 
 import java.awt.*;
 
-@Experimental
+;
+
+
 public abstract class AI {
 
     protected KrorkAPI API;

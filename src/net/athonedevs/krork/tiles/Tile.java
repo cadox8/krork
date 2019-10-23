@@ -12,7 +12,6 @@
 package net.athonedevs.krork.tiles;
 
 import net.athonedevs.krork.animation.Animation;
-import net.athonedevs.krork.annotations.NotNull;
 import net.athonedevs.krork.gfx.Sprites;
 
 import java.awt.*;
@@ -67,7 +66,7 @@ public class Tile {
      *
      * @param animation The animation to be added
      */
-    public void addAnimation(@NotNull Animation animation) {
+    public void addAnimation(Animation animation) {
         this.animation = animation;
     }
 

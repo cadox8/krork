@@ -9,16 +9,21 @@
  *
  */
 
-package net.athonedevs.krork.annotations;
+package net.athonedevs.krork.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
-@Label("Experimental")
-@Description("Element is not to be shown to a user by default")
+/**
+ *
+ * This element has an experimental maturity. Use with caution.
+ *
+ */
+
+
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD, ElementType.TYPE, ElementType.METHOD })
-public @interface Experimental {
-}
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER,
+        ElementType.CONSTRUCTOR, ElementType.LOCAL_VARIABLE, ElementType.PACKAGE,
+        ElementType.ANNOTATION_TYPE, ElementType.TYPE_USE, ElementType.TYPE_PARAMETER
+})
+public @interface Experimental {}

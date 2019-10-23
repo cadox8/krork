@@ -11,9 +11,9 @@
 
 package net.athonedevs.krork.ai.path;
 
-import net.athonedevs.krork.annotations.Experimental;
+;
 
-@Experimental
+
 public class PathFinder {
 
 }

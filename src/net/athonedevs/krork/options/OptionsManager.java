@@ -11,7 +11,6 @@
 
 package net.athonedevs.krork.options;
 
-import net.athonedevs.krork.annotations.NotNull;
 
 import java.lang.reflect.Field;
 
@@ -19,7 +18,7 @@ public class OptionsManager {
 
     private final Options options;
 
-    public OptionsManager(@NotNull Options options) {
+    public OptionsManager(Options options) {
         this.options = options;
     }
 
