@@ -62,9 +62,13 @@ public class UIBlock extends NysvaUI {
         if (!components.isEmpty()) components.forEach(NysvaUI::onClick);
     }
 
+    public void transparentBackground(int alpha) {
+        setBackground(background.transparent(alpha));
+    }
+
     public void addUIComponent(NysvaUI component) {
-        final UIDimension textDimension = component.getUIDimension();
-        final UIDimension rd = new UIDimension(textDimension.getX() + getUIDimension().getX() + 5, 5 + textDimension.getY() + getUIDimension().getY(), textDimension.getWidth(), textDimension.getHeight());
+        final UIDimension childComponent = component.getUIDimension();
+        final UIDimension rd = new UIDimension(childComponent.getX() + getUIDimension().getX() + 5, 5 + childComponent.getY() + getUIDimension().getY(), childComponent.getWidth(), childComponent.getHeight());
         component.setUIDimension(rd);
         component.setMaxWidth(getUIDimension().getMaxWidth());
         components.add(component);

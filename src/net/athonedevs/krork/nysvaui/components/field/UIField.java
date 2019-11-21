@@ -11,17 +11,20 @@
 
 package net.athonedevs.krork.nysvaui.components.field;
 
+import net.athonedevs.krork.annotation.Experimental;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.ClickListener;
 import net.athonedevs.krork.nysvaui.NysvaUI;
 
 import java.awt.*;
 
+@Experimental
 public class UIField extends NysvaUI {
 
     private ClickListener clicker;
 
     private String text;
+    private int maxCharacters;
 
     public UIField(KrorkAPI api) {
         super(api);
@@ -46,7 +49,7 @@ public class UIField extends NysvaUI {
     }
 
     private boolean canWrite(Graphics g, String text) {
-        return g.getFontMetrics(g.getFont()).stringWidth(text) > getUIDimension().getWidth();
+        return g.getFontMetrics(g.getFont()).stringWidth(text) > getUIDimension().getWidth() || text.length() < maxCharacters;
     }
 
     public String getText() {
@@ -55,5 +58,13 @@ public class UIField extends NysvaUI {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getMaxCharacters() {
+        return maxCharacters;
+    }
+
+    public void setMaxCharacters(int maxCharacters) {
+        this.maxCharacters = maxCharacters;
     }
 }

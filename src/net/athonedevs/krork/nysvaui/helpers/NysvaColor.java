@@ -35,9 +35,13 @@ public class NysvaColor {
     }
     @ConstructorProperties({"red", "green", "blue", "alpha"})
     private NysvaColor(int r, int g, int b, int a) {
-        value = ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8)  | ((b & 0xFF) << 0);
-
+        value = ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8)  | (b & 0xFF);
         testColorValueRange(r, g, b, a);
+    }
+
+    public NysvaColor transparent(int alpha) {
+        if (alpha < 0 || alpha > 255) throw new IllegalArgumentException("Alpha must be a value between 0 and 255");
+        return new NysvaColor(getRed(), getGreen(), getGreen(), alpha);
     }
 
     private static void testColorValueRange(int r, int g, int b, int a) {
@@ -90,7 +94,7 @@ public class NysvaColor {
      * @see #getRGB
      */
     public int getBlue() {
-        return (getRGB() >> 0) & 0xFF;
+        return (getRGB()) & 0xFF;
     }
 
     /**

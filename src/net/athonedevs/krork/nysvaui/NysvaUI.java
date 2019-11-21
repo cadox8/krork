@@ -71,8 +71,8 @@ public abstract class NysvaUI {
 
         // Move all components inside
         if (!components.isEmpty()) components.forEach(c -> {
-            c.getUIDimension().setX(c.getParent().getUIDimension().getX() + c.getUIDimension().getX());
-            c.getUIDimension().setY(c.getParent().getUIDimension().getY() + c.getUIDimension().getY());
+            c.getUIDimension().addX(c.getParent().getUIDimension().getX());
+            c.getUIDimension().addY(c.getParent().getUIDimension().getY());
         });
     }
 

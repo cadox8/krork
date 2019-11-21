@@ -14,7 +14,7 @@ package net.athonedevs.krork.state;
 import net.athonedevs.krork.Krork;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.NysvaManager;
-import net.athonedevs.krork.nysvaui.components.base.UIRainbowBlock;
+import net.athonedevs.krork.nysvaui.components.base.UIBlock;
 import net.athonedevs.krork.nysvaui.components.text.UIText;
 import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
 import net.athonedevs.krork.nysvaui.helpers.UIDimension;
@@ -31,7 +31,7 @@ public class DefaultState extends State {
         uiManager = new NysvaManager();
         API.getMouseManager().setUiManager(uiManager);
 
-        final UIRainbowBlock block = new UIRainbowBlock(api, 0.5);
+        final UIBlock block = new UIBlock(api, NysvaColor.DARK_GRAY);
         block.setRounded(true);
         block.setDraggable(true);
         block.setUIDimension(new UIDimension(100, 100, 300, 300));
