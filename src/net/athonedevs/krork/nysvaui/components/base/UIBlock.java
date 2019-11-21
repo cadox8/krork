@@ -80,7 +80,10 @@ public class UIBlock extends NysvaUI {
     }
 
     public void setBackground(NysvaColor background) {
-        this.background = background;
+        setBackground(background, 255);
+    }
+    public void setBackground(NysvaColor background, int alpha) {
+        this.background = background.transparent(alpha);
     }
 
     public boolean isRounded() {

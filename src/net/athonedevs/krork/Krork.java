@@ -28,7 +28,7 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    private static final String version = "v2 Beta";
+    private static final String version = "v2.0 Beta";
     private static final int versionNumber = 19;
     private static String game;
     //

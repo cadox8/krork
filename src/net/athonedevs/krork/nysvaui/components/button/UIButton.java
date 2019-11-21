@@ -35,12 +35,13 @@ public class UIButton extends UIText {
     }
 
     @Override
-    public void tick() {}
+    public void tick() {
+        block.setUIDimension(getUIDimension());
+    }
 
     @Override
     public void render(Graphics g) {
         g.setFont(KrorkAPI.getGameFont());
-        block.setUIDimension(getUIDimension());
         block.render(g);
         super.render(g);
     }

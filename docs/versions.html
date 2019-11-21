@@ -37,7 +37,7 @@
     <meta property="og:description" content="Java engine to make games" />
 
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css">
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
@@ -68,52 +68,51 @@
         </div>
     </div>
 </section>
-<br>
+
 <div class="notification is-warning has-text-centered">
     Krork Engine is in the <span style="color: red">Beta version</span>.
     You can report any bug at <a href="mailto:cadox8@gmail.com" style="color: blue">my e-mail</a>.
 </div>
 
-<section class="section" id="road">
-    <div class="container">
-        <h1 class="title has-text-centered">Versions</h1><hr>
+<section class="section" id="road" style="padding-top: 0">
+    <div class="container is-fluid">
+        <h1 class="title has-text-centered">Versions</h1>
+        <p class="help has-text-centered">Select the Version you want to use/download</p><hr>
         <div class="columns">
-            <div class="column is-2">
-                <div class="field">
-                    <div class="control has-icons-left">
-                        <div class="select is-rounded is-primary">
-                            <select class="center2" id="version">
-                                <option selected>1.1-Beta</option>
-                                <option>1.0-Beta</option>
-                                <option>0.8.3-Alpha</option>
-                                <option>0.8-Alpha</option>
-                                <option>0.7.3-Alpha</option>
-                                <option>0.7.2-Alpha</option>
-                                <option>0.7.1-Alpha</option>
-                                <option>0.7-Alpha</option>
-                                <option>0.6.4-Alpha</option>
-                                <option>0.6.3-Alpha</option>
-                                <option>0.6.2-Alpha</option>
-                                <option>0.6.1-Alpha</option>
-                                <option>0.6-Alpha</option>
-                                <option>0.5.7-Alpha</option>
-                                <option>0.5.6-Alpha</option>
-                                <option>0.5.2-Alpha</option>
-                                <option>0.5.1-Alpha</option>
-                                <option>0.5-Alpha</option>
-                                <option>0.4.7-Alpha</option>
-                            </select>
-                        </div>
-                        <div class="icon is-left">
-                            <i class="fas fa-code-branch" style="color: black"></i>
-                        </div>
-                    </div>
-                    <p class="help">Select a version to download or use it</p>
+            <div class="column is-3">
+                <h4 class="subtitle hast-text-centered">Release Versions</h4>
+                <div class="field is-grouped">
+
+                    <p class="control"><button onclick="changeText('1.1-Beta')" class="button is-info">1.1-Beta</button></p>
+                    <p class="control"><button onclick="changeText('1.0-Beta')" class="button is-info">1.0-Beta</button></p>
+                    <p class="control"><button onclick="changeText('0.8.3-Alpha')" class="button is-info">0.8.3-Alpha</button></p>
                 </div>
-                <br>
-                <a class="button is-info is-rounded" id="download" href="" target="_blank"><span class="icon"><i class="fas fa-download"></i></span><span id="text">Download</span></a>
+                <div class="field is-grouped">
+                    <p class="control"><button onclick="changeText('0.8-Alpha')" class="button is-info">0.8-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.7.3-Alpha')" class="button is-info">0.7.3-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.7.2-Alpha')" class="button is-info">0.7.2-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.7.1-Alpha')" class="button is-info">0.7.1-Alpha</button></p>
+                </div>
+                <div class="field is-grouped">
+                    <p class="control"><button onclick="changeText('0.7-Alpha')" class="button is-info">0.7-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.6.4-Alpha')" class="button is-info">0.6.4-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.6.3-Alpha')" class="button is-info">0.6.3-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.6.2-Alpha')" class="button is-info">0.6.2-Alpha</button></p>
+                </div>
+                <div class="field is-grouped">
+                    <p class="control"><button onclick="changeText('0.6.1-Alpha')" class="button is-info">0.6.1-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.6-Alpha')" class="button is-info">0.6-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.5.7-Alpha')" class="button is-info">0.5.7-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.5.6-Alpha')" class="button is-info">0.5.6-Alpha</button></p>
+                </div>
+                <div class="field is-grouped">
+                    <p class="control"><button onclick="changeText('0.5.2-Alpha')" class="button is-info">0.5.2-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.5.1-Alpha')" class="button is-info">0.5.1-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.5-Alpha')" class="button is-info">0.5-Alpha</button></p>
+                    <p class="control"><button onclick="changeText('0.4.7-Alpha')" class="button is-info">0.4.7-Alpha</button></p>
+                </div>
             </div>
-            <div class="column">
+            <div class="column is-6">
                 <xmp>
                     <repository>
                         <id>krork-repo</id>
@@ -127,31 +126,28 @@
                         <version>VERSION</version>
                     </dependency>
                 </xmp>
+                <center><a class="button is-warning is-rounded" id="download" href="" target="_blank"><span class="icon"><i class="fas fa-download"></i></span><span id="text">Download</span></a></center>
+            </div>
+            <div class="column is-3">
+                <h4 class="subtitle hast-text-centered">Beta Versions</h4>
+                <p class="control"><button onclick="changeText('2.0-Beta-SNAPSHOT')" class="button is-danger">2.0-Beta-SNAPSHOT</button></p>
             </div>
         </div>
     </div>
 </section>
 
     <script>
-        $(document).ready(function() {
-            var selected = $("#version option:selected").text();
+        $(document).ready(function() {changeText("1.1-Beta");});
+
+        function changeText(version) {
             $("#code").text("                    <dependency>\n" +
                 "                        <groupId>net.athonedevs</groupId>\n" +
                 "                        <artifactId>Krork</artifactId>\n" +
-                "                        <version>" + selected + "</version>\n" +
+                "                        <version>" + version + "</version>\n" +
                 "                    </dependency>");
-            $("#text").text("Download - v" + selected);
-            $("#download").attr("href", "repo/net/athonedevs/Krork/" + selected + "/Krork-" + selected + ".jar");
-        }).change(function() {
-            var selected = $("#version option:selected").text();
-            $("#code").text("                    <dependency>\n" +
-                "                        <groupId>net.athonedevs</groupId>\n" +
-                "                        <artifactId>Krork</artifactId>\n" +
-                "                        <version>" + selected + "</version>\n" +
-                "                    </dependency>");
-            $("#text").text("Download - v" + selected);
-            $("#download").attr("href", "repo/net/athonedevs/Krork/" + selected + "/Krork-" + selected + ".jar");
-        });
+            $("#text").text("Download v" + version);
+            $("#download").attr("href", "repo/net/athonedevs/Krork/" + version + "/Krork-" + version + ".jar");
+        }
     </script>
 
 </body>

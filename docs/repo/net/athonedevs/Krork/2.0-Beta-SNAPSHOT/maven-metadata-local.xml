@@ -2,7 +2,7 @@
 <metadata modelVersion="1.1.0">
   <groupId>net.athonedevs</groupId>
   <artifactId>Krork</artifactId>
-  <version>2-Beta-SNAPSHOT</version>
+  <version>2.0-Beta-SNAPSHOT</version>
   <versioning>
     <snapshot>
       <localCopy>true</localCopy>
@@ -11,12 +11,12 @@
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>2-Beta-SNAPSHOT</value>
+        <value>2.0-Beta-SNAPSHOT</value>
         <updated>20191120235855</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>2-Beta-SNAPSHOT</value>
+        <value>2.0-Beta-SNAPSHOT</value>
         <updated>20191120235855</updated>
       </snapshotVersion>
     </snapshotVersions>

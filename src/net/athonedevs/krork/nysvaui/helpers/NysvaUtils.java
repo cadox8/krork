@@ -20,8 +20,14 @@ public class NysvaUtils {
     private static Random r = new Random();
     private static NysvaColor lastColor = null;
 
+    public static NysvaColor randomColor(NysvaColor... exclude) {
+        final List<NysvaColor> colors =Arrays.asList(NysvaColor.allColors());
+        colors.removeAll(Arrays.asList(exclude));
+        return randomColor(colors);
+    }
+
     public static NysvaColor randomColor() {
-        return randomColor(Arrays.asList(NysvaColor.DARK_GRAY, NysvaColor.BLUE, NysvaColor.GREEN, NysvaColor.ORANGE, NysvaColor.PURPLE, NysvaColor.RED, NysvaColor.TURQUOISE, NysvaColor.YELLOW));
+        return randomColor(NysvaColor.allColors());
     }
 
     public static NysvaColor randomColor(List<NysvaColor> selectedColors) {

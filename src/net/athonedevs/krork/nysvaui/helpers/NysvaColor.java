@@ -14,6 +14,9 @@ package net.athonedevs.krork.nysvaui.helpers;
 import java.awt.*;
 import java.awt.image.ColorModel;
 import java.beans.ConstructorProperties;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class NysvaColor {
 
@@ -50,19 +53,19 @@ public class NysvaColor {
 
         if ( a < 0 || a > 255) {
             rangeError = true;
-            badComponentString = badComponentString + " Alpha";
+            badComponentString += " Alpha";
         }
         if ( r < 0 || r > 255) {
             rangeError = true;
-            badComponentString = badComponentString + " Red";
+            badComponentString += " Red";
         }
         if ( g < 0 || g > 255) {
             rangeError = true;
-            badComponentString = badComponentString + " Green";
+            badComponentString += " Green";
         }
         if ( b < 0 || b > 255) {
             rangeError = true;
-            badComponentString = badComponentString + " Blue";
+            badComponentString += " Blue";
         }
         if (rangeError) throw new IllegalArgumentException("Color parameter outside of expected range:" + badComponentString);
     }
@@ -125,5 +128,11 @@ public class NysvaColor {
 
     public Color getColor() {
         return new Color(getRed(), getGreen(), getBlue(), getAlpha());
+    }
+
+    public static NysvaColor[] allColors() {
+        final List<NysvaColor> colors = new ArrayList<>(Arrays.asList(NysvaColor.DARK_GRAY, NysvaColor.BLUE, NysvaColor.GREEN, NysvaColor.ORANGE, NysvaColor.PURPLE, NysvaColor.RED, NysvaColor.TURQUOISE, NysvaColor.YELLOW));
+        colors.add(WHITE);
+        return colors.toArray(new NysvaColor[]{});
     }
 }

@@ -12,16 +12,24 @@
 package net.athonedevs.krork.nysvaui.components.base;
 
 import net.athonedevs.krork.api.KrorkAPI;
+import net.athonedevs.krork.nysvaui.helpers.NysvaColor;
 import net.athonedevs.krork.nysvaui.helpers.NysvaUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class UIRainbowBlock extends UIBlock {
 
     private double speed;
     private long lastTime, timer = 0;
 
+    private List<NysvaColor> colors;
+    private int alpha = 255;
+
     public UIRainbowBlock(KrorkAPI api, double speedInSeconds) {
         super(api);
         this.speed = 1000 * speedInSeconds;
+        colors = Arrays.asList(NysvaColor.allColors());
     }
 
     @Override
@@ -31,7 +39,7 @@ public class UIRainbowBlock extends UIBlock {
 
         if (timer > speed) {
             timer = 0;
-            setBackground(NysvaUtils.randomColor());
+            setBackground(finalColor(NysvaUtils.randomColor(colors)));
         }
     }
 
@@ -41,5 +49,18 @@ public class UIRainbowBlock extends UIBlock {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public void transparentBackground(int alpha) {
+        this.alpha = alpha;
+        setBackground(getBackground().transparent(alpha));
+    }
+
+    public void rainbowColors(NysvaColor... colors) {
+        this.colors.addAll(Arrays.asList(colors));
+    }
+
+    private NysvaColor finalColor(NysvaColor color) {
+        return color.transparent(alpha);
     }
 }
