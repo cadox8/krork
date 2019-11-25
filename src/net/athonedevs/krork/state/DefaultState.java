@@ -44,7 +44,11 @@ public class DefaultState extends State {
 
         final UIText i = new UIText(api);
         i.setText("Hola");
-        i.setUIDimension(new UIDimension(5, 150, 300, 300));
+        final UIDimension dimension = new UIDimension(5, 150, 300, 300);
+        dimension.setRefX(5);
+        dimension.setRefY(150);
+
+        i.setUIDimension(dimension);
         block.addUIComponent(i);
 
         uiManager.addObject(block);

@@ -35,7 +35,8 @@
       <version>1.0-Beta</version>
       <version>1.1-Beta</version>
       <version>2.0-Beta-SNAPSHOT</version>
+      <version>2.0.1-Beta-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20191120235855</lastUpdated>
+    <lastUpdated>20191125134508</lastUpdated>
   </versioning>
 </metadata>

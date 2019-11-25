@@ -68,7 +68,9 @@ public class UIBlock extends NysvaUI {
 
     public void addUIComponent(NysvaUI component) {
         final UIDimension childComponent = component.getUIDimension();
-        final UIDimension rd = new UIDimension(childComponent.getX() + getUIDimension().getX() + 5, 5 + childComponent.getY() + getUIDimension().getY(), childComponent.getWidth(), childComponent.getHeight());
+        final UIDimension rd = new UIDimension(childComponent.getRefX() + getUIDimension().getX() + 5, 5 + childComponent.getRefY() + getUIDimension().getY(), childComponent.getWidth(), childComponent.getHeight());
+        rd.setRefX(component.getUIDimension().getRefX());
+        rd.setRefY(component.getUIDimension().getRefY());
         component.setUIDimension(rd);
         component.setMaxWidth(getUIDimension().getMaxWidth());
         components.add(component);

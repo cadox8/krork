@@ -17,6 +17,8 @@ public class UIDimension {
 
     private int x = 0, y = 0, width = 0, height = 0;
 
+    private int refX = 0, refY = 0;
+
     public UIDimension() {}
 
     public UIDimension(int x, int y, int width, int height) {
@@ -72,6 +74,22 @@ public class UIDimension {
         this.x = x;
     }
 
+    public int getRefX() {
+        return refX;
+    }
+
+    public void setRefX(int refX) {
+        this.refX = refX;
+    }
+
+    public int getRefY() {
+        return refY;
+    }
+
+    public void setRefY(int refY) {
+        this.refY = refY;
+    }
+
     public int getY() {
         return y;
     }
@@ -98,11 +116,13 @@ public class UIDimension {
 
     @Override
     public String toString() {
-        return "RelativeDimension{" +
+        return "UIDimension{" +
                 "x=" + x +
                 ", y=" + y +
                 ", width=" + width +
                 ", height=" + height +
+                ", refX=" + refX +
+                ", refY=" + refY +
                 '}';
     }
 }
