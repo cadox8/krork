@@ -29,7 +29,7 @@ public class UIButton extends UIText {
      * Generates a Button Object
      */
     public UIButton(KrorkAPI api, ClickListener clicker) {
-        super(api);
+        super(api, "");
         this.clicker = clicker;
         setTextColor(NysvaColor.DARK_GRAY);
     }

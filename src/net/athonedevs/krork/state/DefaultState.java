@@ -36,14 +36,12 @@ public class DefaultState extends State {
         block.setDraggable(true);
         block.setUIDimension(new UIDimension(100, 100, 300, 300));
 
-        final UIText info = new UIText(api);
-        info.setText("Krork Engine " + Krork.getVersion() + " by AthoneDevs");
+        final UIText info = new UIText(api, "Krork Engine " + Krork.getVersion() + " by AthoneDevs");
         info.setTextColor(NysvaColor.DARK_GRAY);
         info.customizeFont(Font.BOLD, 36);
         info.setUIDimension(new UIDimension(API.getWidth() / 3, 10, 300, 300));
 
-        final UIText i = new UIText(api);
-        i.setText("Hola");
+        final UIText i = new UIText(api, "Hola");
         final UIDimension dimension = new UIDimension(5, 150, 300, 300);
         dimension.setRefX(5);
         dimension.setRefY(150);

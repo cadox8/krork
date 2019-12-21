@@ -1,6 +1,10 @@
 {
-  "latest": 20,
+  "latest": 21,
   "older": [
+    {
+      "id": 21,
+      "version": "2.0.2 - Beta - SNAPSHOT"
+    },
     {
       "id": 20,
       "version": "2.0.1 - Beta - SNAPSHOT"

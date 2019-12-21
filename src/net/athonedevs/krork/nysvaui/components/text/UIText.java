@@ -20,13 +20,15 @@ import java.awt.*;
 public class UIText extends NysvaUI {
 
     protected NysvaColor textColor = NysvaColor.WHITE;
-    protected String text = "";
+    protected String text;
 
     /**
      * Generates a Text Object
      */
-    public UIText(KrorkAPI api) {
+    public UIText(KrorkAPI api, String text) {
         super(api);
+
+        this.text = text;
     }
 
     @Override
