@@ -16,20 +16,31 @@ import net.athonedevs.krork.nysvaui.NysvaUI;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 public class UIImage extends NysvaUI {
 
-    private BufferedImage image;
+    private BufferedImage[] images;
 
     /**
      * Generates a Image Object
      *
-     * @param api
+     * @param krorkAPI
      * @param image The image to be shown
      */
-    public UIImage(KrorkAPI api, BufferedImage image) {
-        super(api);
-        this.image = image;
+    public UIImage(KrorkAPI krorkAPI, BufferedImage image) {
+        this(krorkAPI, new BufferedImage[]{image});
+    }
+
+    /**
+     * Generates a Image Object
+     *
+     * @param krorkAPI
+     * @param images The images to be shown
+     */
+    public UIImage(KrorkAPI krorkAPI, BufferedImage[] images) {
+        super(krorkAPI);
+        this.images = images;
     }
 
     @Override
@@ -38,7 +49,7 @@ public class UIImage extends NysvaUI {
 
     @Override
     public void render(Graphics g) {
-        drawImage(g, image);
+        drawImage(g, images);
     }
 
     @Override
@@ -50,7 +61,16 @@ public class UIImage extends NysvaUI {
      * @param newImage The new image
      */
     public synchronized void changeImage(BufferedImage newImage) {
-        image = newImage;
+        images[0] = newImage;
+    }
+
+    /**
+     * Changes an image on the fly
+     *
+     * @param newImages The new images
+     */
+    public synchronized void changeImages(BufferedImage[] newImages) {
+        images = newImages;
     }
 
     /**
@@ -58,7 +78,7 @@ public class UIImage extends NysvaUI {
      *
      * @return The images
      */
-    public BufferedImage getImage() {
-        return this.image;
+    public BufferedImage[] getImage() {
+        return this.images;
     }
 }

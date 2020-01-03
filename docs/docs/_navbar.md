@@ -1,4 +1,5 @@
 <!-- _navbar.md -->
-- Translations
+- [Go Back](http://cadox8.github.io/krork/)
+<!--- Translations
   - [:uk: English](/)
-  - [:es: Spanish](/es/)
+  - [:es: Spanish](/es/)-->

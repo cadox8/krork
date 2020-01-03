@@ -23,9 +23,9 @@ import java.util.Arrays;
 
 public class Updater {
 
-    public static void checkForUpdate(){
+    public static void checkForUpdate() {
         if (getEngineVersion().latest > Krork.getVersionNumber()) {
-            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + Arrays.asList(getEngineVersion().older).stream().filter(v -> v.id == getEngineVersion().latest).findAny().get().version, "Krork");
+            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + Arrays.stream(getEngineVersion().older).filter(v -> v.id == getEngineVersion().latest).findAny().get().version, "Krork");
             Log.log(Log.LogType.WARNING, "You can download it from here: https://cadox8.github.io/krork/", "Krork");
             Log.log(Log.LogType.WARNING, "Or just update your pom.xml file", "Krork");
         } else {
@@ -33,7 +33,7 @@ public class Updater {
         }
     }
 
-    public static Versions getEngineVersion(){
+    public static Versions getEngineVersion() {
         try {
             URLConnection connection = new URL("https://cadox8.github.io/krork/versions.json").openConnection();
             final String redirect = connection.getHeaderField("Location");

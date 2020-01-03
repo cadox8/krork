@@ -24,12 +24,12 @@ public class UIImageAnimationButton extends UIImageAnimation {
      *
      * @see Animation
      *
-     * @param api
+     * @param krorkAPI
      * @param anim The animation to be shown
      * @param clicker Executes the inside code on click
      */
-    public UIImageAnimationButton(KrorkAPI api, Animation anim, ClickListener clicker) {
-        super(api, anim);
+    public UIImageAnimationButton(KrorkAPI krorkAPI, Animation anim, ClickListener clicker) {
+        super(krorkAPI, anim);
         this.clicker = clicker;
     }
 

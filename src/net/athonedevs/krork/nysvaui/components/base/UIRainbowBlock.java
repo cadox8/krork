@@ -26,8 +26,8 @@ public class UIRainbowBlock extends UIBlock {
     private List<NysvaColor> colors;
     private int alpha = 255;
 
-    public UIRainbowBlock(KrorkAPI api, double speedInSeconds) {
-        super(api);
+    public UIRainbowBlock(KrorkAPI krorkAPI, double speedInSeconds) {
+        super(krorkAPI);
         this.speed = 1000 * speedInSeconds;
         colors = Arrays.asList(NysvaColor.allColors());
     }

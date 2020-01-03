@@ -20,8 +20,12 @@ public class UIImageButton extends UIImage {
 
     private ClickListener clicker;
 
-    public UIImageButton(KrorkAPI api, BufferedImage image, ClickListener clicker) {
-        super(api, image);
+    public UIImageButton(KrorkAPI krorkAPI, BufferedImage image, ClickListener clicker) {
+        this(krorkAPI, new BufferedImage[]{image}, clicker);
+    }
+
+    public UIImageButton(KrorkAPI krorkAPI, BufferedImage[] images, ClickListener clicker) {
+        super(krorkAPI, images);
 
         this.clicker = clicker;
     }

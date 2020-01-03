@@ -27,14 +27,14 @@ public class UIBorder extends NysvaUI {
 
     private int borderRadius = 30;
 
-    public UIBorder(KrorkAPI api) {
-        this(api, 2);
+    public UIBorder(KrorkAPI krorkAPI) {
+        this(krorkAPI, 2);
     }
-    public UIBorder(KrorkAPI api, int borderSize) {
-        this(api, NysvaColor.DARK_GRAY, borderSize);
+    public UIBorder(KrorkAPI krorkAPI, int borderSize) {
+        this(krorkAPI, NysvaColor.DARK_GRAY, borderSize);
     }
-    public UIBorder(KrorkAPI api, NysvaColor background, int borderSize) {
-        super(api);
+    public UIBorder(KrorkAPI krorkAPI, NysvaColor background, int borderSize) {
+        super(krorkAPI);
         this.background = background;
         this.borderSize = borderSize;
     }

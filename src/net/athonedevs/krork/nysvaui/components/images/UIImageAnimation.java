@@ -16,6 +16,7 @@ import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.NysvaUI;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class UIImageAnimation extends NysvaUI {
 
@@ -26,11 +27,11 @@ public class UIImageAnimation extends NysvaUI {
      *
      * @see Animation
      *
-     * @param api
+     * @param krorkAPI
      * @param anim The animation to be shown
      */
-    public UIImageAnimation(KrorkAPI api, Animation anim) {
-        super(api);
+    public UIImageAnimation(KrorkAPI krorkAPI, Animation anim) {
+        super(krorkAPI);
         this.anim = anim;
     }
 
@@ -41,7 +42,7 @@ public class UIImageAnimation extends NysvaUI {
 
     @Override
     public void render(Graphics g) {
-        drawImage(g, anim.getCurrentFrame());
+        drawImage(g, new BufferedImage[]{anim.getCurrentFrame()});
     }
 
     @Override

@@ -23,13 +23,13 @@ public class UIButton extends UIText {
 
     private ClickListener clicker;
 
-    private final UIBlock block = new UIBlock(api, NysvaColor.YELLOW);
+    private final UIBlock block = new UIBlock(krorkAPI, NysvaColor.YELLOW);
 
     /**
      * Generates a Button Object
      */
-    public UIButton(KrorkAPI api, ClickListener clicker) {
-        super(api, "");
+    public UIButton(KrorkAPI krorkAPI, ClickListener clicker) {
+        super(krorkAPI, "");
         this.clicker = clicker;
         setTextColor(NysvaColor.DARK_GRAY);
     }

@@ -25,12 +25,13 @@ public abstract class NysvaUI {
 
     private final long componentID;
 
-    protected final KrorkAPI api;
+    protected final KrorkAPI krorkAPI;
 
     protected UIDimension UIDimension;
 
     private boolean draggable = false;
     protected boolean hovering = false;
+    protected boolean allowHover = true;
     protected boolean enabled = true;
 
     protected Font font = KrorkAPI.getGameFont();
@@ -44,9 +45,9 @@ public abstract class NysvaUI {
     /**
      * Default NysvaUI constructor
      */
-    public NysvaUI(KrorkAPI api) {
+    public NysvaUI(KrorkAPI krorkAPI) {
         componentID = new Random().nextLong();
-        this.api = api;
+        this.krorkAPI = krorkAPI;
 
         components = new ArrayList<>();
         setUIDimension(new UIDimension());
@@ -80,11 +81,17 @@ public abstract class NysvaUI {
         if (hovering) onClick();
     }
 
-    protected void drawImage(Graphics g, BufferedImage image) {
+    protected void drawImage(Graphics g, BufferedImage[] images) {
+        if (images.length > 2) throw new IllegalArgumentException("Images must be 2");
+
         if (hovering) {
-            g.drawImage(image, getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth() + 5, getUIDimension().getHeight() + 5, null);
+            if (images.length == 1) {
+                g.drawImage(images[0], getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth() + 5, getUIDimension().getHeight() + 5,null);
+            } else {
+                g.drawImage(images[1], getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth(), getUIDimension().getHeight(),null);
+            }
         } else {
-            g.drawImage(image, getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth(), getUIDimension().getHeight(),null);
+            g.drawImage(images[0], getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth(), getUIDimension().getHeight(),null);
         }
     }
 
@@ -143,5 +150,13 @@ public abstract class NysvaUI {
 
     public long getComponentID() {
         return componentID;
+    }
+
+    public boolean isAllowHover() {
+        return allowHover;
+    }
+
+    public void setAllowHover(boolean allowHover) {
+        this.allowHover = allowHover;
     }
 }

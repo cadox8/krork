@@ -26,8 +26,8 @@ public class UIRainbowBorder extends UIBorder {
     private List<NysvaColor> colors;
     private int alpha = 255;
 
-    public UIRainbowBorder(KrorkAPI api, int borderSize, double speedInSeconds) {
-        super(api, borderSize);
+    public UIRainbowBorder(KrorkAPI krorkAPI, int borderSize, double speedInSeconds) {
+        super(krorkAPI, borderSize);
         this.speed = 1000 * speedInSeconds;
         colors = Arrays.asList(NysvaColor.allColors());
     }

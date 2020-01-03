@@ -26,17 +26,17 @@ public class UIField extends NysvaUI {
     private String text;
     private int maxCharacters;
 
-    public UIField(KrorkAPI api) {
-        super(api);
+    public UIField(KrorkAPI krorkAPI) {
+        super(krorkAPI);
 
         clicker = () -> {
-            api.getKeyManager().setWritingTo(this);
+            krorkAPI.getKeyManager().setWritingTo(this);
         };
     }
 
     @Override
     public void tick() {
-        if (api.getKeyManager().getWritingTo() == null) return;
+        if (krorkAPI.getKeyManager().getWritingTo() == null) return;
     }
 
     @Override

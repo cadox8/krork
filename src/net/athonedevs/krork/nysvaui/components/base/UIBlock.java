@@ -27,11 +27,11 @@ public class UIBlock extends NysvaUI {
 
     private int roundRadius = 35;
 
-    public UIBlock(KrorkAPI api) {
-        this(api, NysvaColor.DARK_GRAY);
+    public UIBlock(KrorkAPI krorkAPI) {
+        this(krorkAPI, NysvaColor.DARK_GRAY);
     }
-    public UIBlock(KrorkAPI api, NysvaColor background) {
-        super(api);
+    public UIBlock(KrorkAPI krorkAPI, NysvaColor background) {
+        super(krorkAPI);
         this.background = background;
     }
 

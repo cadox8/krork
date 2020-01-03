@@ -25,8 +25,8 @@ public class UIText extends NysvaUI {
     /**
      * Generates a Text Object
      */
-    public UIText(KrorkAPI api, String text) {
-        super(api);
+    public UIText(KrorkAPI krorkAPI, String text) {
+        super(krorkAPI);
 
         this.text = text;
     }
