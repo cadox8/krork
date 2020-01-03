@@ -15,6 +15,7 @@ import net.athonedevs.krork.annotation.Experimental;
 import net.athonedevs.krork.api.KrorkAPI;
 import net.athonedevs.krork.nysvaui.ClickListener;
 import net.athonedevs.krork.nysvaui.NysvaUI;
+import net.athonedevs.krork.nysvaui.components.text.UIText;
 
 import java.awt.*;
 
@@ -23,8 +24,8 @@ public class UIField extends NysvaUI {
 
     private ClickListener clicker;
 
-    private String text;
-    private int maxCharacters;
+    private String text = "";
+    private int maxCharacters = 50;
 
     public UIField(KrorkAPI krorkAPI) {
         super(krorkAPI);
@@ -41,6 +42,9 @@ public class UIField extends NysvaUI {
 
     @Override
     public void render(Graphics g) {
+        final UIText text = new UIText(krorkAPI, getText());
+        text.setUIDimension(getUIDimension());
+        text.render(g);
     }
 
     @Override

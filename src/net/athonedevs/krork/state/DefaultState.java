@@ -29,7 +29,7 @@ public class DefaultState extends State {
         super(krorkAPI);
 
         uiManager = new NysvaManager();
-        API.getMouseManager().setUiManager(uiManager);
+        krorkAPI.getMouseManager().setUiManager(uiManager);
 
         final UIBlock block = new UIBlock(krorkAPI, NysvaColor.DARK_GRAY);
         block.setRounded(true);
@@ -39,7 +39,7 @@ public class DefaultState extends State {
         final UIText info = new UIText(krorkAPI, "Krork Engine " + Krork.getVersion() + " by AthoneDevs");
         info.setTextColor(NysvaColor.DARK_GRAY);
         info.customizeFont(Font.BOLD, 36);
-        info.setUIDimension(new UIDimension(API.getWidth() / 3, 10, 300, 300));
+        info.setUIDimension(new UIDimension(krorkAPI.getWidth() / 3, 10, 300, 300));
 
         final UIText i = new UIText(krorkAPI, "Hola");
         final UIDimension dimension = new UIDimension(5, 150, 300, 300);

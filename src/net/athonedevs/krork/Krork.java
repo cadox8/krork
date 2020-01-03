@@ -46,8 +46,8 @@ public class Krork implements Runnable {
     // Camera
     public GameCamera gameCamera;
 
-    // API
-    private KrorkAPI API;
+    // krorkAPI
+    private KrorkAPI krorkAPI;
 
     /**
      * The default constructor.
@@ -74,10 +74,10 @@ public class Krork implements Runnable {
         this.height = height;
         this.title = title;
 
-        API = new KrorkAPI(this);
+        krorkAPI = new KrorkAPI(this);
 
         mouseManager = new MouseManager();
-        keyManager = new KeyManager(API);
+        keyManager = new KeyManager(krorkAPI);
         init();
     }
 
@@ -106,9 +106,9 @@ public class Krork implements Runnable {
         display.getCanvas().addMouseMotionListener(mouseManager);
         display.getCanvas().addMouseWheelListener(mouseManager);
 
-        gameCamera = new GameCamera(API, 0, 0);
+        gameCamera = new GameCamera(krorkAPI, 0, 0);
 
-        State.setState(new DefaultState(API));
+        State.setState(new DefaultState(krorkAPI));
 
         // Version info
         KrorkAPI.enableDebug(true);
@@ -214,7 +214,7 @@ public class Krork implements Runnable {
     }
 
     public KrorkAPI getAPI() {
-        return this.API;
+        return this.krorkAPI;
     }
 
     public void setWidth(int width) {

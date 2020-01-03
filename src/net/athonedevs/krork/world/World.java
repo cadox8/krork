@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 public class World {
 
-    private KrorkAPI API;
+    private KrorkAPI krorkAPI;
 
     private int width, height;
     private int playerX, playerY;
@@ -37,13 +37,13 @@ public class World {
     /**
      * Default world constructor
      *
-     * @param API The KrorkAPI Class
+     * @param krorkAPI The KrorkAPI Class
      * @param path The path to the world
      */
-    public World(KrorkAPI API, String path) {
-        this.API = API;
+    public World(KrorkAPI krorkAPI, String path) {
+        this.krorkAPI = krorkAPI;
         this.path = path;
-        this.entityManager = new EntityManager(API);
+        this.entityManager = new EntityManager(krorkAPI);
 
         loadWorld();
     }
@@ -63,14 +63,14 @@ public class World {
     }
 
     public synchronized void render(Graphics g){
-        int xStart = (int) Math.max(0, API.getGameCamera().getXOffset() / Tile.TILEWIDTH);
-        int xEnd = (int) Math.min(width, (API.getGameCamera().getXOffset() + API.getWidth()) / Tile.TILEWIDTH + 1);
-        int yStart = (int) Math.max(0, API.getGameCamera().getYOffset() / Tile.TILEHEIGHT);
-        int yEnd = (int) Math.min(height, (API.getGameCamera().getYOffset() + API.getHeight()) / Tile.TILEHEIGHT + 1);
+        int xStart = (int) Math.max(0, krorkAPI.getGameCamera().getXOffset() / Tile.TILEWIDTH);
+        int xEnd = (int) Math.min(width, (krorkAPI.getGameCamera().getXOffset() + krorkAPI.getWidth()) / Tile.TILEWIDTH + 1);
+        int yStart = (int) Math.max(0, krorkAPI.getGameCamera().getYOffset() / Tile.TILEHEIGHT);
+        int yEnd = (int) Math.min(height, (krorkAPI.getGameCamera().getYOffset() + krorkAPI.getHeight()) / Tile.TILEHEIGHT + 1);
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
-                getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - API.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - API.getGameCamera().getYOffset()));
+                getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - krorkAPI.getGameCamera().getXOffset()), (int) (y * Tile.TILEHEIGHT - krorkAPI.getGameCamera().getYOffset()));
             }
         }
         //Entities
@@ -112,7 +112,7 @@ public class World {
     }
 
     public KrorkAPI getAPI() {
-        return this.API;
+        return this.krorkAPI;
     }
 
     public int getWidth() {

@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 
 public class EntityManager {
 
-    private KrorkAPI API;
+    private KrorkAPI krorkAPI;
 
     private ArrayList<Entity> entities;
 
@@ -41,10 +41,10 @@ public class EntityManager {
     /**
      * Default EntityManager constructor
      *
-     * @param API The KrorkAPI
+     * @param krorkAPI The KrorkAPI
      */
-    public EntityManager(KrorkAPI API) {
-        this.API = API;
+    public EntityManager(KrorkAPI krorkAPI) {
+        this.krorkAPI = krorkAPI;
         entities = new ArrayList<>();
     }
 
@@ -71,7 +71,7 @@ public class EntityManager {
      */
     public synchronized void addEntity( Entity entity) {
         try {
-            if (entity.getLocation() == null || !entity.getLocation().getWorld().getWorldName().equalsIgnoreCase(API.getWorld().getWorldName())) throw new WorldNotLoadedException(entity, API.getWorld());
+            if (entity.getLocation() == null || !entity.getLocation().getWorld().getWorldName().equalsIgnoreCase(krorkAPI.getWorld().getWorldName())) throw new WorldNotLoadedException(entity, krorkAPI.getWorld());
             entities.add(entity);
         } catch (WorldNotLoadedException e) {
             Log.log(Log.LogType.DANGER, e.getMessage());
@@ -90,7 +90,7 @@ public class EntityManager {
      */
 
     public List<Entity> getEntityOnLoc(float x, float y) {
-        return API.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains((int)x, (int)y)).collect(Collectors.toList());
+        return krorkAPI.getWorld().getEntityManager().getEntities().stream().filter(e -> e.getBounds().contains((int)x, (int)y)).collect(Collectors.toList());
     }
 
     /**
@@ -117,15 +117,15 @@ public class EntityManager {
     }
 
     public KrorkAPI getAPI() {
-        return this.API;
+        return this.krorkAPI;
     }
 
     public ArrayList<Entity> getEntities() {
         return this.entities;
     }
 
-    public void setAPI(KrorkAPI API) {
-        this.API = API;
+    public void setAPI(KrorkAPI krorkAPI) {
+        this.krorkAPI = krorkAPI;
     }
 
     public void setEntities(ArrayList<Entity> entities) {

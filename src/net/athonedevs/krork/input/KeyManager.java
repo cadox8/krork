@@ -20,18 +20,18 @@ import java.util.Arrays;
 
 public class KeyManager implements KeyListener {
 
-    private KrorkAPI API;
+    private KrorkAPI krorkAPI;
 
     private boolean[] keys, justPressed, cantPress;
 
     private UIField writingTo;
 
-    public KeyManager(KrorkAPI API) {
+    public KeyManager(KrorkAPI krorkAPI) {
         keys = new boolean[256];
         justPressed = new boolean[keys.length];
         cantPress = new boolean[keys.length];
 
-        this.API = API;
+        this.krorkAPI = krorkAPI;
 
         //writingTo = null;
     }

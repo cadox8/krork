@@ -30,6 +30,8 @@ public class NysvaColor {
     public static NysvaColor ORANGE = new NysvaColor(211, 84, 0);
     public static NysvaColor YELLOW = new NysvaColor(241, 196, 15);
 
+    public static NysvaColor TRANSPARENT = new NysvaColor(0, 0, 0, 0);
+
     //
     private int value;
 

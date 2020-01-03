@@ -15,19 +15,19 @@ import net.athonedevs.krork.api.KrorkAPI;
 
 public abstract class Attribute {
 
-    protected final KrorkAPI API;
+    protected final KrorkAPI krorkAPI;
     private final int id;
     private final String name;
 
     /**
      * Creates a new Attribute
      *
-     * @param API The KrorkAPI
+     * @param krorkAPI The KrorkAPI
      * @param id The Attribute ID
      * @param name The Attribute Name
      */
-    public Attribute(KrorkAPI API, int id, String name) {
-        this.API = API;
+    public Attribute(KrorkAPI krorkAPI, int id, String name) {
+        this.krorkAPI = krorkAPI;
         this.id = id;
         this.name = name;
     }

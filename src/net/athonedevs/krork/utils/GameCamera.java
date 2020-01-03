@@ -17,19 +17,19 @@ import net.athonedevs.krork.tiles.Tile;
 
 public class GameCamera {
 
-    private KrorkAPI API;
+    private KrorkAPI krorkAPI;
     private float xOffset, yOffset;
 
     /**
      * The default Game Camera constructor.
      * This class will set the camera on a location to render the world
      *
-     * @param API The KrorkAPI
+     * @param krorkAPI The KrorkAPI
      * @param xOffset The xOffset to start
      * @param yOffset The yOffset to start
      */
-    public GameCamera(KrorkAPI API, float xOffset, float yOffset) {
-        this.API = API;
+    public GameCamera(KrorkAPI krorkAPI, float xOffset, float yOffset) {
+        this.krorkAPI = krorkAPI;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
     }
@@ -37,14 +37,14 @@ public class GameCamera {
     private void checkBlankSpace() {
         if (xOffset < 0) {
             xOffset = 0;
-        } else if (xOffset > API.getWorld().getWidth() * Tile.TILEWIDTH - API.getWidth()) {
-            xOffset = API.getWorld().getWidth() * Tile.TILEWIDTH - API.getWidth();
+        } else if (xOffset > krorkAPI.getWorld().getWidth() * Tile.TILEWIDTH - krorkAPI.getWidth()) {
+            xOffset = krorkAPI.getWorld().getWidth() * Tile.TILEWIDTH - krorkAPI.getWidth();
         }
 
         if (yOffset < 0) {
             yOffset = 0;
-        } else if (yOffset > API.getWorld().getHeight() * Tile.TILEHEIGHT - API.getHeight()) {
-            yOffset = API.getWorld().getHeight() * Tile.TILEHEIGHT - API.getHeight();
+        } else if (yOffset > krorkAPI.getWorld().getHeight() * Tile.TILEHEIGHT - krorkAPI.getHeight()) {
+            yOffset = krorkAPI.getWorld().getHeight() * Tile.TILEHEIGHT - krorkAPI.getHeight();
         }
     }
 
@@ -54,8 +54,8 @@ public class GameCamera {
      * @param entity The entity to be centered on
      */
     public void centerOnEntity(Entity entity) {
-        xOffset = entity.getX() - API.getWidth() / 2 + entity.getWidth() / 2;
-        yOffset = entity.getY() - API.getHeight() / 2 + entity.getHeight() / 2;
+        xOffset = entity.getX() - krorkAPI.getWidth() / 2 + entity.getWidth() / 2;
+        yOffset = entity.getY() - krorkAPI.getHeight() / 2 + entity.getHeight() / 2;
         checkBlankSpace();
     }
 

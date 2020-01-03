@@ -21,7 +21,7 @@ import java.awt.*;
 
 public abstract class AI {
 
-    protected KrorkAPI API;
+    protected KrorkAPI krorkAPI;
     private Entity entity;
 
     private float speed;
@@ -31,11 +31,11 @@ public abstract class AI {
     protected Rectangle bounds;
     private int tempDelay = 0;
 
-    public AI(KrorkAPI API, Entity entity, float speed, int delay) {
-        this(API, entity, speed, delay, new Rectangle(0, 0, 0, 0));
+    public AI(KrorkAPI krorkAPI, Entity entity, float speed, int delay) {
+        this(krorkAPI, entity, speed, delay, new Rectangle(0, 0, 0, 0));
     }
-    public AI(KrorkAPI API, Entity entity, float speed, int delay, Rectangle bounds) {
-        this.API = API;
+    public AI(KrorkAPI krorkAPI, Entity entity, float speed, int delay, Rectangle bounds) {
+        this.krorkAPI = krorkAPI;
         this.entity = entity;
         this.speed = speed;
         this.delay = delay;

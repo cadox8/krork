@@ -84,7 +84,7 @@ public abstract class NysvaUI {
     protected void drawImage(Graphics g, BufferedImage[] images) {
         if (images.length > 2) throw new IllegalArgumentException("Images must be 2");
 
-        if (hovering) {
+        if (hovering && allowHover) {
             if (images.length == 1) {
                 g.drawImage(images[0], getUIDimension().getX(), getUIDimension().getY(), getUIDimension().getWidth() + 5, getUIDimension().getHeight() + 5,null);
             } else {

@@ -30,8 +30,8 @@ public abstract class Creature extends Entity {
     protected boolean freeze = false;
 
 
-    public Creature(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
-        super(API, entityID, entityName, x, y, width, height);
+    public Creature(KrorkAPI krorkAPI, int entityID, String entityName, float x, float y, int width, int height) {
+        super(krorkAPI, entityID, entityName, x, y, width, height);
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
@@ -88,7 +88,7 @@ public abstract class Creature extends Entity {
     }
 
     protected boolean collisionWithTile(int x, int y) {
-        return API.getWorld().getTile(x, y).isSolid();
+        return krorkAPI.getWorld().getTile(x, y).isSolid();
     }
 
     @Deprecated

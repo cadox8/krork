@@ -30,7 +30,7 @@ public abstract class Entity {
     protected final double DEFAULT_DAMAGE = 3;
     protected final double DEFAULT_ARMOR = 0;
 
-    protected KrorkAPI API;
+    protected KrorkAPI krorkAPI;
 
     protected float x, y;
     protected int width, height;
@@ -63,8 +63,8 @@ public abstract class Entity {
 
     private List<Integer> collisionID;
 
-    public Entity(KrorkAPI API, int entityID, String entityName, float x, float y, int width, int height) {
-        this.API = API;
+    public Entity(KrorkAPI krorkAPI, int entityID, String entityName, float x, float y, int width, int height) {
+        this.krorkAPI = krorkAPI;
         this.entityID = entityID;
         this.entityName = entityName;
         this.x = x;
@@ -78,8 +78,8 @@ public abstract class Entity {
 
         collisionID = new ArrayList<>();
 
-        this.location = new Location(API.getWorld(), x, y, direction);
-        location.setAPI(API);
+        this.location = new Location(krorkAPI.getWorld(), x, y, direction);
+        location.setAPI(krorkAPI);
 
         bounds = new Rectangle(0, 0, width, height);
     }
@@ -109,7 +109,7 @@ public abstract class Entity {
 
     public boolean checkEntityCollisions(float xOffset, float yOffset) {
         if (!isCollidable()) return false;
-        for (Entity e : API.getWorld().getEntityManager().getEntities()) {
+        for (Entity e : krorkAPI.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) continue;
 
             if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
@@ -122,7 +122,7 @@ public abstract class Entity {
     }
 
     public Entity getEntityCollision(float xOffset, float yOffset) {
-        for (Entity e : API.getWorld().getEntityManager().getEntities()) {
+        for (Entity e : krorkAPI.getWorld().getEntityManager().getEntities()) {
             if (e.equals(this)) continue;
             if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) return e;
         }
@@ -142,11 +142,11 @@ public abstract class Entity {
     }
 
     public Location getLocation() {
-        return new Location(API.getWorld(), getX(), getY(), getDirection());
+        return new Location(krorkAPI.getWorld(), getX(), getY(), getDirection());
     }
 
     public String toString() {
-        return "Entity(entityID=" + this.entityID + ", entityName=" + this.entityName + ", DEFAULT_HEALTH=" + this.DEFAULT_HEALTH + ", DEFAULT_DAMAGE=" + this.DEFAULT_DAMAGE + ", DEFAULT_ARMOR=" + this.DEFAULT_ARMOR + ", API=" + this.API + ", x=" + this.x + ", y=" + this.y + ", width=" + this.width + ", height=" + this.height + ", health=" + this.health + ", damage=" + this.damage + ", armor=" + this.armor + ", maxHealth=" + this.maxHealth + ", damageable=" + this.damageable + ", lastAttackTimer=" + this.lastAttackTimer + ", attackCooldown=" + this.attackCooldown + ", attackTimer=" + this.attackTimer + ", direction=" + this.direction + ", active=" + this.active + ", location=" + this.getLocation() + ", bounds=" + this.bounds + ", collisionEntity=" + this.collisionEntity + ", killer=" + this.killer + ", animations=" + Arrays.deepToString(this.animations) + ", texture=" + this.texture + ", collidable=" + this.collidable + ", collisionID=" + this.collisionID + ")";
+        return "Entity(entityID=" + this.entityID + ", entityName=" + this.entityName + ", DEFAULT_HEALTH=" + this.DEFAULT_HEALTH + ", DEFAULT_DAMAGE=" + this.DEFAULT_DAMAGE + ", DEFAULT_ARMOR=" + this.DEFAULT_ARMOR + ", krorkAPI=" + this.krorkAPI + ", x=" + this.x + ", y=" + this.y + ", width=" + this.width + ", height=" + this.height + ", health=" + this.health + ", damage=" + this.damage + ", armor=" + this.armor + ", maxHealth=" + this.maxHealth + ", damageable=" + this.damageable + ", lastAttackTimer=" + this.lastAttackTimer + ", attackCooldown=" + this.attackCooldown + ", attackTimer=" + this.attackTimer + ", direction=" + this.direction + ", active=" + this.active + ", location=" + this.getLocation() + ", bounds=" + this.bounds + ", collisionEntity=" + this.collisionEntity + ", killer=" + this.killer + ", animations=" + Arrays.deepToString(this.animations) + ", texture=" + this.texture + ", collidable=" + this.collidable + ", collisionID=" + this.collisionID + ")";
     }
 
     public int getEntityID() {
@@ -158,7 +158,7 @@ public abstract class Entity {
     }
 
     public KrorkAPI getAPI() {
-        return this.API;
+        return this.krorkAPI;
     }
 
     public float getX() {
@@ -245,8 +245,8 @@ public abstract class Entity {
         return this.collisionID;
     }
 
-    public void setAPI(KrorkAPI API) {
-        this.API = API;
+    public void setAPI(KrorkAPI krorkAPI) {
+        this.krorkAPI = krorkAPI;
     }
 
     public void setX(float x) {

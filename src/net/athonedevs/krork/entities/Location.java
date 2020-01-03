@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class Location {
 
-    private KrorkAPI API;
+    private KrorkAPI krorkAPI;
 
     private World world;
     private float x;
@@ -86,7 +86,7 @@ public class Location {
      * @param direction The new Direction value
      */
     public void teleport(float x, float y, int direction) {
-        teleport(API.getWorld(), x, y, direction);
+        teleport(krorkAPI.getWorld(), x, y, direction);
     }
     /**
      * Teleports an Entity to a specified location
@@ -124,7 +124,7 @@ public class Location {
     }
 
     public String toString() {
-        return "Location(API=" + this.API + ", world=" + this.world + ", x=" + this.x + ", y=" + this.y + ", direction=" + this.direction + ")";
+        return "Location(krorkAPI=" + this.krorkAPI + ", world=" + this.world + ", x=" + this.x + ", y=" + this.y + ", direction=" + this.direction + ")";
     }
 
     public World getWorld() {
@@ -143,8 +143,8 @@ public class Location {
         return this.direction;
     }
 
-    public void setAPI(KrorkAPI API) {
-        this.API = API;
+    public void setAPI(KrorkAPI krorkAPI) {
+        this.krorkAPI = krorkAPI;
     }
 
     public void setWorld(World world) {

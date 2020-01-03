@@ -17,12 +17,12 @@ import java.awt.*;
 
 public abstract class State {
 
-    protected KrorkAPI API;
+    protected KrorkAPI krorkAPI;
 
     private static State state = null;
 
-    public State(KrorkAPI API) {
-        this.API = API;
+    public State(KrorkAPI krorkAPI) {
+        this.krorkAPI = krorkAPI;
     }
 
     public static State getState() {
