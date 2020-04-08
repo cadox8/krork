@@ -25,11 +25,11 @@ public class Updater {
 
     public static void checkForUpdate() {
         if (getEngineVersion().latest > Krork.getVersionNumber()) {
-            Log.log(Log.LogType.WARNING, Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + Arrays.stream(getEngineVersion().older).filter(v -> v.id == getEngineVersion().latest).findAny().get().version, "Krork");
-            Log.log(Log.LogType.WARNING, "You can download it from here: https://cadox8.github.io/krork/", "Krork");
-            Log.log(Log.LogType.WARNING, "Or just update your pom.xml file", "Krork");
+            Log.warning(Colors.GREEN.getColor() + "New version found, Version: " + Colors.RED.getColor() + Arrays.stream(getEngineVersion().older).filter(v -> v.id == getEngineVersion().latest).findAny().get().version, "Krork");
+            Log.warning("You can download it from here: https://cadox8.github.io/krork/", "Krork");
+            Log.warning("Or just update your pom.xml file", "Krork");
         } else {
-            Log.log(Log.LogType.SUCCESS, "No updates found", "Krork");
+            Log.success("No updates found", "Krork");
         }
     }
 

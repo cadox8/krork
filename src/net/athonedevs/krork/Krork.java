@@ -28,8 +28,8 @@ import java.awt.image.BufferStrategy;
 public class Krork implements Runnable {
 
     // Info
-    private static final String version = "v2.0.3 Beta";
-    private static final int versionNumber = 22;
+    private static final String version = "v2.0.4 Beta";
+    private static final int versionNumber = 23;
     private static String game;
     //
 
@@ -113,9 +113,9 @@ public class Krork implements Runnable {
         // Version info
         KrorkAPI.enableDebug(true);
 
-        Log.log(Log.LogType.SUCCESS, "Krork Engine is now working", "Krork");
-        Log.log(Log.LogType.NORMAL, "Krork Version: " + Colors.RED.getColor() + getVersion() + "\n", "Krork");
-        Log.log(Log.LogType.NORMAL, "Checking for updates...", "Krork");
+        Log.success("Krork Engine is now working", "Krork");
+        Log.system("Krork Version: " + Colors.RED.getColor() + getVersion() + "\n", "Krork");
+        Log.system("Checking for updates...", "Krork");
         Updater.checkForUpdate();
     }
 
