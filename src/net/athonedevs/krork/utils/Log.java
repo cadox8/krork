@@ -133,7 +133,7 @@ public class Log {
      */
     private static void log(ColoredPrinter printer, LogType type, Object text, String prefix){
         final String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.ENGLISH)) + "]";
-        final String log = time + "[" + prefix + "] " + type.getPrefix() + text;
+        final String log = time + "[" + prefix + "]" + type.getPrefix() + " " + text;
         printer.setTimestamping(false);
         printer.println(log);
     }
